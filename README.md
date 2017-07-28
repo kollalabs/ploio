@@ -1,4 +1,4 @@
-Ploio is a automated deployment pipeline tool for kubernetes services. In concept it is based on Netflix's spinnaker, but is more specialized (opinionated) in that it requires use of kubernetes, helm, and istio.
+Ploio is an automated deployment pipeline tool for kubernetes services. In concept it is based on Netflix's spinnaker, but is more specialized (limited, focussed, trimmed down, crappier) in that it requires use of kubernetes, helm, and istio.
 
 
 ### Components
