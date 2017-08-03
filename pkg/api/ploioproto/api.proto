@@ -1,0 +1,83 @@
+syntax = "proto3";
+package ploioproto;
+
+service PloioAPI {
+  rpc ListApplications (ApplicationGet) returns (ApplicationList) {}
+  rpc GetApplication (ApplicationGet) returns (Application) {}
+  rpc CreateApplication (ApplicationCreate) returns (Application) {}
+}
+
+
+
+message ApplicationCreate {
+    string Name = 1;
+    string Owner = 2;
+    string Repo = 3;
+    bool Stateful = 4;
+}
+
+message ApplicationGet {
+    string ID = 1;
+    string Name = 2;
+}
+
+message ApplicationList {
+    repeated Application Applications = 1;
+}
+
+
+message Application {
+    string ID = 1;
+    string Name = 2;
+    string Owner = 3;
+    string Repo = 4;
+    bool Stateful = 5;
+
+    repeated Pipeline Pipelines = 6;
+    repeated EnvVar EvnVars = 7;
+    repeated Volume Volumes = 8;
+}
+
+message Pipeline {
+    string ID = 1;
+    string Name = 2;
+    string PipelineID = 3;
+    int32 Order = 4;
+    repeated Step Steps = 5;
+}
+
+message Step {
+    string ID = 1;
+    string Name = 2;
+    string PipelineID = 3;
+    StepType Type = 4;
+    int32 Order = 5;
+}
+
+enum StepType {
+   Deploy = 0;
+   DeployBlueGreen = 1;
+   DeployCanary = 2;
+   DeployManualCheck = 3;
+   ManualCheck = 4;
+}
+
+message EnvVar {
+    string ID = 1;
+    string Name = 2;
+    EnvVarType Type = 3;
+    string Key = 4;
+    string Value = 5;
+    string ConfigMap = 6;
+}
+
+enum EnvVarType {
+    ConfigMap = 0;
+}
+
+message Volume {
+    string ID = 1;
+    string Name = 2;
+}
+
+

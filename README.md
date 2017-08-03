@@ -4,7 +4,7 @@ Ploio is an automated deployment pipeline tool for kubernetes services. In conce
 ### Components
 
 * __Cluster__ - k8s cluster to talk to (dev, stage, prod-va, prod-ut, etc)
-* __Service__ - Represents a service that is built using a helm chart...
+* __Application__ - Represents an application
 * __Pipeline__ - A set of steps/actions to take on a service when triggered to do so (e.g. CI server triggers it via an API call with the chart name and version)
 * __Step__ - an action taken in a service pipeline (e.g. deploy to cluster, manual check, kanary deploy, green/blue deploy, run integration tests)
 * __Template__ - a pre-defined pipeline config that can be reused on any service
