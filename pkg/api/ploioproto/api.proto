@@ -5,6 +5,11 @@ service PloioAPI {
   rpc ListApplications (ApplicationGet) returns (ApplicationList) {}
   rpc GetApplication (ApplicationGet) returns (Application) {}
   rpc CreateApplication (ApplicationCreate) returns (Application) {}
+  rpc ListClusters (ClusterGet) returns (ClusterList) {}
+  rpc ListPipelines (PipelineGet) returns (PipelineList) {}
+  rpc CreatePipeline (PipelineCreate) returns (Pipeline) {}
+  rpc CreateStep (Step) returns (Step) {}
+  rpc ListStep (StepGet) returns (StepList) {}
 }
 
 
@@ -41,17 +46,43 @@ message Application {
 message Pipeline {
     string ID = 1;
     string Name = 2;
-    string PipelineID = 3;
+    string Application = 3;
     int32 Order = 4;
     repeated Step Steps = 5;
+}
+
+message PipelineGet {
+    string Application = 1;
+    string Name = 2;
+}
+
+message PipelineList {
+    repeated Pipeline Pipelines = 1;
+}
+
+message PipelineCreate {
+    string Application = 1;
+    string Name = 2;
 }
 
 message Step {
     string ID = 1;
     string Name = 2;
-    string PipelineID = 3;
+    string Pipeline = 3;
     StepType Type = 4;
     int32 Order = 5;
+    string Memory = 6;
+    string Proc = 7;
+    int32 Replicas = 8;
+}
+
+message StepGet {
+    string Pipeline = 1;
+    string Name = 2;
+}
+
+message StepList {
+    repeated Step Steps = 1;
 }
 
 enum StepType {
@@ -78,6 +109,20 @@ enum EnvVarType {
 message Volume {
     string ID = 1;
     string Name = 2;
+}
+
+message Cluster {
+    string ID = 1;
+    string Name = 2;
+    string Host = 3;
+}
+
+message ClusterGet {
+    string Name = 1;
+}
+
+message ClusterList {
+    repeated Cluster Clusters = 1;
 }
 
 

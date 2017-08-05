@@ -14,11 +14,18 @@
 
 package cmd
 
-import "github.com/spf13/cobra"
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
 
-// getCmd represents the get command
-var getCmd = &cobra.Command{
-	Use:   "get",
+	"github.com/spf13/cobra"
+)
+
+// applicationCreateCmd represents the applicationCreate command
+var applicationCreateCmd = &cobra.Command{
+	Use:   "application",
 	Short: "A brief description of your command",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
@@ -26,21 +33,34 @@ and usage of using your command. For example:
 Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
-	// Run: func(cmd *cobra.Command, args []string) {
-	// 	fmt.Println("get called")
-	// },
+	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Println("Creating application: " + args[0])
+		reader := bufio.NewReader(os.Stdin)
+		fmt.Print("Email address of owner: ")
+		owner, _ := reader.ReadString('\n')
+		owner = strings.TrimSpace(owner)
+		fmt.Print("Container Repo: ")
+		repo, _ := reader.ReadString('\n')
+		repo = strings.TrimSpace(repo)
+
+		fmt.Println("\nCreating application:")
+		fmt.Println("Name: " + args[0])
+		fmt.Println("Owner: " + owner)
+		fmt.Println("Repo: " + repo)
+	},
+	Args: cobra.ExactArgs(1),
 }
 
 func init() {
-	RootCmd.AddCommand(getCmd)
+	createCmd.AddCommand(applicationCreateCmd)
 
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// getCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// applicationCreateCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// getCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// applicationCreateCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
