@@ -22,7 +22,7 @@ message ApplicationCreate {
 }
 
 message ApplicationGet {
-    string ID = 1;
+    int32 ID = 1;
     string Name = 2;
 }
 
@@ -32,7 +32,7 @@ message ApplicationList {
 
 
 message Application {
-    string ID = 1;
+    int32 ID = 1;
     string Name = 2;
     string Owner = 3;
     string Repo = 4;
@@ -44,11 +44,10 @@ message Application {
 }
 
 message Pipeline {
-    string ID = 1;
+    int32 ID = 1;
     string Name = 2;
-    string Application = 3;
-    int32 Order = 4;
-    repeated Step Steps = 5;
+    int32 Order = 3;
+    repeated Step Steps = 4;
 }
 
 message PipelineGet {
@@ -66,14 +65,13 @@ message PipelineCreate {
 }
 
 message Step {
-    string ID = 1;
+    int32 ID = 1;
     string Name = 2;
-    string Pipeline = 3;
-    StepType Type = 4;
-    int32 Order = 5;
-    string Memory = 6;
-    string Proc = 7;
-    int32 Replicas = 8;
+    StepType Type = 3;
+    int32 Order = 4;
+    string Memory = 5;
+    string Proc = 6;
+    int32 Replicas = 7;
 }
 
 message StepGet {
@@ -94,7 +92,7 @@ enum StepType {
 }
 
 message EnvVar {
-    string ID = 1;
+    int32 ID = 1;
     string Name = 2;
     EnvVarType Type = 3;
     string Key = 4;
@@ -107,12 +105,12 @@ enum EnvVarType {
 }
 
 message Volume {
-    string ID = 1;
+    int32 ID = 1;
     string Name = 2;
 }
 
 message Cluster {
-    string ID = 1;
+    int32 ID = 1;
     string Name = 2;
     string Host = 3;
 }

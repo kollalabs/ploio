@@ -16,8 +16,13 @@ package cmd
 
 import (
 	"fmt"
+	"strconv"
 
 	"github.com/spf13/cobra"
+	"golang.org/x/net/context"
+
+	api "github.com/weave-lab/ploio/cmd/ploioctl/apiclient"
+	pp "github.com/weave-lab/ploio/pkg/api/ploioproto"
 )
 
 // applicationGetCmd represents the applicationGet command
@@ -32,6 +37,18 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("applicationGet called")
+
+		ag := &pp.ApplicationGet{}
+
+		al, err := api.Client.ListApplications(context.Background(), ag)
+		if err != nil {
+			fmt.Print(err)
+		}
+		fmt.Println("ID\tName\tOwner")
+		for _, a := range al.Applications {
+
+			fmt.Println(strconv.Itoa(int(a.ID)) + "\t" + a.Name + "\t" + a.Owner)
+		}
 	},
 	Args: cobra.MaximumNArgs(1),
 }

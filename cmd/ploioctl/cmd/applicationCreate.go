@@ -20,7 +20,12 @@ import (
 	"os"
 	"strings"
 
+	"golang.org/x/net/context"
+
 	"github.com/spf13/cobra"
+
+	api "github.com/weave-lab/ploio/cmd/ploioctl/apiclient"
+	pp "github.com/weave-lab/ploio/pkg/api/ploioproto"
 )
 
 // applicationCreateCmd represents the applicationCreate command
@@ -47,7 +52,18 @@ to quickly create a Cobra application.`,
 		fmt.Println("Name: " + args[0])
 		fmt.Println("Owner: " + owner)
 		fmt.Println("Repo: " + repo)
+		ac := &pp.ApplicationCreate{
+			Name:  args[0],
+			Owner: owner,
+			Repo:  repo,
+		}
+		_, err := api.Client.CreateApplication(context.Background(), ac)
+		if err != nil {
+			fmt.Print(err)
+			return
+		}
 	},
+
 	Args: cobra.ExactArgs(1),
 }
 
