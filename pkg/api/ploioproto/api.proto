@@ -8,8 +8,8 @@ service PloioAPI {
   rpc ListClusters (ClusterGet) returns (ClusterList) {}
   rpc ListPipelines (PipelineGet) returns (PipelineList) {}
   rpc CreatePipeline (PipelineCreate) returns (Pipeline) {}
-  rpc CreateStep (Step) returns (Step) {}
-  rpc ListStep (StepGet) returns (StepList) {}
+  rpc CreateStage (Stage) returns (Stage) {}
+  rpc ListStage (StageGet) returns (StageList) {}
 }
 
 
@@ -47,7 +47,7 @@ message Pipeline {
     int32 ID = 1;
     string Name = 2;
     int32 Order = 3;
-    repeated Step Steps = 4;
+    repeated Stage Stages = 4;
 }
 
 message PipelineGet {
@@ -64,31 +64,36 @@ message PipelineCreate {
     string Name = 2;
 }
 
-message Step {
+message Stage {
     int32 ID = 1;
     string Name = 2;
-    StepType Type = 3;
+    StageType Type = 3;
     int32 Order = 4;
-    string Memory = 5;
-    string Proc = 6;
-    int32 Replicas = 7;
+    string Strategy = 5;
+    string Namespace = 6;
+    string Memory = 7;
+    string Proc = 8;
+    int32 Replicas = 9;
+    int64 Duration = 10;
+    int32 MaxUnavailable = 11;
+    int32 MaxSurge = 12;
+    bool NotifyEmail = 13;
+    bool NotifySlack = 14;
 }
 
-message StepGet {
+message StageGet {
     string Pipeline = 1;
     string Name = 2;
 }
 
-message StepList {
-    repeated Step Steps = 1;
+message StageList {
+    repeated Stage Stages = 1;
 }
 
-enum StepType {
-   Deploy = 0;
-   DeployBlueGreen = 1;
-   DeployCanary = 2;
-   DeployManualCheck = 3;
-   ManualCheck = 4;
+enum StageType {
+   Deploy = 0; 
+   ManualVerify = 1;
+   Wait = 2;
 }
 
 message EnvVar {
@@ -123,4 +128,25 @@ message ClusterList {
     repeated Cluster Clusters = 1;
 }
 
+message Service {
+    string Name = 1;
+    string Application = 2;
+    ServiceType type = 3;
+    repeated Port Ports = 4;
+}
+
+enum ServiceType {
+    ClusterIP = 0;
+    NodePort = 1;
+    LoadBalancer = 2;
+    ExternalName = 3;
+}
+
+message Port {
+    string Name = 1;
+    protocol String = 2;
+    string Port = 3;
+    string TargetPort = 4;
+    string NodePort = 5;
+}
 

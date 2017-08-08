@@ -44,10 +44,10 @@ to quickly create a Cobra application.`,
 		if err != nil {
 			fmt.Print(err)
 		}
-		fmt.Println("ID\tName\tOwner")
+		fmt.Println("ID\tName\tOwner\tRepo")
 		for _, a := range al.Applications {
 
-			fmt.Println(strconv.Itoa(int(a.ID)) + "\t" + a.Name + "\t" + a.Owner)
+			fmt.Println(strconv.Itoa(int(a.ID)) + "\t" + a.Name + "\t" + a.Owner + "\t" + a.Repo)
 		}
 	},
 	Args: cobra.MaximumNArgs(1),
