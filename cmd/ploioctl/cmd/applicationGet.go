@@ -21,8 +21,8 @@ import (
 	"github.com/spf13/cobra"
 	"golang.org/x/net/context"
 
-	api "github.com/weave-lab/ploio/cmd/ploioctl/apiclient"
-	pp "github.com/weave-lab/ploio/pkg/api/ploioproto"
+	api "github.com/ploio/ploio/cmd/ploioctl/apiclient"
+	pp "github.com/ploio/ploio/pkg/api/ploioproto"
 )
 
 // applicationGetCmd represents the applicationGet command

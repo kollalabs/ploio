@@ -6,7 +6,7 @@ import (
 	"github.com/asdine/storm"
 	"golang.org/x/net/context"
 
-	pp "github.com/weave-lab/ploio/pkg/api/ploioproto"
+	pp "github.com/ploio/ploio/pkg/api/ploioproto"
 )
 
 var db *storm.DB

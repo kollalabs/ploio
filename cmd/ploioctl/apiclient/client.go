@@ -3,7 +3,7 @@ package apiclient
 import (
 	"log"
 
-	pp "github.com/weave-lab/ploio/pkg/api/ploioproto"
+	pp "github.com/ploio/ploio/pkg/api/ploioproto"
 	"google.golang.org/grpc"
 )
 

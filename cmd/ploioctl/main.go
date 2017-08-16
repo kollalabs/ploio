@@ -14,7 +14,7 @@
 
 package main
 
-import "github.com/weave-lab/ploio/cmd/ploioctl/cmd"
+import "github.com/ploio/ploio/cmd/ploioctl/cmd"
 
 func main() {
 	cmd.Execute()

@@ -5,7 +5,7 @@ import (
 	"log"
 	"net"
 
-	"github.com/weave-lab/ploio/pkg/api/ploioproto"
+	"github.com/ploio/ploio/pkg/api/ploioproto"
 	"google.golang.org/grpc"
 )
 

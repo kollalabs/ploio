@@ -24,8 +24,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	api "github.com/weave-lab/ploio/cmd/ploioctl/apiclient"
-	pp "github.com/weave-lab/ploio/pkg/api/ploioproto"
+	api "github.com/ploio/ploio/cmd/ploioctl/apiclient"
+	pp "github.com/ploio/ploio/pkg/api/ploioproto"
 )
 
 // applicationCreateCmd represents the applicationCreate command
