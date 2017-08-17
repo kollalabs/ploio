@@ -70,17 +70,19 @@ message Stage {
     StageType Type = 3;
     int32 Order = 4;
     string Strategy = 5;
-    string Namespace = 6;
-    string Memory = 7;
-    string Proc = 8;
-    int32 Replicas = 9;
-    int32 MaxUnavailable = 10;
-    int32 MaxSurge = 11;
-    bool NotifyEmail = 12;
-    bool NotifySlack = 13;
-    string SmokeHeaderKey = 14;
-    string SmokeHeaderVal = 15;
-    int32 CanaryPercentage = 16;
+    Cluster Cluster = 6;
+    string Namespace = 7;
+    string Memory = 8;
+    string Proc = 9;
+    int32 Replicas = 10;
+    int32 MaxUnavailable = 11;
+    int32 MaxSurge = 12;
+    bool NotifyEmail = 13;
+    bool NotifySlack = 14;
+    string SmokeHeaderKey = 15;
+    string SmokeHeaderVal = 16;
+    int32 CanaryPercentage = 17;
+    int64 WaitDuration = 18;
 }
 
 message StageGet {
