@@ -32,6 +32,12 @@ type application struct {
 	Stateful bool
 }
 
+type cluster struct {
+	ID   int32  `storm:"id,increment"`
+	Name string `storm:"unique"`
+	URL  string
+}
+
 type pipeline struct {
 	ID            int32 `storm:"id,increment"`
 	Name          string
@@ -40,7 +46,7 @@ type pipeline struct {
 }
 
 type step struct {
-	ID         int32
+	ID         int32 `storm:"id,increment"`
 	Name       string
 	PipelineID int32
 	Type       string

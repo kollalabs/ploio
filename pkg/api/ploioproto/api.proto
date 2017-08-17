@@ -74,11 +74,13 @@ message Stage {
     string Memory = 7;
     string Proc = 8;
     int32 Replicas = 9;
-    int64 Duration = 10;
-    int32 MaxUnavailable = 11;
-    int32 MaxSurge = 12;
-    bool NotifyEmail = 13;
-    bool NotifySlack = 14;
+    int32 MaxUnavailable = 10;
+    int32 MaxSurge = 11;
+    bool NotifyEmail = 12;
+    bool NotifySlack = 13;
+    string SmokeHeaderKey = 14;
+    string SmokeHeaderVal = 15;
+    int32 CanaryPercentage = 16;
 }
 
 message StageGet {
@@ -92,8 +94,9 @@ message StageList {
 
 enum StageType {
    Deploy = 0; 
-   ManualVerify = 1;
-   Wait = 2;
+   Check = 1;
+   Teardown = 2;
+   Wait = 3;
 }
 
 message EnvVar {
@@ -144,7 +147,7 @@ enum ServiceType {
 
 message Port {
     string Name = 1;
-    protocol String = 2;
+    string Protocol = 2;
     string Port = 3;
     string TargetPort = 4;
     string NodePort = 5;

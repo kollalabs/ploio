@@ -6,7 +6,7 @@ Ploio (PLEE-oh) is an automated deployment pipeline tool for kubernetes
 
 Ploio's mission is to make your application deployments safe, reliable, and fast. 
 
-Ploio borrows many concepts from Spinnaker, the amazing deployment tool from Netflix. However, Spinnaker was built in the age of VMs and a huge portion of its functionality is dedictated to provisioning VMs and other AWS utilities. With modern cloud-native applications on kubernetes, the environment you are deploying too has already been provisioned (just spin up more workers!), so Ploio is focussed on just the deployment of your container-based apps to kubernetes.
+Ploio borrows many concepts from Spinnaker, the amazing deployment tool from Netflix. However, Spinnaker was built in the age of VMs and a huge portion of its functionality is dedictated to provisioning VMs and other AWS utilities. With modern cloud-native applications on kubernetes, the environment you are deploying to has already been provisioned (just spin up more workers!), so Ploio is focussed on just the deployment of your container-based apps to kubernetes.
 
 Ploio makes use of Istio and Linkerd to do things such as Canary deployments, Smoke Deployments, and latency/error checks to validate successful deployments. 
 
