@@ -39,9 +39,9 @@ message Application {
     string Owner = 3;
     string Repo = 4;
 
-    repeated Pipeline Pipelines = 5;
-    repeated Env Env = 6;
-    repeated Service Services = 7;
+    repeated Env Env = 5;
+    repeated Service Services = 6;
+    repeated Pipeline Pipelines = 7;
 }
 
 message Pipeline {
@@ -108,10 +108,10 @@ enum StageType {
 message Env {
     int32 ID = 1;
     string Name = 2;
-    string Key = 4;
-    string Value = 5;
-    string ConfigMap = 6;
-    string Secret = 7;
+    string Key = 3;
+    string Value = 4;
+    string ConfigMap = 5;
+    string Secret = 6;
 }
 
 message Cluster {

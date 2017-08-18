@@ -164,6 +164,22 @@ func (p *ploioserver) GetApplication(c context.Context, ag *pp.ApplicationGet) (
 
 		result.Services = append(result.Services, s)
 	}
+	var dbpipelines []pipeline
+	err = db.Find("ApplicationID", dbapp.ID, &dbpipelines)
+	if err != nil {
+		return result, err
+	}
+	for _, dbp := range dbpipelines {
+		protoPipeline := &pp.Pipeline{}
+		protoPipeline.ID = dbp.ID
+		protoPipeline.Name = dbp.Name
+		for _, dbstage := range dbp.Stages {
+			castStage := pp.Stage(dbstage)
+			protoPipeline.Stages = append(protoPipeline.Stages, &castStage)
+		}
+
+		result.Pipelines = append(result.Pipelines, protoPipeline)
+	}
 	return result, nil
 }
 

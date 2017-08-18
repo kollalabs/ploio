@@ -20,6 +20,7 @@ Strategy = "manual"
 # SlackNotification = true
 
 [[stages]]
+Name = "Production Canary"
 Cluster = "dev-ut"
 Replicas = 3
 Strategy = "canary"
