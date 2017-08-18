@@ -71,10 +71,10 @@ message PipelineCreate {
 message Stage {
     int32 ID = 1;
     string Name = 2;
-    StageType Type = 3;
+    string Type = 3;
     int32 Order = 4;
     string Strategy = 5;
-    Cluster Cluster = 6;
+    string Cluster = 6;
     string Namespace = 7;
     string Memory = 8;
     string Proc = 9;

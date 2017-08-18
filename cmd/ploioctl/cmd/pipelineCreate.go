@@ -15,27 +15,55 @@
 package cmd
 
 import (
+	"context"
 	"fmt"
 
+	"github.com/BurntSushi/toml"
 	"github.com/spf13/cobra"
+
+	api "github.com/ploio/ploio/cmd/ploioctl/apiclient"
+	pp "github.com/ploio/ploio/pkg/api/ploioproto"
 )
 
 var pipelinefile string
 
 // pipelineCreateCmd represents the pipelineCreate command
 var pipelineCreateCmd = &cobra.Command{
-	Use:   "pipelineCreate",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Use:   "pipeline",
+	Short: "Create a pipeline for an application",
+	Long:  `ploioctl create pipeline [application-name] -f mytomlfile.toml`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("pipelineCreate called")
-
+		var err error
+		pc := &pp.PipelineCreate{}
+		if pipelinefile != "" {
+			err = createPipelineFromFile(pipelinefile, pc)
+			if err != nil {
+				fmt.Print(err)
+				return
+			}
+			pc.Application = args[0]
+			fmt.Printf("%+v", pc)
+		} else {
+			fmt.Println("Sorry, pipelines have to be created with the -f flag currently")
+			return
+		}
+		_, err = api.Client.CreatePipeline(context.Background(), pc)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
 	},
+	Args: cobra.ExactArgs(1),
+}
+
+func createPipelineFromFile(file string, pc *pp.PipelineCreate) error {
+	_, err := toml.DecodeFile(file, pc)
+	if err != nil {
+		fmt.Println(err)
+		return err
+	}
+	return nil
 }
 
 func init() {

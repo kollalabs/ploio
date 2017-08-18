@@ -72,17 +72,28 @@ type pipeline struct {
 	Name          string
 	ApplicationID int32
 	Order         int32
+	Stages        []stage
 }
 
-type step struct {
-	ID         int32 `storm:"id,increment"`
-	Name       string
-	PipelineID int32
-	Type       string
-	Order      int32
-	Memory     string
-	Proc       string
-	Replicas   int32
+type stage struct {
+	ID               int32 `storm:"id,increment"`
+	Name             string
+	Type             string
+	Order            int32
+	Strategy         string
+	Cluster          string
+	Namespace        string
+	Memory           string
+	Proc             string
+	Replicas         int32
+	MaxUnavailable   int32
+	MaxSurge         int32
+	NotifyEmail      bool
+	NotifySlack      bool
+	SmokeHeaderKey   string
+	SmokeHeaderVal   string
+	CanaryPercentage int32
+	WaitDuration     int64
 }
 
 //ListApplications gets a list of all the applications from the ploio server, or supply a filter by name or ID
@@ -223,7 +234,23 @@ func (p *ploioserver) ListPipelines(c context.Context, pg *pp.PipelineGet) (*pp.
 	return result, nil
 }
 func (p *ploioserver) CreatePipeline(c context.Context, pc *pp.PipelineCreate) (*pp.Pipeline, error) {
+	var err error
 	result := &pp.Pipeline{}
+	dbp := &pipeline{}
+	dbapplication := &application{}
+	dbp.Name = pc.Name
+	err = db.One("Name", pc.Application, dbapplication)
+	if err != nil {
+		return result, errors.New("Could not load application with name `" + pc.Application + "`")
+	}
+	dbp.ApplicationID = dbapplication.ID
+	for _, s := range pc.Stages {
+		dbp.Stages = append(dbp.Stages, stage(*s))
+	}
+	err = db.Save(dbp)
+	if err != nil {
+		return result, err
+	}
 	return result, nil
 }
 func (p *ploioserver) CreateStage(c context.Context, s *pp.Stage) (*pp.Stage, error) {

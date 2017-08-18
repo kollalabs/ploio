@@ -9,24 +9,24 @@ Cluster = "dev-ut"
 Replicas = 1
 Strategy = "rolling"
 Namespace = "phone"
-Memory = 20
-CPU = 20
+Memory = "20Mi"
+CPU = "20m"
 
 [[stages]]
-Name = "Verify on Dev"
-Type = "verify"
-EmailNotification = true
-SlackNotification = true
+Name = "Manual Check on Dev"
+Type = "check"
+Strategy = "manual"
+# EmailNotification = true
+# SlackNotification = true
 
 [[stages]]
 Cluster = "dev-ut"
 Replicas = 3
 Strategy = "canary"
 Namespace = "default"
-Memory = 30
-CPU = 30
-Duration = "10m"
-ErrorThreshold = 2
-ResponseTimeThreshold = 5
+CanaryPercentage = 1
+Memory = "30Mi"
+CPU = "30m"
+
 
 

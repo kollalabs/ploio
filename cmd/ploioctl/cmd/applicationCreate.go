@@ -81,13 +81,11 @@ ploioctl create application -f myApp.toml
 }
 
 func createFromFile(file string, ac *pp.ApplicationCreate) error {
-	meta, err := toml.DecodeFile(file, ac)
+	_, err := toml.DecodeFile(file, ac)
 	if err != nil {
 		fmt.Println(err)
 		return err
 	}
-	fmt.Println(meta.Type())
-	fmt.Printf("%+v\n", ac)
 	return nil
 }
 
