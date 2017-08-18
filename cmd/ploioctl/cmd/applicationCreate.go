@@ -20,54 +20,79 @@ import (
 	"os"
 	"strings"
 
-	"golang.org/x/net/context"
-
+	"github.com/BurntSushi/toml"
 	"github.com/spf13/cobra"
+	"golang.org/x/net/context"
 
 	api "github.com/ploio/ploio/cmd/ploioctl/apiclient"
 	pp "github.com/ploio/ploio/pkg/api/ploioproto"
 )
 
+var appfile string
+
 // applicationCreateCmd represents the applicationCreate command
 var applicationCreateCmd = &cobra.Command{
 	Use:   "application",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+	Short: "create a new application",
+	Long: `Create a new application via the CLI or using a TOML file.
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+Example:
+
+ploioctl create application -f myApp.toml
+
+`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Creating application: " + args[0])
-		reader := bufio.NewReader(os.Stdin)
-		fmt.Print("Email address of owner: ")
-		owner, _ := reader.ReadString('\n')
-		owner = strings.TrimSpace(owner)
-		fmt.Print("Container Repo: ")
-		repo, _ := reader.ReadString('\n')
-		repo = strings.TrimSpace(repo)
+		ac := &pp.ApplicationCreate{}
+		var err error
 
-		fmt.Println("\nCreating application:")
-		fmt.Println("Name: " + args[0])
-		fmt.Println("Owner: " + owner)
-		fmt.Println("Repo: " + repo)
-		ac := &pp.ApplicationCreate{
-			Name:  args[0],
-			Owner: owner,
-			Repo:  repo,
+		if appfile != "" {
+			err = createFromFile(appfile, ac)
+			if err != nil {
+				fmt.Print(err)
+				return
+			}
+		} else {
+			fmt.Println("Creating application: " + args[0])
+			reader := bufio.NewReader(os.Stdin)
+			fmt.Print("Email address of owner: ")
+			owner, _ := reader.ReadString('\n')
+			owner = strings.TrimSpace(owner)
+			fmt.Print("Container Repo: ")
+			repo, _ := reader.ReadString('\n')
+			repo = strings.TrimSpace(repo)
+
+			fmt.Println("\nCreating application:")
+			fmt.Println("Name: " + args[0])
+			fmt.Println("Owner: " + owner)
+			fmt.Println("Repo: " + repo)
+			ac.Name = args[0]
+			ac.Owner = owner
+			ac.Repo = repo
 		}
-		_, err := api.Client.CreateApplication(context.Background(), ac)
+
+		_, err = api.Client.CreateApplication(context.Background(), ac)
 		if err != nil {
 			fmt.Print(err)
 			return
 		}
 	},
 
-	Args: cobra.ExactArgs(1),
+	//Args: cobra.ExactArgs(1),
+}
+
+func createFromFile(file string, ac *pp.ApplicationCreate) error {
+	meta, err := toml.DecodeFile(file, ac)
+	if err != nil {
+		fmt.Println(err)
+		return err
+	}
+	fmt.Println(meta.Type())
+	fmt.Printf("%+v\n", ac)
+	return nil
 }
 
 func init() {
+	applicationCreateCmd.Flags().StringVarP(&appfile, "file", "f", "", "Build application from a TOML file")
 	createCmd.AddCommand(applicationCreateCmd)
 
 	// Here you will define your flags and configuration settings.

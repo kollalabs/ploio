@@ -25,11 +25,36 @@ type ploioserver struct{}
 // DB Object structs
 
 type application struct {
-	ID       int32  `storm:"id,increment"`
-	Name     string `storm:"unique"`
-	Owner    string
-	Repo     string
-	Stateful bool
+	ID    int32  `storm:"id,increment"`
+	Name  string `storm:"unique"`
+	Owner string
+	Repo  string
+}
+
+type env struct {
+	ID            int32 `storm:"id,increment"`
+	ApplicationID int32 `storm:"index"`
+	Name          string
+	Key           string
+	Value         string
+	ConfigMap     string
+	Secret        string
+}
+
+type service struct {
+	ID            int32 `storm:"id,increment"`
+	ApplicationID int32 `storm:"index"`
+	Type          string
+}
+
+type servicePort struct {
+	ID         int32 `storm:"id,increment"`
+	ServiceID  int32 `storm:"index"`
+	Name       string
+	Protocol   string
+	Port       string
+	TargetPort string
+	NodePort   string
 }
 
 type cluster struct {
@@ -85,26 +110,74 @@ func (p *ploioserver) GetApplication(c context.Context, ag *pp.ApplicationGet) (
 
 //CreateApplication creates a new application
 func (p *ploioserver) CreateApplication(c context.Context, ac *pp.ApplicationCreate) (*pp.Application, error) {
+	var err error
 
 	result := &pp.Application{
-		Name:     ac.Name,
-		Owner:    ac.Owner,
-		Repo:     ac.Repo,
-		Stateful: ac.Stateful,
+		Name:  ac.Name,
+		Owner: ac.Owner,
+		Repo:  ac.Repo,
 	}
 
 	dbobject := application{
-		Name:     ac.Name,
-		Owner:    ac.Owner,
-		Repo:     ac.Repo,
-		Stateful: ac.Stateful,
+		Name:  ac.Name,
+		Owner: ac.Owner,
+		Repo:  ac.Repo,
 	}
 
-	err := db.Save(&dbobject)
+	tx, err := db.Begin(true)
+	if err != nil {
+		return nil, err
+	}
+	defer tx.Rollback()
+
+	err = tx.Save(&dbobject)
 	if err != nil {
 		return result, err
 	}
 
+	for _, e := range ac.Env {
+		dbe := env{
+			ApplicationID: dbobject.ID,
+			Name:          e.Name,
+			Key:           e.Key,
+			Value:         e.Value,
+			ConfigMap:     e.ConfigMap,
+			Secret:        e.Secret,
+		}
+		err = tx.Save(&dbe)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	for _, s := range ac.Services {
+		dbs := service{
+			ApplicationID: dbobject.ID,
+			Type:          s.Type.String(),
+		}
+		err = tx.Save(&dbs)
+		if err != nil {
+			return nil, err
+		}
+		for _, sp := range s.Ports {
+			dbsp := servicePort{
+				ServiceID:  dbs.ID,
+				Name:       sp.Name,
+				Protocol:   sp.Protocol,
+				Port:       sp.Port,
+				TargetPort: sp.TargetPort,
+				NodePort:   sp.NodePort,
+			}
+			err = tx.Save(&dbsp)
+			if err != nil {
+				return nil, err
+			}
+		}
+	}
+	err = tx.Commit()
+	if err != nil {
+		return result, err
+	}
 	return result, nil
 }
 
@@ -120,11 +193,11 @@ func (p *ploioserver) CreatePipeline(c context.Context, pc *pp.PipelineCreate) (
 	result := &pp.Pipeline{}
 	return result, nil
 }
-func (p *ploioserver) CreateStep(c context.Context, s *pp.Step) (*pp.Step, error) {
-	result := &pp.Step{}
+func (p *ploioserver) CreateStage(c context.Context, s *pp.Stage) (*pp.Stage, error) {
+	result := &pp.Stage{}
 	return result, nil
 }
-func (p *ploioserver) ListStep(c context.Context, sg *pp.StepGet) (*pp.StepList, error) {
-	result := &pp.StepList{}
+func (p *ploioserver) ListStage(c context.Context, sg *pp.StageGet) (*pp.StageList, error) {
+	result := &pp.StageList{}
 	return result, nil
 }

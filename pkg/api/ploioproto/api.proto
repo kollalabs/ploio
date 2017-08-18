@@ -18,7 +18,9 @@ message ApplicationCreate {
     string Name = 1;
     string Owner = 2;
     string Repo = 3;
-    bool Stateful = 4;
+    // Optional values below
+    repeated Env Env = 6;
+    repeated Service Services = 7;
 }
 
 message ApplicationGet {
@@ -36,11 +38,10 @@ message Application {
     string Name = 2;
     string Owner = 3;
     string Repo = 4;
-    bool Stateful = 5;
 
-    repeated Pipeline Pipelines = 6;
-    repeated EnvVar EvnVars = 7;
-    repeated Volume Volumes = 8;
+    repeated Pipeline Pipelines = 5;
+    repeated Env Evn = 6;
+    repeated Service Services = 7;
 }
 
 message Pipeline {
@@ -101,28 +102,19 @@ enum StageType {
    Wait = 3;
 }
 
-message EnvVar {
+message Env {
     int32 ID = 1;
     string Name = 2;
-    EnvVarType Type = 3;
     string Key = 4;
     string Value = 5;
     string ConfigMap = 6;
-}
-
-enum EnvVarType {
-    ConfigMap = 0;
-}
-
-message Volume {
-    int32 ID = 1;
-    string Name = 2;
+    string Secret = 7;
 }
 
 message Cluster {
     int32 ID = 1;
     string Name = 2;
-    string Host = 3;
+    string URL = 3;
 }
 
 message ClusterGet {
@@ -133,10 +125,15 @@ message ClusterList {
     repeated Cluster Clusters = 1;
 }
 
+message ClusterCreate {
+    string Name = 1;
+    string URL = 2;
+}
+
 message Service {
     string Name = 1;
     string Application = 2;
-    ServiceType type = 3;
+    ServiceType Type = 3;
     repeated Port Ports = 4;
 }
 
