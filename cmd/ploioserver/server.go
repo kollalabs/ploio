@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/asdine/storm"
@@ -29,27 +30,30 @@ type application struct {
 	Name  string `storm:"unique"`
 	Owner string
 	Repo  string
+
+	Pipelines []*pipeline
+	Env       []*env
+	Services  []*service
 }
 
 type env struct {
-	ID            int32 `storm:"id,increment"`
-	ApplicationID int32 `storm:"index"`
-	Name          string
-	Key           string
-	Value         string
-	ConfigMap     string
-	Secret        string
+	ID        int32 `storm:"id,increment"`
+	Name      string
+	Key       string
+	Value     string
+	ConfigMap string
+	Secret    string
 }
 
 type service struct {
-	ID            int32 `storm:"id,increment"`
-	ApplicationID int32 `storm:"index"`
-	Type          string
+	ID    int32 `storm:"id,increment"`
+	Name  string
+	Type  string
+	Ports []*servicePort
 }
 
 type servicePort struct {
 	ID         int32 `storm:"id,increment"`
-	ServiceID  int32 `storm:"index"`
 	Name       string
 	Protocol   string
 	Port       string
@@ -104,7 +108,51 @@ func (p *ploioserver) ListApplications(c context.Context, ag *pp.ApplicationGet)
 
 //GetApplication gets a single application by either name or ID
 func (p *ploioserver) GetApplication(c context.Context, ag *pp.ApplicationGet) (*pp.Application, error) {
+	var dbapp application
 	result := &pp.Application{}
+	err := db.One("Name", ag.Name, &dbapp)
+	if err != nil {
+		return result, err
+	}
+	result.ID = dbapp.ID
+	result.Name = dbapp.Name
+	result.Owner = dbapp.Owner
+	result.Repo = dbapp.Repo
+
+	for _, dbe := range dbapp.Env {
+		result.Env = append(result.Env, &pp.Env{
+			Name:      dbe.Name,
+			ID:        dbe.ID,
+			Key:       dbe.Key,
+			Value:     dbe.Value,
+			ConfigMap: dbe.ConfigMap,
+			Secret:    dbe.Secret,
+		})
+	}
+
+	for _, dbs := range dbapp.Services {
+		t, ok := pp.ServiceType_value[dbs.Type]
+		if !ok {
+			return result, errors.New("Service type " + dbs.Type + " from database isn't valid")
+		}
+		s := &pp.Service{
+			Name: dbs.Name,
+			Type: pp.ServiceType(t),
+		}
+
+		for _, dbsp := range dbs.Ports {
+			p := &pp.Port{
+				Name:       dbsp.Name,
+				Port:       dbsp.Port,
+				TargetPort: dbsp.TargetPort,
+				Protocol:   dbsp.Protocol,
+				NodePort:   dbsp.NodePort,
+			}
+			s.Ports = append(s.Ports, p)
+		}
+
+		result.Services = append(result.Services, s)
+	}
 	return result, nil
 }
 
@@ -124,57 +172,42 @@ func (p *ploioserver) CreateApplication(c context.Context, ac *pp.ApplicationCre
 		Repo:  ac.Repo,
 	}
 
-	tx, err := db.Begin(true)
-	if err != nil {
-		return nil, err
-	}
-	defer tx.Rollback()
-
-	err = tx.Save(&dbobject)
 	if err != nil {
 		return result, err
 	}
 
 	for _, e := range ac.Env {
-		dbe := env{
-			ApplicationID: dbobject.ID,
-			Name:          e.Name,
-			Key:           e.Key,
-			Value:         e.Value,
-			ConfigMap:     e.ConfigMap,
-			Secret:        e.Secret,
+		dbe := &env{
+			Name:      e.Name,
+			Key:       e.Key,
+			Value:     e.Value,
+			ConfigMap: e.ConfigMap,
+			Secret:    e.Secret,
 		}
-		err = tx.Save(&dbe)
-		if err != nil {
-			return nil, err
-		}
+		dbobject.Env = append(dbobject.Env, dbe)
+
 	}
 
 	for _, s := range ac.Services {
-		dbs := service{
-			ApplicationID: dbobject.ID,
-			Type:          s.Type.String(),
+		dbs := &service{
+			Name: s.Name,
+			Type: s.Type.String(),
 		}
-		err = tx.Save(&dbs)
-		if err != nil {
-			return nil, err
-		}
+
 		for _, sp := range s.Ports {
-			dbsp := servicePort{
-				ServiceID:  dbs.ID,
+			dbsp := &servicePort{
 				Name:       sp.Name,
 				Protocol:   sp.Protocol,
 				Port:       sp.Port,
 				TargetPort: sp.TargetPort,
 				NodePort:   sp.NodePort,
 			}
-			err = tx.Save(&dbsp)
-			if err != nil {
-				return nil, err
-			}
+			dbs.Ports = append(dbs.Ports, dbsp)
 		}
+		dbobject.Services = append(dbobject.Services, dbs)
 	}
-	err = tx.Commit()
+
+	err = db.Save(&dbobject)
 	if err != nil {
 		return result, err
 	}

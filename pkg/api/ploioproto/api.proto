@@ -40,7 +40,7 @@ message Application {
     string Repo = 4;
 
     repeated Pipeline Pipelines = 5;
-    repeated Env Evn = 6;
+    repeated Env Env = 6;
     repeated Service Services = 7;
 }
 
@@ -63,6 +63,9 @@ message PipelineList {
 message PipelineCreate {
     string Application = 1;
     string Name = 2;
+
+    //optional
+    repeated Stage Stages = 3;
 }
 
 message Stage {
@@ -131,10 +134,11 @@ message ClusterCreate {
 }
 
 message Service {
-    string Name = 1;
-    string Application = 2;
-    ServiceType Type = 3;
-    repeated Port Ports = 4;
+    int32 ID = 1;
+    string Name = 2;
+    string Application = 3;
+    ServiceType Type = 4;
+    repeated Port Ports = 5;
 }
 
 enum ServiceType {
