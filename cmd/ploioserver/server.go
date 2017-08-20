@@ -269,11 +269,3 @@ func (p *ploioserver) CreatePipeline(c context.Context, pc *pp.PipelineCreate) (
 	}
 	return result, nil
 }
-func (p *ploioserver) CreateStage(c context.Context, s *pp.Stage) (*pp.Stage, error) {
-	result := &pp.Stage{}
-	return result, nil
-}
-func (p *ploioserver) ListStage(c context.Context, sg *pp.StageGet) (*pp.StageList, error) {
-	result := &pp.StageList{}
-	return result, nil
-}

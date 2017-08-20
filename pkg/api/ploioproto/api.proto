@@ -8,8 +8,6 @@ service PloioAPI {
   rpc ListClusters (ClusterGet) returns (ClusterList) {}
   rpc ListPipelines (PipelineGet) returns (PipelineList) {}
   rpc CreatePipeline (PipelineCreate) returns (Pipeline) {}
-  rpc CreateStage (Stage) returns (Stage) {}
-  rpc ListStage (StageGet) returns (StageList) {}
 }
 
 
@@ -87,22 +85,6 @@ message Stage {
     string SmokeHeaderVal = 16;
     int32 CanaryPercentage = 17;
     int64 WaitDuration = 18;
-}
-
-message StageGet {
-    string Pipeline = 1;
-    string Name = 2;
-}
-
-message StageList {
-    repeated Stage Stages = 1;
-}
-
-enum StageType {
-   Deploy = 0; 
-   Check = 1;
-   Teardown = 2;
-   Wait = 3;
 }
 
 message Env {

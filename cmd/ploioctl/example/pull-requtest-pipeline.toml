@@ -21,6 +21,7 @@ Strategy = "manual"
 
 [[stages]]
 Name = "Production Canary"
+Type = "deploy"
 Cluster = "dev-ut"
 Replicas = 3
 Strategy = "canary"
