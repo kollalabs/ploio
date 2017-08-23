@@ -1,6 +1,7 @@
 syntax = "proto3";
 package ploioproto;
 
+
 service PloioAPI {
   rpc ListApplications (ApplicationGet) returns (ApplicationList) {}
   rpc GetApplication (ApplicationGet) returns (Application) {}
@@ -8,6 +9,7 @@ service PloioAPI {
   rpc ListClusters (ClusterGet) returns (ClusterList) {}
   rpc ListPipelines (PipelineGet) returns (PipelineList) {}
   rpc CreatePipeline (PipelineCreate) returns (Pipeline) {}
+  rpc RunPipeline (PipelineRun) returns (PipelineLog) {} 
 }
 
 
@@ -49,6 +51,23 @@ message Pipeline {
     repeated Stage Stages = 4;
 }
 
+message PipelineLog {
+    int32 ID = 1;
+    int32 pipelineID = 2;
+    int64 StartTime = 3;
+    int64 EndTime = 4;
+    string Status = 5;
+    repeated StageLog Stages = 6;
+}
+
+message StageLog {
+    Stage Stage = 1;
+    int64 StartTime = 2;
+    int64 EndTime = 3;
+    string Status = 4;
+    string Error = 5;
+}
+
 message PipelineGet {
     string Application = 1;
     string Name = 2;
@@ -64,6 +83,12 @@ message PipelineCreate {
 
     //optional
     repeated Stage Stages = 3;
+}
+
+message PipelineRun {
+    string ApplicationName = 1;
+    string PipelineName = 2;
+    string ContainerTag = 3;
 }
 
 message Stage {

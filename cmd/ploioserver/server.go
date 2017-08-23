@@ -269,3 +269,10 @@ func (p *ploioserver) CreatePipeline(c context.Context, pc *pp.PipelineCreate) (
 	}
 	return result, nil
 }
+
+func (p *ploioserver) RunPipeline(c context.Context, in *pp.PipelineRun) (*pp.PipelineLog, error) {
+	//var err error
+	result := &pp.PipelineLog{}
+
+	return result, nil
+}
