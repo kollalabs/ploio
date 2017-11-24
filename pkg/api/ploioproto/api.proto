@@ -1,165 +1,62 @@
+
 syntax = "proto3";
 package ploioproto;
 
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
 
 service PloioAPI {
-  rpc ListApplications (ApplicationGet) returns (ApplicationList) {}
-  rpc GetApplication (ApplicationGet) returns (Application) {}
-  rpc CreateApplication (ApplicationCreate) returns (Application) {}
-  rpc ListClusters (ClusterGet) returns (ClusterList) {}
-  rpc ListPipelines (PipelineGet) returns (PipelineList) {}
-  rpc CreatePipeline (PipelineCreate) returns (Pipeline) {}
-  rpc RunPipeline (PipelineRun) returns (PipelineLog) {} 
-}
-
-
-
-message ApplicationCreate {
-    string Name = 1;
-    string Owner = 2;
-    string Repo = 3;
-    // Optional values below
-    repeated Env Env = 6;
-    repeated Service Services = 7;
-}
+    //rpc ListApplications (ApplicationGet) returns (ApplicationList) {}
+    rpc GetApplication (ApplicationGet) returns (Application) {}
+    //rpc CreateApplication (ApplicationCreate) returns (Application) {}
+    //rpc ListClusters (ClusterGet) returns (ClusterList) {}
+    //rpc ListPipelines (PipelineGet) returns (PipelineList) {}
+    //rpc CreatePipeline (PipelineCreate) returns (Pipeline) {}
+    //rpc RunPipeline (PipelineRun) returns (PipelineLog) {} 
+  }
 
 message ApplicationGet {
-    int32 ID = 1;
-    string Name = 2;
+    string ID = 1;
 }
-
-message ApplicationList {
-    repeated Application Applications = 1;
-}
-
 
 message Application {
-    int32 ID = 1;
+    string ID = 1 [(gogoproto.moretags) = "gorm:\"primary_key\""];
     string Name = 2;
     string Owner = 3;
     string Repo = 4;
-
-    repeated Env Env = 5;
-    repeated Service Services = 6;
-    repeated Pipeline Pipelines = 7;
+    repeated Service Services = 5;
+    repeated Env Env = 6;
+    // repeated Pipeline Pipelines = 7;
 }
 
-message Pipeline {
-    int32 ID = 1;
-    string Name = 2;
-    int32 Order = 3;
-    repeated Stage Stages = 4;
-}
-
-message PipelineLog {
-    int32 ID = 1;
-    int32 pipelineID = 2;
-    int64 StartTime = 3;
-    int64 EndTime = 4;
-    string Status = 5;
-    repeated StageLog Stages = 6;
-}
-
-message StageLog {
-    Stage Stage = 1;
-    int64 StartTime = 2;
-    int64 EndTime = 3;
-    string Status = 4;
-    string Error = 5;
-}
-
-message PipelineGet {
-    string Application = 1;
-    string Name = 2;
-}
-
-message PipelineList {
-    repeated Pipeline Pipelines = 1;
-}
-
-message PipelineCreate {
-    string Application = 1;
-    string Name = 2;
-
-    //optional
-    repeated Stage Stages = 3;
-}
-
-message PipelineRun {
-    string ApplicationName = 1;
-    string PipelineName = 2;
-    string ContainerTag = 3;
-}
-
-message Stage {
-    int32 ID = 1;
-    string Name = 2;
-    string Type = 3;
-    int32 Order = 4;
-    string Strategy = 5;
-    string Cluster = 6;
-    string Namespace = 7;
-    string Memory = 8;
-    string Proc = 9;
-    int32 Replicas = 10;
-    int32 MaxUnavailable = 11;
-    int32 MaxSurge = 12;
-    bool NotifyEmail = 13;
-    bool NotifySlack = 14;
-    string SmokeHeaderKey = 15;
-    string SmokeHeaderVal = 16;
-    int32 CanaryPercentage = 17;
-    int64 WaitDuration = 18;
-}
-
-message Env {
-    int32 ID = 1;
-    string Name = 2;
-    string Key = 3;
-    string Value = 4;
-    string ConfigMap = 5;
-    string Secret = 6;
-}
-
-message Cluster {
-    int32 ID = 1;
-    string Name = 2;
-    string URL = 3;
-}
-
-message ClusterGet {
-    string Name = 1;
-}
-
-message ClusterList {
-    repeated Cluster Clusters = 1;
-}
-
-message ClusterCreate {
-    string Name = 1;
-    string URL = 2;
-}
 
 message Service {
-    int32 ID = 1;
+    string ID = 1 [(gogoproto.moretags) = "gorm:\"primary_key\""];
     string Name = 2;
-    string Application = 3;
-    ServiceType Type = 4;
+    string ApplicationID = 3;
+    string Type = 4;
     repeated Port Ports = 5;
 }
 
-enum ServiceType {
-    ClusterIP = 0;
-    NodePort = 1;
-    LoadBalancer = 2;
-    ExternalName = 3;
-}
+// enum ServiceType {
+//     ClusterIP = 0;
+//     NodePort = 1;
+//     LoadBalancer = 2;
+//     ExternalName = 3;
+// }
 
 message Port {
-    string Name = 1;
-    string Protocol = 2;
-    string Port = 3;
-    string TargetPort = 4;
-    string NodePort = 5;
+    string Name = 1 [(gogoproto.moretags) = "gorm:\"primary_key\""];
+    string ServiceID = 2;
+    string Protocol = 3;
+    string Port = 4;
+    string TargetPort = 5;
+    string NodePort = 6;
 }
 
+message Env {
+    string ID = 1;
+    string ApplicationID = 2;
+    string Name = 3;
+    string Type = 4;
+    string Value = 5;
+}
