@@ -8,7 +8,7 @@ import (
 )
 
 
-func Parse(config []byte) (*ploioproto.Application, error) {
+func Marshal(config []byte) (*ploioproto.Application, error) {
 	a := &ploioproto.Application{}
 	err := yaml.Unmarshal(config, a)
 	if err != nil {
@@ -16,4 +16,10 @@ func Parse(config []byte) (*ploioproto.Application, error) {
 		return a, err
 	}
 	return a, nil
+}
+
+
+func Unmarshal(a *ploioproto.Application) ([]byte, error) {
+	yaml, err := yaml.Marshal(a)
+	return yaml, err
 }

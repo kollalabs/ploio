@@ -15,17 +15,12 @@
 package cmd
 
 import (
-	"bufio"
-	"fmt"
-	"os"
-	"strings"
 
-	"github.com/BurntSushi/toml"
 	"github.com/spf13/cobra"
-	"golang.org/x/net/context"
+	//"golang.org/x/net/context"
 
-	api "github.com/ploio/ploio/cmd/ploioctl/apiclient"
-	pp "github.com/ploio/ploio/pkg/api/ploioproto"
+	// api "github.com/ploio/ploio/cmd/ploioctl/apiclient"
+	// pp "github.com/ploio/ploio/pkg/api/ploioproto"
 )
 
 var appfile string
@@ -34,60 +29,60 @@ var appfile string
 var applicationCreateCmd = &cobra.Command{
 	Use:   "application",
 	Short: "create a new application",
-	Long: `Create a new application via the CLI or using a TOML file.
+	Long: `Create a new application via the CLI using a YAML file.
 
 Example:
 
-ploioctl create application -f myApp.toml
+ploioctl create application -f myApp.yaml
 
 `,
 	Run: func(cmd *cobra.Command, args []string) {
-		ac := &pp.ApplicationCreate{}
-		var err error
+		// ac := &pp.ApplicationCreate{}
+		// var err error
 
-		if appfile != "" {
-			err = createFromFile(appfile, ac)
-			if err != nil {
-				fmt.Print(err)
-				return
-			}
-		} else {
-			fmt.Println("Creating application: " + args[0])
-			reader := bufio.NewReader(os.Stdin)
-			fmt.Print("Email address of owner: ")
-			owner, _ := reader.ReadString('\n')
-			owner = strings.TrimSpace(owner)
-			fmt.Print("Container Repo: ")
-			repo, _ := reader.ReadString('\n')
-			repo = strings.TrimSpace(repo)
+		// if appfile != "" {
+		// 	err = createFromFile(appfile, ac)
+		// 	if err != nil {
+		// 		fmt.Print(err)
+		// 		return
+		// 	}
+		// } else {
+		// 	fmt.Println("Creating application: " + args[0])
+		// 	reader := bufio.NewReader(os.Stdin)
+		// 	fmt.Print("Email address of owner: ")
+		// 	owner, _ := reader.ReadString('\n')
+		// 	owner = strings.TrimSpace(owner)
+		// 	fmt.Print("Container Repo: ")
+		// 	repo, _ := reader.ReadString('\n')
+		// 	repo = strings.TrimSpace(repo)
 
-			fmt.Println("\nCreating application:")
-			fmt.Println("Name: " + args[0])
-			fmt.Println("Owner: " + owner)
-			fmt.Println("Repo: " + repo)
-			ac.Name = args[0]
-			ac.Owner = owner
-			ac.Repo = repo
-		}
+		// 	fmt.Println("\nCreating application:")
+		// 	fmt.Println("Name: " + args[0])
+		// 	fmt.Println("Owner: " + owner)
+		// 	fmt.Println("Repo: " + repo)
+		// 	ac.Name = args[0]
+		// 	ac.Owner = owner
+		// 	ac.Repo = repo
+		// }
 
-		_, err = api.Client.CreateApplication(context.Background(), ac)
-		if err != nil {
-			fmt.Print(err)
-			return
-		}
+		// _, err = api.Client.CreateApplication(context.Background(), ac)
+		// if err != nil {
+		// 	fmt.Print(err)
+		// 	return
+		// }
 	},
 
 	//Args: cobra.ExactArgs(1),
 }
 
-func createFromFile(file string, ac *pp.ApplicationCreate) error {
-	_, err := toml.DecodeFile(file, ac)
-	if err != nil {
-		fmt.Println(err)
-		return err
-	}
-	return nil
-}
+// func createFromFile(file string, ac *pp.ApplicationCreate) error {
+// 	_, err := toml.DecodeFile(file, ac)
+// 	if err != nil {
+// 		fmt.Println(err)
+// 		return err
+// 	}
+// 	return nil
+// }
 
 func init() {
 	applicationCreateCmd.Flags().StringVarP(&appfile, "file", "f", "", "Build application from a TOML file")

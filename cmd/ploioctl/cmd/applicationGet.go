@@ -15,14 +15,12 @@
 package cmd
 
 import (
-	"fmt"
-	"strconv"
 
 	"github.com/spf13/cobra"
-	"golang.org/x/net/context"
+//	"golang.org/x/net/context"
 
-	api "github.com/ploio/ploio/cmd/ploioctl/apiclient"
-	pp "github.com/ploio/ploio/pkg/api/ploioproto"
+	// api "github.com/ploio/ploio/cmd/ploioctl/apiclient"
+	// pp "github.com/ploio/ploio/pkg/api/ploioproto"
 )
 
 // applicationGetCmd represents the applicationGet command
@@ -36,19 +34,19 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("applicationGet called")
+		// fmt.Println("applicationGet called")
 
-		ag := &pp.ApplicationGet{}
+		// ag := &pp.ApplicationGet{}
 
-		al, err := api.Client.ListApplications(context.Background(), ag)
-		if err != nil {
-			fmt.Print(err)
-		}
-		fmt.Println("ID\tName\tOwner\tRepo")
-		for _, a := range al.Applications {
+		// al, err := api.Client.ListApplications(context.Background(), ag)
+		// if err != nil {
+		// 	fmt.Print(err)
+		// }
+		// fmt.Println("ID\tName\tOwner\tRepo")
+		// for _, a := range al.Applications {
 
-			fmt.Println(strconv.Itoa(int(a.ID)) + "\t" + a.Name + "\t" + a.Owner + "\t" + a.Repo)
-		}
+		// 	fmt.Println(strconv.Itoa(int(a.ID)) + "\t" + a.Name + "\t" + a.Owner + "\t" + a.Repo)
+		// }
 	},
 	Args: cobra.MaximumNArgs(1),
 }

@@ -27,6 +27,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
+	fmt.Printf("\nMain: %#v", db.DB)
 	s := grpc.NewServer()
 	pp.RegisterPloioAPIServer(s, &ploioserver{})
 	if err := s.Serve(lis); err != nil {
@@ -40,4 +41,12 @@ type ploioserver struct {}
 func (p ploioserver) GetApplication(c context.Context, ag *pp.ApplicationGet) (*pp.Application, error) {
 	aNew := &pp.Application{}
 	return aNew, nil
+}
+
+func (p ploioserver) UpsertApplication(c context.Context, a *pp.Application) (*pp.Application, error) {
+	err := db.DB.ApplicationSave(a)
+	if err != nil {
+		return a, err
+	}
+	return a, nil
 }

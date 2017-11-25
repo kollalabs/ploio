@@ -7,7 +7,7 @@ import "github.com/gogo/protobuf/gogoproto/gogo.proto";
 service PloioAPI {
     //rpc ListApplications (ApplicationGet) returns (ApplicationList) {}
     rpc GetApplication (ApplicationGet) returns (Application) {}
-    //rpc CreateApplication (ApplicationCreate) returns (Application) {}
+    rpc UpsertApplication (Application) returns (Application) {}
     //rpc ListClusters (ClusterGet) returns (ClusterList) {}
     //rpc ListPipelines (PipelineGet) returns (PipelineList) {}
     //rpc CreatePipeline (PipelineCreate) returns (Pipeline) {}
@@ -54,7 +54,7 @@ message Port {
 }
 
 message Env {
-    string ID = 1;
+    string ID = 1 [(gogoproto.moretags) = "gorm:\"primary_key\""];
     string ApplicationID = 2;
     string Name = 3;
     string Type = 4;

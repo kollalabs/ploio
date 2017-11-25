@@ -15,16 +15,12 @@
 package cmd
 
 import (
-	"bytes"
-	"context"
-	"fmt"
-	"log"
 
-	"github.com/BurntSushi/toml"
 	"github.com/spf13/cobra"
 
-	api "github.com/ploio/ploio/cmd/ploioctl/apiclient"
-	pp "github.com/ploio/ploio/pkg/api/ploioproto"
+	// api "github.com/ploio/ploio/cmd/ploioctl/apiclient"
+	// pp "github.com/ploio/ploio/pkg/api/ploioproto"
+	// "github.com/ploio/ploio/pkg/parser"
 )
 
 // applicationDescribeCmd represents the applicationDescribe command
@@ -33,19 +29,15 @@ var applicationDescribeCmd = &cobra.Command{
 	Short: "describe an application in more detail",
 	Long:  `This will list out all the details of your application in more detail`,
 	Run: func(cmd *cobra.Command, args []string) {
-		ag := &pp.ApplicationGet{}
-		ag.Name = args[0]
+		// ag := &pp.ApplicationGet{}
+		// ag.Name = args[0]
 
-		a, err := api.Client.GetApplication(context.Background(), ag)
-		if err != nil {
-			fmt.Print(err)
-			return
-		}
-		buf := new(bytes.Buffer)
-		if err := toml.NewEncoder(buf).Encode(a); err != nil {
-			log.Fatal(err)
-		}
-		fmt.Println(buf.String())
+		// a, err := api.Client.GetApplication(context.Background(), ag)
+		// if err != nil {
+		// 	fmt.Print(err)
+		// 	return
+		// }
+		
 	},
 	Args: cobra.ExactArgs(1),
 }
