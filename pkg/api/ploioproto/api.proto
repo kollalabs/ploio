@@ -5,16 +5,25 @@ package ploioproto;
 import "github.com/gogo/protobuf/gogoproto/gogo.proto";
 
 service PloioAPI {
-    //rpc ListApplications (ApplicationGet) returns (ApplicationList) {}
-    rpc GetApplication (ApplicationGet) returns (Application) {}
+    rpc ListApplications (ApplicationListFilter) returns (ApplicationList) {}
+    rpc GetApplication (ApplicationID) returns (Application) {}
     rpc UpsertApplication (Application) returns (Application) {}
-    //rpc ListClusters (ClusterGet) returns (ClusterList) {}
+    rpc DeleteApplication(ApplicationID) returns (ApplicationID) {}
+    //rpc ListClusters (ClusterGet) returns ClusterList) {}
     //rpc ListPipelines (PipelineGet) returns (PipelineList) {}
     //rpc CreatePipeline (PipelineCreate) returns (Pipeline) {}
     //rpc RunPipeline (PipelineRun) returns (PipelineLog) {} 
   }
 
-message ApplicationGet {
+message ApplicationListFilter {
+    string name = 1;
+}
+
+message ApplicationList {
+    repeated Application Applications = 1;
+}
+
+message ApplicationID {
     string ID = 1;
 }
 

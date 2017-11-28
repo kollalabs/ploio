@@ -37,15 +37,25 @@ func main() {
 
 type ploioserver struct {}
 
-func (p ploioserver) GetApplication(c context.Context, ag *pp.ApplicationGet) (*pp.Application, error) {
+func (p *ploioserver) ListApplications(c context.Context, alf *pp.ApplicationListFilter) (*pp.ApplicationList, error) {
+	al := &pp.ApplicationList{}
+	return al, nil
+}
+
+func (p *ploioserver) GetApplication(c context.Context, ag *pp.ApplicationID) (*pp.Application, error) {
 	aNew := &pp.Application{}
 	return aNew, nil
 }
 
-func (p ploioserver) UpsertApplication(c context.Context, a *pp.Application) (*pp.Application, error) {
+func (p *ploioserver) UpsertApplication(c context.Context, a *pp.Application) (*pp.Application, error) {
 	err := db.DB.ApplicationSave(a)
 	if err != nil {
 		return a, err
 	}
 	return a, nil
+}
+
+func (p *ploioserver) DeleteApplication(c context.Context, aid *pp.ApplicationID) (*pp.ApplicationID, error) {
+	aidNew := &pp.ApplicationID{}
+	return aidNew, nil
 }
