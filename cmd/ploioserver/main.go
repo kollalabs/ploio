@@ -19,15 +19,14 @@ const (
 )
 
 func main() {
-	gdb := &gorm.GormDB{}
-	db.RegisterDB(gdb)
+	gdb := gorm.GormDB{}
+	db.RegisterDB(&gdb)
 	
 	fmt.Println("Starting ploio server on " + port)
 	lis, err := net.Listen("tcp", port)
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
-	fmt.Printf("\nMain: %#v", db.DB)
 	s := grpc.NewServer()
 	pp.RegisterPloioAPIServer(s, &ploioserver{})
 	if err := s.Serve(lis); err != nil {

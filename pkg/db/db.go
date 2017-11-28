@@ -1,7 +1,6 @@
 package db
 
 import (
-	"fmt"
 	"github.com/ploio/ploio/pkg/api/ploioproto"
 )
 
@@ -14,8 +13,7 @@ type Database interface {
 }
 
 func RegisterDB(d Database) error {
-	fmt.Printf("\nRegisterDB: %#v", d)
-	DB = d
 	err := d.Initialize()
+	DB = d
 	return err
 }

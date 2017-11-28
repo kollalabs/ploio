@@ -31,8 +31,8 @@ message Application {
 
 message Service {
     string ID = 1 [(gogoproto.moretags) = "gorm:\"primary_key\""];
-    string Name = 2;
-    string ApplicationID = 3;
+    string ApplicationID = 2;
+    string Name = 3;
     string Type = 4;
     repeated Port Ports = 5;
 }
@@ -45,12 +45,13 @@ message Service {
 // }
 
 message Port {
-    string Name = 1 [(gogoproto.moretags) = "gorm:\"primary_key\""];
+    string ID = 1 [(gogoproto.moretags) = "gorm:\"primary_key\""];
     string ServiceID = 2;
-    string Protocol = 3;
-    string Port = 4;
-    string TargetPort = 5;
-    string NodePort = 6;
+    string Name = 3;
+    string Protocol = 4;
+    string Port = 5;
+    string TargetPort = 6;
+    string NodePort = 7;
 }
 
 message Env {

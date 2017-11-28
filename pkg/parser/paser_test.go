@@ -5,26 +5,30 @@ import (
 	"testing"
 )
 
-func TestParser(t *testing.T) {
+func TestMarshal(t *testing.T) {
 
 	test := `schema: "1"
+
 id: bart
 name: bart
 owner: "clint@getweave.com"
 repo: "weavelab/bart"
 
 services:
-- name: bart-service
+- id: bart-service
+  name: "Bart Service"
   type: node-port 
   ports:
-  - name: "grpc"
+  - id: "bart-service-port-grpc"
+    name: "grpc"
     protocol: "TCP"
     nodePort: "36011"
     port: "80"
     targetPort: "9000"
 
 env:
-- name: "LISTEN_PORT"
+- id: "bart-env-listen-port"
+  name: "LISTEN_PORT"
   type: "value"
   value: "9000"
 
@@ -36,7 +40,7 @@ pipeline:
     namespace: phone
 `
 	fmt.Print(test)
-	a, err := Parse([]byte(test))
+	a, err := Marshal([]byte(test))
 	if err != nil {
 		fmt.Print(err)
 		t.Fail()
