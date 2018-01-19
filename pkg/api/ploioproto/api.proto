@@ -8,11 +8,10 @@ service PloioAPI {
     rpc Deploy (Deployment) returns (stream DeploymentStatus) {} 
 }
 
-// This isn't a kubernetes deployment. Is that too confusing? Call it something different?
-// It will encompass every kubernetes resource needed to run this app, similar to a helm chart
-message Deployment {
+message Version {
     Application Application = 1;
-    DeploymentType Type = 2;
+    VersionType Type = 2;
+    string Tag = 3;
     SmokeHeader SmokeHeader = 10;
     int64 SmokeApprovalTimeout = 11;
 }
@@ -22,18 +21,18 @@ message SmokeHeader {
     string ValueRegex = 2;
 }
 
-enum DeploymentType {
+enum VersionType {
    Smoke = 1;
    Canary = 2;
    Rolling = 3;
    BlueGreen = 4;
 }
 
-message DeploymentStatus{
-    Deployment Deployment = 1;
+message VersionStatus{
+    Version Version = 1;
     repeated Condition Conditions = 2; // This will contain all conditions for every resource (service, deployment, config-maps, etc)
-                                       // If any of the resources fail to deploy, it will roll back the entire deployment
-    string Message = 3; // Overall message update from ploio for the entire ploio deployment process
+                                       // If any of the resources fail to deploy, it will roll back the entire version
+    string Message = 3; // Overall message update from ploio for the entire ploio version deploy process
     bool Complete = 4; // If the deployment has finished (the final status message)
 }
 
