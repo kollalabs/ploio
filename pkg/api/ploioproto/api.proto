@@ -5,22 +5,44 @@ package ploioproto;
 import "github.com/gogo/protobuf/gogoproto/gogo.proto";
 
 service PloioAPI {
-    rpc ListApplications (ApplicationListFilter) returns (ApplicationList) {}
-    rpc GetApplication (ApplicationID) returns (Application) {}
-    rpc UpsertApplication (Application) returns (Application) {}
-    rpc DeleteApplication(ApplicationID) returns (ApplicationID) {}
-    //rpc ListClusters (ClusterGet) returns ClusterList) {}
-    //rpc ListPipelines (PipelineGet) returns (PipelineList) {}
-    //rpc CreatePipeline (PipelineCreate) returns (Pipeline) {}
-    //rpc RunPipeline (PipelineRun) returns (PipelineLog) {} 
-  }
-
-message ApplicationListFilter {
-    string name = 1;
+    rpc Deploy (Version) returns (stream VersionStatus) {} 
 }
 
-message ApplicationList {
-    repeated Application Applications = 1;
+message Version {
+    Application Application = 1;
+    VersionType Type = 2;
+    string Tag = 3;
+    SmokeHeader SmokeHeader = 10;
+    int64 SmokeApprovalTimeout = 11;
+}
+
+message SmokeHeader {
+    string Name = 1;
+    string ValueRegex = 2;
+}
+
+enum VersionType {
+   Smoke = 1;
+   Canary = 2;
+   Rolling = 3;
+   BlueGreen = 4;
+}
+
+message VersionStatus{
+    Version Version = 1;
+    repeated Condition Conditions = 2; // This will contain all conditions for every resource (service, deployment, config-maps, etc)
+                                       // If any of the resources fail to deploy, it will roll back the entire version
+    string Message = 3; // Overall message update from ploio for the entire ploio version deploy process
+    bool Complete = 4; // If the deployment has finished (the final status message)
+}
+
+message Condition {
+    string Resource = 1;
+    string Type = 2;
+    string Reason = 3;
+    string Message = 4;
+    int64 LastProbeTime = 5;
+    int64 LastTransitionTime = 6;
 }
 
 message ApplicationID {
@@ -31,10 +53,10 @@ message Application {
     string ID = 1 [(gogoproto.moretags) = "gorm:\"primary_key\""];
     string Name = 2;
     string Owner = 3;
-    string Repo = 4;
-    repeated Service Services = 5;
-    repeated Env Env = 6;
-    // repeated Pipeline Pipelines = 7;
+    string ContainerRepo = 4;
+    string GitHubRepo = 5;
+    repeated Service Services = 6;
+    repeated Env Env = 7;
 }
 
 
