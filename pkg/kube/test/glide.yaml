@@ -1,0 +1,6 @@
+package: github.com/ploio/ploio/pkg/kube/test
+import:
+ - package: k8s.io/client-go
+   version: v6.0.0
+ - package: k8s.io/apimachinery
+   version: '019ae5ada31de202164b118aee88ee2d14075c31'
