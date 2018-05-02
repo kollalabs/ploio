@@ -1,0 +1,28 @@
+apiVersion: config.istio.io/v1alpha2
+kind: RouteRule
+metadata:
+  name: basicapp-default 
+spec:
+  destination:
+    name: basicapp
+  precedence: 1
+  route:
+  - labels:
+      version: v1
+---
+apiVersion: config.istio.io/v1alpha2
+kind: RouteRule
+metadata:
+  name: basicapp-smoke-v2
+spec:
+  destination:
+    name: basicapp
+  precedence: 2
+  match:
+    request:
+      headers:
+        x-ploio-id:
+          regex: "(ploiotest)"
+  route:
+  - labels:
+      version: v2

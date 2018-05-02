@@ -1,0 +1,21 @@
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: basicapp
+  annotations:
+    ploio.io/id: basicapp # If you want ploio to auto-deploy upgrades, need to add this annotation
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: basicapp
+        version: v1 # This has to be here for istio routing rules to work properly
+    spec:
+      containers:
+      - name: basicapp
+        image: weavelab/basicapp:v1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8000

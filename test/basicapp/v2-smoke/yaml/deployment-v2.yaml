@@ -1,0 +1,23 @@
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: basicapp
+  annotations:
+    ploio.io/id: basicapp
+    ploio.io/type: smoke
+    ploio.io/timeout: 5m
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: basicapp
+        version: v2 # This changes so istio rules can use it as a selector for route shaping
+    spec:
+      containers:
+      - name: basicapp
+        image: weavelab/basicapp:v2 # note that this is changed to v2 container image
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8000
