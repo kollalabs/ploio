@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }} 
+  namespace: {{ .Values.namespace }}
+  annotations:
+    ploio.io/id: {{ .Values.id }}  # If you want ploio to auto-deploy upgrades, need to add this annotation
+spec:
+  replicas: {{ .Values.resources.replicas }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.id }} 
+        version: {{ .Values.tag }}  # This has to be here for istio routing rules to work properly
+    spec:
+      containers:
+      - name: {{ .Values.name }} 
+        image: {{ .Values.repo }}:{{ .Values.tag }} 
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: {{ .Values.port }}

@@ -1,0 +1,16 @@
+apiVersion: config.istio.io/v1alpha2
+kind: RouteRule
+metadata:
+  name: basicapp-dev
+spec:
+  destination:
+    name: basicapp
+  precedence: 2
+  match:
+    request:
+      headers:
+        uberctx-include-body:
+          regex: "(12345)"
+  route:
+  - labels:
+      telepresence: 12e50e94-de6a-448d-a1db-e6ca235834f3

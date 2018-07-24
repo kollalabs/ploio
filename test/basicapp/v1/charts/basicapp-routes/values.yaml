@@ -1,0 +1,26 @@
+# Default values for ploiobase.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+schema: "1"
+
+id: basicapp
+name: basicapp
+namespace: default
+owner: "clint@getweave.com"
+repo: "weavelab/basicapp"
+tag: v1
+port: 8000
+
+resources:
+  replicas: 1
+# memory and proc go here
+
+services:
+  ports:
+    name: "grpc"
+    protocol: "TCP"
+    port: "8000"
+
+ingress:
+  path: "/hi"

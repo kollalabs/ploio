@@ -1,0 +1,882 @@
+   0.0 TEL | Telepresence 0.86 launched at Wed May  2 16:24:46 2018
+   0.0 TEL |   /usr/local/bin/telepresence --expose 8000
+   0.0 TEL | [1] Launching: kubectl version --short
+   0.0 TEL | [2] Launching: oc version
+   0.0 TEL | [2] [Errno 2] No such file or directory: 'oc': 'oc'
+   0.0 TEL | [3] Launching: uname -a
+   0.0 TEL | Python 3.6.5 (default, Apr 25 2018, 14:23:58)
+   0.0 TEL | [GCC 4.2.1 Compatible Apple LLVM 9.1.0 (clang-902.0.39.1)]
+   0.0   3 | Darwin cbmbp15 17.5.0 Darwin Kernel Version 17.5.0: Fri Apr 13 19:32:32 PDT 2018; root:xnu-4570.51.2~1/RELEASE_X86_64 x86_64
+   0.0 TEL | [3] exit 0
+   0.1   1 | Client Version: v1.10.1
+   0.1   1 | Server Version: v1.9.6-gke.1
+   0.1 TEL | [1] exit 0
+   0.1 TEL | BEGIN SPAN main.py:437(go_too)
+   0.1 TEL | Scout info: {'latest_version': '0.86', 'application': 'telepresence', 'notices': []}
+   0.1 TEL | Context: gke_ploio-1128_us-central1-a_ploio-09, namespace: default, kubectl_command: kubectl
+   0.1 TEL | [4] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pods telepresence-connectivity-check --ignore-not-found
+   0.5 TEL | [5] Capturing: ssh -V
+   0.5 TEL | [6] Capturing: which torsocks
+   0.5 TEL | [7] Capturing: which sshfs
+   0.5 TEL | BEGIN SPAN main.py:251(start_proxy)
+   0.5 TEL | BEGIN SPAN deployment.py:35(create_new_deployment)
+   0.5 TEL | [8] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default delete --ignore-not-found svc,deploy --selector=telepresence=9f075132-3889-4cb8-be0a-299dbba14a94
+   0.9 TEL | [9] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default run --restart=Always --limits=cpu=100m,memory=256Mi --requests=cpu=25m,memory=64Mi telepresence-1525299885-945499-90447 --image=datawire/telepresence-k8s:0.86 --labels=telepresence=9f075132-3889-4cb8-be0a-299dbba14a94 --port=8000 --expose
+   1.4 TEL | END SPAN deployment.py:35(create_new_deployment)    1.0s
+   1.4 TEL | BEGIN SPAN remote.py:153(get_remote_info)
+   1.4 TEL | BEGIN SPAN remote.py:71(get_deployment_json)
+   1.4 TEL | [10] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get deployment -o json --export --selector=telepresence=9f075132-3889-4cb8-be0a-299dbba14a94
+   1.8 TEL | END SPAN remote.py:71(get_deployment_json)    0.3s
+   1.8 TEL | Searching for Telepresence pod:
+   1.8 TEL |   with name telepresence-1525299885-945499-90447-*
+   1.8 TEL |   with labels {'telepresence': '9f075132-3889-4cb8-be0a-299dbba14a94'}
+   1.8 TEL |   with namespace default
+   1.8 TEL | [11] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod -o json --export --selector=telepresence=9f075132-3889-4cb8-be0a-299dbba14a94
+   2.1 TEL | Checking telepresence-1525299885-945499-90447-7bc757555-xh2qr
+   2.1 TEL | Looks like we've found our pod!
+   2.1 TEL | BEGIN SPAN remote.py:111(wait_for_pod)
+   2.1 TEL | [12] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+   2.7 TEL | [13] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+   3.2 TEL | [14] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+   3.8 TEL | [15] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+   4.4 TEL | [16] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+   4.9 TEL | [17] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+   5.5 TEL | [18] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+   6.1 TEL | [19] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+   6.7 TEL | [20] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+   7.2 TEL | [21] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+   7.8 TEL | [22] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+   8.4 TEL | [23] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+   9.0 TEL | [24] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+   9.5 TEL | [25] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  10.1 TEL | [26] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  10.7 TEL | [27] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  11.3 TEL | [28] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  11.8 TEL | [29] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  12.4 TEL | [30] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  13.0 TEL | [31] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  13.6 TEL | [32] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  14.1 TEL | [33] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  14.7 TEL | [34] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  15.3 TEL | [35] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  15.8 TEL | [36] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  16.4 TEL | [37] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  17.0 TEL | [38] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  17.6 TEL | [39] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  18.2 TEL | [40] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  18.8 TEL | [41] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  19.5 TEL | [42] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  20.0 TEL | [43] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  20.6 TEL | [44] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  21.2 TEL | [45] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  21.7 TEL | [46] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  22.3 TEL | [47] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  22.9 TEL | [48] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  23.6 TEL | [49] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  24.2 TEL | [50] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  24.7 TEL | [51] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  25.3 TEL | [52] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  25.9 TEL | [53] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  26.5 TEL | [54] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  27.0 TEL | [55] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  27.6 TEL | [56] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  28.2 TEL | [57] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  28.8 TEL | [58] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  29.3 TEL | [59] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  29.9 TEL | [60] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  30.5 TEL | [61] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  31.1 TEL | [62] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  31.6 TEL | [63] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  32.2 TEL | [64] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  32.8 TEL | [65] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  33.4 TEL | [66] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  33.9 TEL | [67] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  34.5 TEL | [68] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  35.1 TEL | [69] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  35.6 TEL | [70] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  36.2 TEL | [71] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  36.8 TEL | [72] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  37.3 TEL | [73] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  37.9 TEL | [74] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  38.5 TEL | [75] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  39.1 TEL | [76] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  39.6 TEL | [77] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  40.2 TEL | [78] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  40.8 TEL | [79] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  41.4 TEL | [80] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  41.9 TEL | [81] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  42.5 TEL | [82] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  43.1 TEL | [83] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  43.6 TEL | [84] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  44.2 TEL | [85] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  44.8 TEL | [86] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  45.4 TEL | [87] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  45.9 TEL | [88] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  46.5 TEL | [89] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  47.1 TEL | [90] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod telepresence-1525299885-945499-90447-7bc757555-xh2qr -o json
+  47.4 TEL | END SPAN remote.py:111(wait_for_pod)   45.3s
+  47.4 TEL | END SPAN remote.py:153(get_remote_info)   46.0s
+  47.4 TEL | BEGIN SPAN main.py:146(connect)
+  47.4 TEL | [91] Launching: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default logs -f telepresence-1525299885-945499-90447-7bc757555-xh2qr --container telepresence-1525299885-945499-90447
+  47.4 TEL | [92] Launching: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default port-forward telepresence-1525299885-945499-90447-7bc757555-xh2qr 63086:8022
+  47.4 TEL | [93] Running: ssh -F /dev/null -q -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -p 63086 telepresence@localhost /bin/true
+  47.4 TEL | [93] exit 255 in 0.02 secs.
+  47.7 TEL | [94] Running: ssh -F /dev/null -q -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -p 63086 telepresence@localhost /bin/true
+  47.7 TEL | [94] exit 255 in 0.02 secs.
+  48.0 TEL | [95] Running: ssh -F /dev/null -q -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -p 63086 telepresence@localhost /bin/true
+  48.0 TEL | [95] exit 255 in 0.02 secs.
+  48.1  92 | Forwarding from 127.0.0.1:63086 -> 8022
+  48.1  92 | Forwarding from [::1]:63086 -> 8022
+  48.2 TEL | [96] Running: ssh -F /dev/null -q -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -p 63086 telepresence@localhost /bin/true
+  48.3  92 | Handling connection for 63086
+  49.2 TEL | [97] Launching: ssh -N -oServerAliveInterval=1 -oServerAliveCountMax=10 -F /dev/null -q -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -p 63086 telepresence@localhost -R '*:8000:127.0.0.1:8000'
+  49.2 TEL | END SPAN main.py:146(connect)    1.8s
+  49.2 TEL | BEGIN SPAN main.py:79(get_env_variables)
+  49.2 TEL | [98] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default exec telepresence-1525299885-945499-90447-7bc757555-xh2qr --container telepresence-1525299885-945499-90447 env
+  49.2  92 | Handling connection for 63086
+  50.2 TEL | END SPAN main.py:79(get_env_variables)    1.0s
+  50.2 TEL | END SPAN main.py:251(start_proxy)   49.7s
+  50.2 TEL | BEGIN SPAN remote.py:247(mount_remote_volumes)
+  50.2 TEL | [99] Capturing: sshfs -p 63086 -F /dev/null -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null telepresence@localhost:/ /tmp/tmpbgfvs9br
+  50.2  92 | Handling connection for 63086
+  51.3 TEL | [99] captured in 1.13 secs.
+  51.3 TEL | END SPAN remote.py:247(mount_remote_volumes)    1.1s
+  51.3 TEL | BEGIN SPAN vpn.py:245(connect_sshuttle)
+  51.3 TEL | BEGIN SPAN vpn.py:70(get_proxy_cidrs)
+  51.3 TEL | END SPAN vpn.py:70(get_proxy_cidrs)    0.0s
+  51.3 TEL | [100] Launching: sshuttle-telepresence -v --dns --method auto -e 'ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -F /dev/null' --to-ns 127.0.0.1:9053 -r telepresence@localhost:63086 10.60.1.0/24 10.60.0.0/24 10.63.240.0/20
+  51.3 TEL | BEGIN SPAN vpn.py:287(connect_sshuttle,sshuttle-wait)
+  51.3 TEL | [101] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence0'"'"')'
+  51.4 101 | Traceback (most recent call last):
+  51.4 101 |   File "<string>", line 1, in <module>
+  51.4 101 | socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+  51.4 TEL | [101] exit 1 in 0.05 secs.
+  51.4 100 | Starting sshuttle proxy.
+  51.5 100 | firewall manager: Starting firewall with Python version 3.6.5
+  51.5 100 | firewall manager: ready method name pf.
+  51.5 100 | IPv6 enabled: True
+  51.5 100 | UDP enabled: False
+  51.5 100 | DNS enabled: True
+  51.5 100 | TCP redirector listening on ('::1', 12300, 0, 0).
+  51.5 100 | TCP redirector listening on ('127.0.0.1', 12300).
+  51.5 100 | DNS listening on ('::1', 12300, 0, 0).
+  51.5 100 | DNS listening on ('127.0.0.1', 12300).
+  51.5 100 | Starting client with Python version 3.6.5
+  51.5 100 | c : connecting to server...
+  51.5 TEL | [102] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence1'"'"')'
+  51.5  92 | Handling connection for 63086
+  51.5 102 | Traceback (most recent call last):
+  51.5 102 |   File "<string>", line 1, in <module>
+  51.5 102 | socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+  51.5 TEL | [102] exit 1 in 0.05 secs.
+  51.6 TEL | [103] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence2'"'"')'
+  51.7 103 | Traceback (most recent call last):
+  51.7 103 |   File "<string>", line 1, in <module>
+  51.7 103 | socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+  51.7 TEL | [103] exit 1 in 0.06 secs.
+  51.8 TEL | [104] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence3'"'"')'
+  51.8 104 | Traceback (most recent call last):
+  51.8 104 |   File "<string>", line 1, in <module>
+  51.8 104 | socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+  51.8 TEL | [104] exit 1 in 0.05 secs.
+  52.0 TEL | [105] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence4'"'"')'
+  52.0 100 | Warning: Permanently added '[localhost]:63086' (ECDSA) to the list of known hosts.
+  52.0 105 | Traceback (most recent call last):
+  52.0 105 |   File "<string>", line 1, in <module>
+  52.0 105 | socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+  52.0 TEL | [105] exit 1 in 0.05 secs.
+  52.1 TEL | [106] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence5'"'"')'
+  52.2 106 | Traceback (most recent call last):
+  52.2 106 |   File "<string>", line 1, in <module>
+  52.2 106 | socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+  52.2 TEL | [106] exit 1 in 0.05 secs.
+  52.3 TEL | [107] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence6'"'"')'
+  52.3 107 | Traceback (most recent call last):
+  52.3 107 |   File "<string>", line 1, in <module>
+  52.3 107 | socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+  52.3 TEL | [107] exit 1 in 0.05 secs.
+  52.4 TEL | [108] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence7'"'"')'
+  52.5 108 | Traceback (most recent call last):
+  52.5 108 |   File "<string>", line 1, in <module>
+  52.5 108 | socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+  52.5 TEL | [108] exit 1 in 0.05 secs.
+  52.6 TEL | [109] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence8'"'"')'
+  52.6 109 | Traceback (most recent call last):
+  52.6 109 |   File "<string>", line 1, in <module>
+  52.6 109 | socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+  52.6 TEL | [109] exit 1 in 0.05 secs.
+  52.7 TEL | [110] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence9'"'"')'
+  52.8 110 | Traceback (most recent call last):
+  52.8 110 |   File "<string>", line 1, in <module>
+  52.8 110 | socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+  52.8 TEL | [110] exit 1 in 0.05 secs.
+  52.9 TEL | [111] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence10'"'"')'
+  52.9 111 | Traceback (most recent call last):
+  52.9 111 |   File "<string>", line 1, in <module>
+  52.9 111 | socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+  53.0 TEL | [111] exit 1 in 0.06 secs.
+  53.1 TEL | [112] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence11'"'"')'
+  53.1 112 | Traceback (most recent call last):
+  53.1 112 |   File "<string>", line 1, in <module>
+  53.1 112 | socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+  53.1 TEL | [112] exit 1 in 0.06 secs.
+  53.2 TEL | [113] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence12'"'"')'
+  53.3 113 | Traceback (most recent call last):
+  53.3 113 |   File "<string>", line 1, in <module>
+  53.3 113 | socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+  53.3 TEL | [113] exit 1 in 0.06 secs.
+  53.4 TEL | [114] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence13'"'"')'
+  53.4 114 | Traceback (most recent call last):
+  53.4 114 |   File "<string>", line 1, in <module>
+  53.4 114 | socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+  53.4 TEL | [114] exit 1 in 0.06 secs.
+  53.5 TEL | [115] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence14'"'"')'
+  53.6 115 | Traceback (most recent call last):
+  53.6 115 |   File "<string>", line 1, in <module>
+  53.6 115 | socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+  53.6 TEL | [115] exit 1 in 0.06 secs.
+  53.7 TEL | [116] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence15'"'"')'
+  54.0 116 | Traceback (most recent call last):
+  54.0 116 |   File "<string>", line 1, in <module>
+  54.0 116 | socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+  54.0 TEL | [116] exit 1 in 0.26 secs.
+  54.1 TEL | [117] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence16'"'"')'
+  54.2 117 | Traceback (most recent call last):
+  54.2 117 |   File "<string>", line 1, in <module>
+  54.2 117 | socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+  54.2 TEL | [117] exit 1 in 0.15 secs.
+  54.3 TEL | [118] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence17'"'"')'
+  54.4 100 | Starting server with Python version 3.6.1
+  54.4 100 |  s: latency control setting = True
+  54.4 118 | Traceback (most recent call last):
+  54.4 118 |   File "<string>", line 1, in <module>
+  54.4 118 | socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+  54.4 100 |  s: available routes:
+  54.4 100 |  s:   2/10.60.1.0/24
+  54.4 100 | c : Connected.
+  54.4 100 | firewall manager: setting up.
+  54.4 100 | >> pfctl -s Interfaces -i lo -v
+  54.4 TEL | [118] exit 1 in 0.07 secs.
+  54.4 100 | >> pfctl -s all
+  54.4 100 | >> pfctl -a sshuttle6-12300 -f /dev/stdin
+  54.4 100 | >> pfctl -E
+  54.4 100 | >> pfctl -s Interfaces -i lo -v
+  54.4 100 | >> pfctl -s all
+  54.4 100 | >> pfctl -a sshuttle-12300 -f /dev/stdin
+  54.4 100 | >> pfctl -E
+  54.5 TEL | [119] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence18'"'"')'
+  54.5 100 | c : DNS request from ('10.10.1.246', 58095) to None: 49 bytes
+  55.3  91 | Listening...
+  55.3  91 | 2018-05-02T22:25:42+0000 [-] Loading ./forwarder.py...
+  55.3  91 | 2018-05-02T22:25:43+0000 [-] /etc/resolv.conf changed, reparsing
+  55.3  91 | 2018-05-02T22:25:43+0000 [-] Resolver added ('10.63.240.10', 53) to server list
+  55.3  91 | 2018-05-02T22:25:43+0000 [-] SOCKSv5Factory starting on 9050
+  55.3  91 | 2018-05-02T22:25:43+0000 [socks.SOCKSv5Factory#info] Starting factory <socks.SOCKSv5Factory object at 0x7fa06c6d9518>
+  55.3  91 | 2018-05-02T22:25:43+0000 [-] DNSDatagramProtocol starting on 9053
+  55.3  91 | 2018-05-02T22:25:43+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7fa06c6d9828>
+  55.3  91 | 2018-05-02T22:25:43+0000 [-] Loaded.
+  55.3  91 | 2018-05-02T22:25:43+0000 [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 17.9.0 (/usr/bin/python3.6 3.6.1) starting up.
+  55.3  91 | 2018-05-02T22:25:43+0000 [twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.epollreactor.EPollReactor.
+  55.6 100 | c : DNS request from ('10.10.1.246', 58095) to None: 49 bytes
+  55.7  91 | 2018-05-02T22:25:43+0000 [stdout#info] Set DNS suffix we filter out to: [(b'weave', b'local')]
+  55.7  91 | 2018-05-02T22:25:43+0000 [stdout#info] Result for b'hellotelepresence18.weave.local' is ['127.0.0.1']
+  55.7 TEL | [119] captured in 1.20 secs.
+  56.4 100 | c : DNS request from ('10.10.1.246', 53909) to None: 58 bytes
+  56.5  91 | 2018-05-02T22:25:44+0000 [stdout#info] A query: b'geo.vortex.data.microsoft.com.akadns.net'
+  56.5  91 | 2018-05-02T22:25:44+0000 [stdout#info] Result for b'geo.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+  56.7 TEL | [120] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence19'"'"')'
+  56.7 100 | c : DNS request from ('10.10.1.246', 62869) to None: 49 bytes
+  56.9  91 | 2018-05-02T22:25:44+0000 [stdout#info] Result for b'hellotelepresence19.weave.local' is ['127.0.0.1']
+  56.9 TEL | END SPAN vpn.py:287(connect_sshuttle,sshuttle-wait)    5.6s
+  56.9 TEL | END SPAN vpn.py:245(connect_sshuttle)    5.6s
+  56.9 TEL | Everything launched. Waiting to exit...
+  56.9 TEL | BEGIN SPAN cleanup.py:69(wait_for_exit)
+  58.7 100 | c : DNS request from ('10.10.1.246', 53779) to None: 37 bytes
+  59.0  91 | 2018-05-02T22:25:46+0000 [stdout#info] A query: b'gitlab.getweave.com'
+  59.0  91 | 2018-05-02T22:25:46+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+  60.6 100 | c : DNS request from ('10.10.1.246', 60935) to None: 42 bytes
+  60.7  91 | 2018-05-02T22:25:48+0000 [stdout#info] A query: b'block-edge-3.dropbox.com'
+  60.7  91 | 2018-05-02T22:25:48+0000 [stdout#info] Result for b'block-edge-3.dropbox.com' is ['162.125.8.4']
+  74.5 100 | c : DNS request from ('10.10.1.246', 51093) to None: 52 bytes
+  74.6  91 | 2018-05-02T22:26:02+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+  74.6  91 | 2018-05-02T22:26:02+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['34.225.83.125', '52.4.172.149']
+  81.3 100 | c : DNS request from ('10.10.1.246', 53100) to None: 49 bytes
+  81.8  91 | 2018-05-02T22:26:09+0000 [stdout#info] A query: b'gsp-ssl.ls-apple.com.akadns.net'
+  82.0  91 | 2018-05-02T22:26:09+0000 [stdout#info] Result for b'gsp-ssl.ls-apple.com.akadns.net' is ['17.167.195.42', '17.167.195.44', '17.167.193.43', '17.167.193.45', '17.167.193.41', '17.167.195.40']
+  82.9 100 | c : DNS request from ('10.10.1.246', 54227) to None: 48 bytes
+  83.4  91 | 2018-05-02T22:26:11+0000 [stdout#info] A query: b'gs-loc.ls-apple.com.akadns.net'
+  83.6  91 | 2018-05-02T22:26:11+0000 [stdout#info] Result for b'gs-loc.ls-apple.com.akadns.net' is ['17.130.137.187', '17.130.137.183']
+  90.6 100 | c : DNS request from ('10.10.1.246', 53515) to None: 61 bytes
+  90.7  91 | 2018-05-02T22:26:18+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+  90.9  91 | 2018-05-02T22:26:18+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+  96.7 100 | c : DNS request from ('10.10.1.246', 4401) to None: 42 bytes
+  96.8  91 | 2018-05-02T22:26:24+0000 [stdout#info] A query: b'console.cloud.google.com'
+  96.8 100 | c : DNS request from ('10.10.1.246', 4673) to None: 42 bytes
+  96.8  91 | 2018-05-02T22:26:24+0000 [stdout#info] Result for b'console.cloud.google.com' is ['74.125.129.102', '74.125.129.139', '74.125.129.113', '74.125.129.100', '74.125.129.101', '74.125.129.138']
+  96.9  91 | 2018-05-02T22:26:24+0000 [stdout#info] A query: b'console.cloud.google.com'
+  96.9  91 | 2018-05-02T22:26:24+0000 [stdout#info] Result for b'console.cloud.google.com' is ['74.125.129.138', '74.125.129.101', '74.125.129.100', '74.125.129.113', '74.125.129.139', '74.125.129.102']
+ 101.4 100 | c : DNS request from ('10.10.1.246', 52838) to None: 37 bytes
+ 101.5  91 | 2018-05-02T22:26:29+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 101.5  91 | 2018-05-02T22:26:29+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 101.9 100 | c : DNS request from ('10.10.1.246', 58427) to None: 27 bytes
+ 101.9  91 | 2018-05-02T22:26:29+0000 [stdout#info] A query: b'slack.com'
+ 102.0  91 | 2018-05-02T22:26:29+0000 [stdout#info] Result for b'slack.com' is ['52.84.28.137']
+ 114.8 100 | c : DNS request from ('10.10.1.246', 51239) to None: 52 bytes
+ 114.9  91 | 2018-05-02T22:26:42+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+ 114.9  91 | 2018-05-02T22:26:42+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['34.225.83.125', '52.4.172.149']
+ 116.4 100 | c : DNS request from ('10.10.1.246', 62383) to None: 61 bytes
+ 116.5  91 | 2018-05-02T22:26:44+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 116.6  91 | 2018-05-02T22:26:44+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 118.7 100 | c : DNS request from ('10.10.1.246', 65172) to None: 37 bytes
+ 118.8  91 | 2018-05-02T22:26:46+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 118.8  91 | 2018-05-02T22:26:46+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 127.8 100 | c : DNS request from ('10.10.1.246', 6439) to None: 32 bytes
+ 127.9 100 | c : DNS request from ('10.10.1.246', 57370) to None: 32 bytes
+ 128.0  91 | 2018-05-02T22:26:55+0000 [stdout#info] A query: b'www.google.com'
+ 128.0  91 | 2018-05-02T22:26:55+0000 [stdout#info] Result for b'www.google.com' is ['74.125.202.106', '74.125.202.147', '74.125.202.105', '74.125.202.104', '74.125.202.103', '74.125.202.99']
+ 128.0  91 | 2018-05-02T22:26:55+0000 [stdout#info] A query: b'www.google.com'
+ 128.0  91 | 2018-05-02T22:26:55+0000 [stdout#info] Result for b'www.google.com' is ['74.125.202.106', '74.125.202.99', '74.125.202.103', '74.125.202.104', '74.125.202.105', '74.125.202.147']
+ 130.6 100 | c : DNS request from ('10.10.1.246', 56202) to None: 31 bytes
+ 130.8 100 | c : DNS request from ('10.10.1.246', 36501) to None: 31 bytes
+ 130.8  91 | 2018-05-02T22:26:58+0000 [stdout#info] A query: b'm.addthis.com'
+ 130.8  91 | 2018-05-02T22:26:58+0000 [stdout#info] Result for b'm.addthis.com' is ['104.106.30.9']
+ 130.8  91 | 2018-05-02T22:26:58+0000 [stdout#info] A query: b'm.addthis.com'
+ 130.8  91 | 2018-05-02T22:26:58+0000 [stdout#info] Result for b'm.addthis.com' is ['104.106.30.9']
+ 134.9 100 | c : DNS request from ('10.10.1.246', 49951) to None: 37 bytes
+ 134.9  91 | 2018-05-02T22:27:02+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 135.0  91 | 2018-05-02T22:27:02+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 137.6 100 | c : DNS request from ('10.10.1.246', 42048) to None: 37 bytes
+ 137.7  91 | 2018-05-02T22:27:05+0000 [stdout#info] A query: b'clients4.google.com'
+ 137.8 100 | c : DNS request from ('10.10.1.246', 49713) to None: 37 bytes
+ 137.8  91 | 2018-05-02T22:27:05+0000 [stdout#info] Result for b'clients4.google.com' is ['74.125.201.138', '74.125.201.102', '74.125.201.100', '74.125.201.113', '74.125.201.101', '74.125.201.139']
+ 137.9  91 | 2018-05-02T22:27:05+0000 [stdout#info] A query: b'clients4.google.com'
+ 137.9  91 | 2018-05-02T22:27:05+0000 [stdout#info] Result for b'clients4.google.com' is ['108.177.112.102', '108.177.112.113', '108.177.112.139', '108.177.112.138', '108.177.112.101', '108.177.112.100']
+ 150.6 100 | c : DNS request from ('10.10.1.246', 50591) to None: 61 bytes
+ 150.6  91 | 2018-05-02T22:27:18+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 150.7  91 | 2018-05-02T22:27:18+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 155.1 100 | c : DNS request from ('10.10.1.246', 54966) to None: 52 bytes
+ 155.2  91 | 2018-05-02T22:27:23+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+ 155.2  91 | 2018-05-02T22:27:23+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['34.225.83.125', '52.4.172.149']
+ 161.4 100 | c : DNS request from ('10.10.1.246', 60308) to None: 37 bytes
+ 161.4  91 | 2018-05-02T22:27:29+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 161.5  91 | 2018-05-02T22:27:29+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 174.7 100 | c : DNS request from ('10.10.1.246', 35619) to None: 37 bytes
+ 174.8 100 | c : DNS request from ('10.10.1.246', 11149) to None: 37 bytes
+ 174.8  91 | 2018-05-02T22:27:42+0000 [stdout#info] A query: b'clients6.google.com'
+ 174.8  91 | 2018-05-02T22:27:42+0000 [stdout#info] Result for b'clients6.google.com' is ['209.85.145.113', '209.85.145.101', '209.85.145.139', '209.85.145.100', '209.85.145.102', '209.85.145.138']
+ 174.8  91 | 2018-05-02T22:27:42+0000 [stdout#info] A query: b'clients6.google.com'
+ 174.8  91 | 2018-05-02T22:27:42+0000 [stdout#info] Result for b'clients6.google.com' is ['209.85.145.138', '209.85.145.113', '209.85.145.101', '209.85.145.139', '209.85.145.100', '209.85.145.102']
+ 176.5 100 | c : DNS request from ('10.10.1.246', 60190) to None: 61 bytes
+ 176.6  91 | 2018-05-02T22:27:44+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 176.6  91 | 2018-05-02T22:27:44+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 178.3 100 | c : DNS request from ('10.10.1.246', 57583) to None: 27 bytes
+ 178.4  91 | 2018-05-02T22:27:46+0000 [stdout#info] A query: b'slack.com'
+ 178.4  91 | 2018-05-02T22:27:46+0000 [stdout#info] Result for b'slack.com' is ['52.84.138.167']
+ 178.7 100 | c : DNS request from ('10.10.1.246', 55649) to None: 37 bytes
+ 178.8  91 | 2018-05-02T22:27:46+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 178.9  91 | 2018-05-02T22:27:46+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 189.0 100 | c : DNS request from ('10.10.1.246', 55223) to None: 51 bytes
+ 189.1  91 | 2018-05-02T22:27:56+0000 [stdout#info] A query: b'valid.origin-apple.com.akadns.net'
+ 189.2  91 | 2018-05-02T22:27:57+0000 [stdout#info] Result for b'valid.origin-apple.com.akadns.net' is ['17.253.5.208', '17.253.5.202']
+ 193.4 100 | c : DNS request from ('10.10.1.246', 56557) to None: 61 bytes
+ 193.5  91 | 2018-05-02T22:28:01+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 193.5  91 | 2018-05-02T22:28:01+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 194.9 100 | c : DNS request from ('10.10.1.246', 55777) to None: 37 bytes
+ 194.9  91 | 2018-05-02T22:28:02+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 195.0  91 | 2018-05-02T22:28:02+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 195.5 100 | c : DNS request from ('10.10.1.246', 62942) to None: 52 bytes
+ 195.6  91 | 2018-05-02T22:28:03+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+ 195.6  91 | 2018-05-02T22:28:03+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['34.225.83.125', '52.4.172.149']
+ 198.0 100 | c : DNS request from ('10.10.1.246', 54200) to None: 36 bytes
+ 198.0  91 | 2018-05-02T22:28:05+0000 [stdout#info] A query: b'client.dropbox.com'
+ 198.1  91 | 2018-05-02T22:28:06+0000 [stdout#info] Result for b'client.dropbox.com' is ['162.125.7.3']
+ 210.6 100 | c : DNS request from ('10.10.1.246', 50392) to None: 61 bytes
+ 210.7  91 | 2018-05-02T22:28:18+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 210.7  91 | 2018-05-02T22:28:18+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 214.6 100 | c : DNS request from ('10.10.1.246', 58061) to None: 33 bytes
+ 214.7  91 | 2018-05-02T22:28:22+0000 [stdout#info] A query: b'play.google.com'
+ 214.8 100 | c : DNS request from ('10.10.1.246', 18266) to None: 33 bytes
+ 214.8  91 | 2018-05-02T22:28:22+0000 [stdout#info] Result for b'play.google.com' is ['108.177.112.139', '108.177.112.102', '108.177.112.101', '108.177.112.100', '108.177.112.113', '108.177.112.138']
+ 214.8  91 | 2018-05-02T22:28:22+0000 [stdout#info] A query: b'play.google.com'
+ 214.8  91 | 2018-05-02T22:28:22+0000 [stdout#info] Result for b'play.google.com' is ['108.177.112.113', '108.177.112.138', '108.177.112.139', '108.177.112.102', '108.177.112.101', '108.177.112.100']
+ 221.4 100 | c : DNS request from ('10.10.1.246', 58320) to None: 37 bytes
+ 221.5  91 | 2018-05-02T22:28:29+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 221.5  91 | 2018-05-02T22:28:29+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 226.9 100 | c : DNS request from ('10.10.1.246', 41393) to None: 53 bytes
+ 227.0 100 | c : DNS request from ('10.10.1.246', 60795) to None: 37 bytes
+ 227.0  91 | 2018-05-02T22:28:34+0000 [stdout#info] A query: b'cloudconsole-pa.clients6.google.com'
+ 227.0  91 | 2018-05-02T22:28:34+0000 [stdout#info] A query: b'clients4.google.com'
+ 227.0  91 | 2018-05-02T22:28:34+0000 [stdout#info] Result for b'cloudconsole-pa.clients6.google.com' is ['209.85.147.95']
+ 227.0  91 | 2018-05-02T22:28:34+0000 [stdout#info] Result for b'clients4.google.com' is ['108.177.112.100', '108.177.112.101', '108.177.112.138', '108.177.112.102', '108.177.112.139', '108.177.112.113']
+ 232.3 100 | c : DNS request from ('10.10.1.246', 61252) to None: 61 bytes
+ 232.4  91 | 2018-05-02T22:28:40+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 232.5  91 | 2018-05-02T22:28:40+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 235.9 100 | c : DNS request from ('10.10.1.246', 59613) to None: 52 bytes
+ 236.0  91 | 2018-05-02T22:28:43+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+ 236.1  91 | 2018-05-02T22:28:43+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['52.4.172.149', '34.225.83.125']
+ 238.7 100 | c : DNS request from ('10.10.1.246', 56351) to None: 37 bytes
+ 238.8  91 | 2018-05-02T22:28:46+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 238.9  91 | 2018-05-02T22:28:46+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 254.9 100 | c : DNS request from ('10.10.1.246', 57707) to None: 37 bytes
+ 255.0  91 | 2018-05-02T22:29:02+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 255.0  91 | 2018-05-02T22:29:02+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 270.6 100 | c : DNS request from ('10.10.1.246', 54059) to None: 61 bytes
+ 270.7  91 | 2018-05-02T22:29:18+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 270.7  91 | 2018-05-02T22:29:18+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 276.4 100 | c : DNS request from ('10.10.1.246', 60276) to None: 52 bytes
+ 276.5  91 | 2018-05-02T22:29:24+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+ 276.5  91 | 2018-05-02T22:29:24+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['34.225.83.125', '52.4.172.149']
+ 281.4 100 | c : DNS request from ('10.10.1.246', 52316) to None: 37 bytes
+ 281.5  91 | 2018-05-02T22:29:29+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 281.5  91 | 2018-05-02T22:29:29+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 296.6 100 | c : DNS request from ('10.10.1.246', 52332) to None: 61 bytes
+ 296.6  91 | 2018-05-02T22:29:44+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 296.7  91 | 2018-05-02T22:29:44+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 298.4 100 | c : DNS request from ('10.10.1.246', 49829) to None: 36 bytes
+ 298.5  91 | 2018-05-02T22:29:46+0000 [stdout#info] A query: b'client.dropbox.com'
+ 298.5  91 | 2018-05-02T22:29:46+0000 [stdout#info] Result for b'client.dropbox.com' is ['162.125.3.3']
+ 298.7 100 | c : DNS request from ('10.10.1.246', 52379) to None: 37 bytes
+ 298.8  91 | 2018-05-02T22:29:46+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 298.9  91 | 2018-05-02T22:29:46+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 299.6 100 | c : DNS request from ('10.10.1.246', 55486) to None: 42 bytes
+ 299.7  91 | 2018-05-02T22:29:47+0000 [stdout#info] A query: b'block-edge-3.dropbox.com'
+ 299.8  91 | 2018-05-02T22:29:47+0000 [stdout#info] Result for b'block-edge-3.dropbox.com' is ['162.125.3.4']
+ 314.9 100 | c : DNS request from ('10.10.1.246', 61832) to None: 37 bytes
+ 315.0  91 | 2018-05-02T22:30:02+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 315.0  91 | 2018-05-02T22:30:02+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 316.7 100 | c : DNS request from ('10.10.1.246', 57689) to None: 52 bytes
+ 316.8  91 | 2018-05-02T22:30:04+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+ 316.8  91 | 2018-05-02T22:30:04+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['52.4.172.149', '34.225.83.125']
+ 328.4 100 | c : DNS request from ('10.10.1.246', 20593) to None: 37 bytes
+ 328.5  91 | 2018-05-02T22:30:16+0000 [stdout#info] A query: b'clients4.google.com'
+ 328.5  91 | 2018-05-02T22:30:16+0000 [stdout#info] Result for b'clients4.google.com' is ['108.177.112.113', '108.177.112.139', '108.177.112.102', '108.177.112.138', '108.177.112.101', '108.177.112.100']
+ 330.6 100 | c : DNS request from ('10.10.1.246', 49758) to None: 61 bytes
+ 330.7  91 | 2018-05-02T22:30:18+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 330.7  91 | 2018-05-02T22:30:18+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 341.4 100 | c : DNS request from ('10.10.1.246', 55793) to None: 37 bytes
+ 341.5  91 | 2018-05-02T22:30:29+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 341.5  91 | 2018-05-02T22:30:29+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 356.6 100 | c : DNS request from ('10.10.1.246', 60294) to None: 61 bytes
+ 356.8  91 | 2018-05-02T22:30:44+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 356.8  91 | 2018-05-02T22:30:44+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 357.0 100 | c : DNS request from ('10.10.1.246', 51685) to None: 52 bytes
+ 357.2  91 | 2018-05-02T22:30:45+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+ 357.2  91 | 2018-05-02T22:30:45+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['52.4.172.149', '34.225.83.125']
+ 358.8 100 | c : DNS request from ('10.10.1.246', 53034) to None: 37 bytes
+ 358.8  91 | 2018-05-02T22:30:46+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 358.9  91 | 2018-05-02T22:30:46+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 374.9 100 | c : DNS request from ('10.10.1.246', 50202) to None: 37 bytes
+ 375.0  91 | 2018-05-02T22:31:02+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 375.0  91 | 2018-05-02T22:31:02+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 381.5 100 | c : DNS request from ('10.10.1.246', 55689) to None: 36 bytes
+ 381.5  91 | 2018-05-02T22:31:09+0000 [stdout#info] A query: b'client.dropbox.com'
+ 381.6  91 | 2018-05-02T22:31:09+0000 [stdout#info] Result for b'client.dropbox.com' is ['162.125.8.3']
+ 382.2 100 | c : DNS request from ('10.10.1.246', 51166) to None: 42 bytes
+ 382.3  91 | 2018-05-02T22:31:10+0000 [stdout#info] A query: b'block-edge-3.dropbox.com'
+ 382.3  91 | 2018-05-02T22:31:10+0000 [stdout#info] Result for b'block-edge-3.dropbox.com' is ['162.125.8.4']
+ 390.5 100 | c : DNS request from ('10.10.1.246', 16027) to None: 32 bytes
+ 390.6  91 | 2018-05-02T22:31:18+0000 [stdout#info] A query: b'www.google.com'
+ 390.6  91 | 2018-05-02T22:31:18+0000 [stdout#info] Result for b'www.google.com' is ['74.125.202.105', '74.125.202.147', '74.125.202.106', '74.125.202.99', '74.125.202.103', '74.125.202.104']
+ 390.6 100 | c : DNS request from ('10.10.1.246', 61501) to None: 61 bytes
+ 390.7  91 | 2018-05-02T22:31:18+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 390.7  91 | 2018-05-02T22:31:18+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 391.5 100 | c : DNS request from ('10.10.1.246', 13746) to None: 47 bytes
+ 391.5  91 | 2018-05-02T22:31:19+0000 [stdout#info] A query: b'd3cv4a9a9wh0bt.cloudfront.net'
+ 391.6 100 | c : DNS request from ('10.10.1.246', 1473) to None: 47 bytes
+ 391.6  91 | 2018-05-02T22:31:19+0000 [stdout#info] Result for b'd3cv4a9a9wh0bt.cloudfront.net' is ['52.85.133.195', '52.85.133.155', '52.85.133.87', '52.85.133.95', '52.85.133.60', '52.85.133.37', '52.85.133.200', '52.85.133.112']
+ 391.6  91 | 2018-05-02T22:31:19+0000 [stdout#info] A query: b'd3cv4a9a9wh0bt.cloudfront.net'
+ 391.7  91 | 2018-05-02T22:31:19+0000 [stdout#info] Result for b'd3cv4a9a9wh0bt.cloudfront.net' is ['52.85.133.200', '52.85.133.112', '52.85.133.195', '52.85.133.155', '52.85.133.87', '52.85.133.95', '52.85.133.60', '52.85.133.37']
+ 397.4 100 | c : DNS request from ('10.10.1.246', 56814) to None: 52 bytes
+ 397.6  91 | 2018-05-02T22:31:25+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+ 397.6  91 | 2018-05-02T22:31:25+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['34.225.83.125', '52.4.172.149']
+ 400.7 100 | c : DNS request from ('10.10.1.246', 58254) to None: 53 bytes
+ 400.7  91 | 2018-05-02T22:31:28+0000 [stdout#info] A query: b'cloudconsole-pa.clients6.google.com'
+ 400.8 100 | c : DNS request from ('10.10.1.246', 37733) to None: 53 bytes
+ 400.8  91 | 2018-05-02T22:31:28+0000 [stdout#info] Result for b'cloudconsole-pa.clients6.google.com' is ['74.125.124.95']
+ 400.8  91 | 2018-05-02T22:31:28+0000 [stdout#info] A query: b'cloudconsole-pa.clients6.google.com'
+ 400.9  91 | 2018-05-02T22:31:28+0000 [stdout#info] Result for b'cloudconsole-pa.clients6.google.com' is ['74.125.124.95']
+ 401.4 100 | c : DNS request from ('10.10.1.246', 65027) to None: 37 bytes
+ 401.5  91 | 2018-05-02T22:31:29+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 401.5  91 | 2018-05-02T22:31:29+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 402.5 100 | c : DNS request from ('10.10.1.246', 18207) to None: 37 bytes
+ 402.6  91 | 2018-05-02T22:31:30+0000 [stdout#info] A query: b'clients4.google.com'
+ 402.6  91 | 2018-05-02T22:31:30+0000 [stdout#info] Result for b'clients4.google.com' is ['108.177.112.100', '108.177.112.113', '108.177.112.139', '108.177.112.102', '108.177.112.138', '108.177.112.101']
+ 402.6 100 | c : DNS request from ('10.10.1.246', 57426) to None: 33 bytes
+ 402.7  91 | 2018-05-02T22:31:30+0000 [stdout#info] A query: b'play.google.com'
+ 402.7  91 | 2018-05-02T22:31:30+0000 [stdout#info] Result for b'play.google.com' is ['108.177.112.101', '108.177.112.100', '108.177.112.113', '108.177.112.138', '108.177.112.139', '108.177.112.102']
+ 416.5 100 | c : DNS request from ('10.10.1.246', 51987) to None: 61 bytes
+ 416.7  91 | 2018-05-02T22:31:44+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 416.7  91 | 2018-05-02T22:31:44+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 418.8 100 | c : DNS request from ('10.10.1.246', 58673) to None: 37 bytes
+ 418.9  91 | 2018-05-02T22:31:46+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 418.9  91 | 2018-05-02T22:31:46+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 434.9 100 | c : DNS request from ('10.10.1.246', 49434) to None: 37 bytes
+ 435.0  91 | 2018-05-02T22:32:02+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 435.1  91 | 2018-05-02T22:32:03+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 435.5 100 | c : DNS request from ('10.10.1.246', 55034) to None: 31 bytes
+ 435.5  91 | 2018-05-02T22:32:03+0000 [stdout#info] A query: b'd.dropbox.com'
+ 435.6  91 | 2018-05-02T22:32:03+0000 [stdout#info] Result for b'd.dropbox.com' is ['162.125.34.6']
+ 438.0 100 | c : DNS request from ('10.10.1.246', 61892) to None: 34 bytes
+ 438.3  91 | 2018-05-02T22:32:06+0000 [stdout#info] A query: b'scss.adobesc.com'
+ 438.3  91 | 2018-05-02T22:32:06+0000 [stdout#info] Result for b'scss.adobesc.com' is ['34.202.190.61', '35.168.101.125', '35.153.188.145', '35.153.112.45', '34.202.191.5', '35.169.21.199', '34.200.96.201', '35.170.112.115']
+ 438.7 100 | c : DNS request from ('10.10.1.246', 53082) to None: 52 bytes
+ 439.0  91 | 2018-05-02T22:32:06+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+ 439.0  91 | 2018-05-02T22:32:06+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['34.225.83.125', '52.4.172.149']
+ 448.9 100 | c : DNS request from ('10.10.1.246', 12067) to None: 48 bytes
+ 449.0 100 | c : DNS request from ('10.10.1.246', 34442) to None: 48 bytes
+ 449.0  91 | 2018-05-02T22:32:16+0000 [stdout#info] A query: b'monitoring.clients6.google.com'
+ 449.0  91 | 2018-05-02T22:32:16+0000 [stdout#info] Result for b'monitoring.clients6.google.com' is ['74.125.132.95']
+ 449.1  91 | 2018-05-02T22:32:17+0000 [stdout#info] A query: b'monitoring.clients6.google.com'
+ 449.1  91 | 2018-05-02T22:32:17+0000 [stdout#info] Result for b'monitoring.clients6.google.com' is ['108.177.112.95']
+ 450.6 100 | c : DNS request from ('10.10.1.246', 51760) to None: 61 bytes
+ 450.7  91 | 2018-05-02T22:32:18+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 450.8  91 | 2018-05-02T22:32:18+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 456.6 100 | c : DNS request from ('10.10.1.246', 11436) to None: 37 bytes
+ 456.7  91 | 2018-05-02T22:32:24+0000 [stdout#info] A query: b'clients6.google.com'
+ 456.8 100 | c : DNS request from ('10.10.1.246', 22635) to None: 37 bytes
+ 456.8  91 | 2018-05-02T22:32:24+0000 [stdout#info] Result for b'clients6.google.com' is ['74.125.124.101', '74.125.124.113', '74.125.124.138', '74.125.124.100', '74.125.124.102', '74.125.124.139']
+ 456.8  91 | 2018-05-02T22:32:24+0000 [stdout#info] A query: b'clients6.google.com'
+ 456.9  91 | 2018-05-02T22:32:24+0000 [stdout#info] Result for b'clients6.google.com' is ['74.125.124.101', '74.125.124.139', '74.125.124.102', '74.125.124.100', '74.125.124.138', '74.125.124.113']
+ 461.4 100 | c : DNS request from ('10.10.1.246', 59329) to None: 37 bytes
+ 461.5  91 | 2018-05-02T22:32:29+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 461.6  91 | 2018-05-02T22:32:29+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 464.0 100 | c : DNS request from ('10.10.1.246', 22813) to None: 42 bytes
+ 464.1  91 | 2018-05-02T22:32:32+0000 [stdout#info] A query: b'www.google-analytics.com'
+ 464.2 100 | c : DNS request from ('10.10.1.246', 7887) to None: 42 bytes
+ 464.2  91 | 2018-05-02T22:32:32+0000 [stdout#info] Result for b'www.google-analytics.com' is ['64.233.191.139', '64.233.191.138', '64.233.191.100', '64.233.191.101', '64.233.191.113', '64.233.191.102']
+ 464.2  91 | 2018-05-02T22:32:32+0000 [stdout#info] A query: b'www.google-analytics.com'
+ 464.3  91 | 2018-05-02T22:32:32+0000 [stdout#info] Result for b'www.google-analytics.com' is ['64.233.191.102', '64.233.191.139', '64.233.191.138', '64.233.191.100', '64.233.191.101', '64.233.191.113']
+ 465.7 100 | c : DNS request from ('10.10.1.246', 50021) to None: 53 bytes
+ 465.8  91 | 2018-05-02T22:32:33+0000 [stdout#info] A query: b'cloudconsole-pa.clients6.google.com'
+ 465.8  91 | 2018-05-02T22:32:33+0000 [stdout#info] Result for b'cloudconsole-pa.clients6.google.com' is ['209.85.147.95']
+ 474.0 100 | c : DNS request from ('10.10.1.246', 49680) to None: 33 bytes
+ 474.1  91 | 2018-05-02T22:32:42+0000 [stdout#info] A query: b'play.google.com'
+ 474.2 100 | c : DNS request from ('10.10.1.246', 33013) to None: 33 bytes
+ 474.2  91 | 2018-05-02T22:32:42+0000 [stdout#info] Result for b'play.google.com' is ['108.177.112.138', '108.177.112.113', '108.177.112.100', '108.177.112.101', '108.177.112.102', '108.177.112.139']
+ 474.2  91 | 2018-05-02T22:32:42+0000 [stdout#info] A query: b'play.google.com'
+ 474.3  91 | 2018-05-02T22:32:42+0000 [stdout#info] Result for b'play.google.com' is ['108.177.112.139', '108.177.112.102', '108.177.112.101', '108.177.112.100', '108.177.112.113', '108.177.112.138']
+ 476.7 100 | c : DNS request from ('10.10.1.246', 54705) to None: 61 bytes
+ 476.7  91 | 2018-05-02T22:32:44+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 476.8  91 | 2018-05-02T22:32:44+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 478.8 100 | c : DNS request from ('10.10.1.246', 63914) to None: 37 bytes
+ 478.9  91 | 2018-05-02T22:32:46+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 478.9  91 | 2018-05-02T22:32:46+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 479.2 100 | c : DNS request from ('10.10.1.246', 49691) to None: 52 bytes
+ 479.2  91 | 2018-05-02T22:32:47+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+ 479.3  91 | 2018-05-02T22:32:47+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['34.225.83.125', '52.4.172.149']
+ 495.0 100 | c : DNS request from ('10.10.1.246', 58649) to None: 37 bytes
+ 495.0  91 | 2018-05-02T22:33:02+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 495.1  91 | 2018-05-02T22:33:03+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 506.2 100 | c : DNS request from ('10.10.1.246', 34805) to None: 42 bytes
+ 506.3  91 | 2018-05-02T22:33:14+0000 [stdout#info] A query: b'console.cloud.google.com'
+ 506.4 100 | c : DNS request from ('10.10.1.246', 22944) to None: 42 bytes
+ 506.4  91 | 2018-05-02T22:33:14+0000 [stdout#info] Result for b'console.cloud.google.com' is ['108.177.112.102', '108.177.112.100', '108.177.112.138', '108.177.112.101', '108.177.112.139', '108.177.112.113']
+ 506.4  91 | 2018-05-02T22:33:14+0000 [stdout#info] A query: b'console.cloud.google.com'
+ 506.5  91 | 2018-05-02T22:33:14+0000 [stdout#info] Result for b'console.cloud.google.com' is ['108.177.112.102', '108.177.112.113', '108.177.112.139', '108.177.112.101', '108.177.112.138', '108.177.112.100']
+ 510.0 100 | c : DNS request from ('10.10.1.246', 7946) to None: 48 bytes
+ 510.1  91 | 2018-05-02T22:33:17+0000 [stdout#info] A query: b'monitoring.clients6.google.com'
+ 510.1  91 | 2018-05-02T22:33:18+0000 [stdout#info] Result for b'monitoring.clients6.google.com' is ['74.125.132.95']
+ 510.7 100 | c : DNS request from ('10.10.1.246', 65431) to None: 61 bytes
+ 510.7  91 | 2018-05-02T22:33:18+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 510.7  91 | 2018-05-02T22:33:18+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 518.9 100 | c : DNS request from ('10.10.1.246', 18556) to None: 31 bytes
+ 519.0  91 | 2018-05-02T22:33:26+0000 [stdout#info] A query: b'app.asana.com'
+ 519.0  91 | 2018-05-02T22:33:26+0000 [stdout#info] Result for b'app.asana.com' is ['52.70.61.173', '52.70.61.144', '52.1.223.154', '52.6.28.224']
+ 519.5 100 | c : DNS request from ('10.10.1.246', 50129) to None: 52 bytes
+ 519.6  91 | 2018-05-02T22:33:27+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+ 519.7  91 | 2018-05-02T22:33:27+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['34.225.83.125', '52.4.172.149']
+ 521.4 100 | c : DNS request from ('10.10.1.246', 64426) to None: 37 bytes
+ 521.6  91 | 2018-05-02T22:33:29+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 521.6  91 | 2018-05-02T22:33:29+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 536.7 100 | c : DNS request from ('10.10.1.246', 60789) to None: 61 bytes
+ 536.7  91 | 2018-05-02T22:33:44+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 536.8  91 | 2018-05-02T22:33:44+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 538.8 100 | c : DNS request from ('10.10.1.246', 52095) to None: 37 bytes
+ 538.9  91 | 2018-05-02T22:33:46+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 538.9  91 | 2018-05-02T22:33:46+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 549.0 100 | c : DNS request from ('10.10.1.246', 38017) to None: 38 bytes
+ 549.0 100 | c : DNS request from ('10.10.1.246', 21480) to None: 33 bytes
+ 549.0 100 | c : DNS request from ('10.10.1.246', 32768) to None: 35 bytes
+ 549.0 100 | c : DNS request from ('10.10.1.246', 64296) to None: 43 bytes
+ 549.0 100 | c : DNS request from ('10.10.1.246', 61839) to None: 32 bytes
+ 549.0 100 | c : DNS request from ('10.10.1.246', 31758) to None: 33 bytes
+ 549.1  91 | 2018-05-02T22:33:57+0000 [stdout#info] A query: b'adservice.google.com'
+ 549.2 100 | c : DNS request from ('10.10.1.246', 61806) to None: 38 bytes
+ 549.2 100 | c : DNS request from ('10.10.1.246', 28640) to None: 33 bytes
+ 549.2 100 | c : DNS request from ('10.10.1.246', 19589) to None: 35 bytes
+ 549.2 100 | c : DNS request from ('10.10.1.246', 10741) to None: 43 bytes
+ 549.2 100 | c : DNS request from ('10.10.1.246', 53753) to None: 32 bytes
+ 549.2 100 | c : DNS request from ('10.10.1.246', 56871) to None: 33 bytes
+ 549.2  91 | 2018-05-02T22:33:57+0000 [stdout#info] A query: b'apis.google.com'
+ 549.2  91 | 2018-05-02T22:33:57+0000 [stdout#info] A query: b'fonts.gstatic.com'
+ 549.2  91 | 2018-05-02T22:33:57+0000 [stdout#info] A query: b'lh3.googleusercontent.com'
+ 549.2  91 | 2018-05-02T22:33:57+0000 [stdout#info] A query: b'ogs.google.com'
+ 549.2  91 | 2018-05-02T22:33:57+0000 [stdout#info] A query: b'ssl.gstatic.com'
+ 549.2  91 | 2018-05-02T22:33:57+0000 [stdout#info] Result for b'adservice.google.com' is ['74.125.124.157', '74.125.124.154', '74.125.124.156', '74.125.124.155']
+ 549.2 100 | c : DNS request from ('10.10.1.246', 24066) to None: 32 bytes
+ 549.3  91 | 2018-05-02T22:33:57+0000 [stdout#info] Result for b'apis.google.com' is ['74.125.124.113', '74.125.124.100', '74.125.124.102', '74.125.124.139', '74.125.124.101', '74.125.124.138']
+ 549.3  91 | 2018-05-02T22:33:57+0000 [stdout#info] A query: b'adservice.google.com'
+ 549.3  91 | 2018-05-02T22:33:57+0000 [stdout#info] A query: b'apis.google.com'
+ 549.3  91 | 2018-05-02T22:33:57+0000 [stdout#info] A query: b'fonts.gstatic.com'
+ 549.3  91 | 2018-05-02T22:33:57+0000 [stdout#info] A query: b'lh3.googleusercontent.com'
+ 549.3  91 | 2018-05-02T22:33:57+0000 [stdout#info] A query: b'ogs.google.com'
+ 549.3  91 | 2018-05-02T22:33:57+0000 [stdout#info] A query: b'ssl.gstatic.com'
+ 549.3  91 | 2018-05-02T22:33:57+0000 [stdout#info] Result for b'lh3.googleusercontent.com' is ['74.125.124.132']
+ 549.3  91 | 2018-05-02T22:33:57+0000 [stdout#info] Result for b'fonts.gstatic.com' is ['108.177.112.94']
+ 549.3 100 | c : DNS request from ('10.10.1.246', 34130) to None: 33 bytes
+ 549.4  91 | 2018-05-02T22:33:57+0000 [stdout#info] Result for b'apis.google.com' is ['74.125.124.139', '74.125.124.100', '74.125.124.102', '74.125.124.138', '74.125.124.101', '74.125.124.113']
+ 549.4  91 | 2018-05-02T22:33:57+0000 [stdout#info] A query: b'www.google.com'
+ 549.4  91 | 2018-05-02T22:33:57+0000 [stdout#info] A query: b'www.gstatic.com'
+ 549.4  91 | 2018-05-02T22:33:57+0000 [stdout#info] Result for b'ogs.google.com' is ['74.125.124.102', '74.125.124.100', '74.125.124.101', '74.125.124.113', '74.125.124.138', '74.125.124.139']
+ 549.4  91 | 2018-05-02T22:33:57+0000 [stdout#info] Result for b'ssl.gstatic.com' is ['74.125.129.94']
+ 549.4  91 | 2018-05-02T22:33:57+0000 [stdout#info] Result for b'lh3.googleusercontent.com' is ['74.125.124.132']
+ 549.4  91 | 2018-05-02T22:33:57+0000 [stdout#info] Result for b'fonts.gstatic.com' is ['108.177.112.94']
+ 549.4  91 | 2018-05-02T22:33:57+0000 [stdout#info] Result for b'adservice.google.com' is ['74.125.124.155', '74.125.124.156', '74.125.124.154', '74.125.124.157']
+ 549.4  91 | 2018-05-02T22:33:57+0000 [stdout#info] Result for b'ogs.google.com' is ['74.125.124.139', '74.125.124.138', '74.125.124.113', '74.125.124.101', '74.125.124.100', '74.125.124.102']
+ 549.4 100 | c : DNS request from ('10.10.1.246', 24364) to None: 32 bytes
+ 549.5 100 | c : DNS request from ('10.10.1.246', 2647) to None: 33 bytes
+ 549.5  91 | 2018-05-02T22:33:57+0000 [stdout#info] A query: b'www.google.com'
+ 549.5  91 | 2018-05-02T22:33:57+0000 [stdout#info] Result for b'ssl.gstatic.com' is ['74.125.129.94']
+ 549.5  91 | 2018-05-02T22:33:57+0000 [stdout#info] Result for b'www.google.com' is ['209.85.145.103', '209.85.145.99', '209.85.145.104', '209.85.145.105', '209.85.145.147', '209.85.145.106']
+ 549.5  91 | 2018-05-02T22:33:57+0000 [stdout#info] Result for b'www.gstatic.com' is ['74.125.124.94']
+ 549.5  91 | 2018-05-02T22:33:57+0000 [stdout#info] Result for b'www.google.com' is ['209.85.145.106', '209.85.145.103', '209.85.145.99', '209.85.145.104', '209.85.145.105', '209.85.145.147']
+ 549.5  91 | 2018-05-02T22:33:57+0000 [stdout#info] A query: b'www.gstatic.com'
+ 549.5  91 | 2018-05-02T22:33:57+0000 [stdout#info] Result for b'www.gstatic.com' is ['74.125.124.94']
+ 555.0 100 | c : DNS request from ('10.10.1.246', 60773) to None: 37 bytes
+ 555.0  91 | 2018-05-02T22:34:02+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 555.1  91 | 2018-05-02T22:34:03+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 555.6 100 | c : DNS request from ('10.10.1.246', 65044) to None: 45 bytes
+ 555.6  91 | 2018-05-02T22:34:03+0000 [stdout#info] A query: b'googleads.g.doubleclick.net'
+ 555.7  91 | 2018-05-02T22:34:03+0000 [stdout#info] Result for b'googleads.g.doubleclick.net' is ['74.125.124.156', '74.125.124.154', '74.125.124.155', '74.125.124.157']
+ 556.8 100 | c : DNS request from ('10.10.1.246', 60611) to None: 32 bytes
+ 556.8 100 | c : DNS request from ('10.10.1.246', 41245) to None: 39 bytes
+ 556.8 100 | c : DNS request from ('10.10.1.246', 23991) to None: 48 bytes
+ 556.8 100 | c : DNS request from ('10.10.1.246', 6655) to None: 48 bytes
+ 556.8 100 | c : DNS request from ('10.10.1.246', 60057) to None: 48 bytes
+ 556.8 100 | c : DNS request from ('10.10.1.246', 19114) to None: 48 bytes
+ 556.9  91 | 2018-05-02T22:34:04+0000 [stdout#info] A query: b'api.github.com'
+ 556.9  91 | 2018-05-02T22:34:04+0000 [stdout#info] A query: b'assets-cdn.github.com'
+ 557.0  91 | 2018-05-02T22:34:04+0000 [stdout#info] A query: b'avatars0.githubusercontent.com'
+ 557.0  91 | 2018-05-02T22:34:04+0000 [stdout#info] A query: b'avatars1.githubusercontent.com'
+ 557.0  91 | 2018-05-02T22:34:04+0000 [stdout#info] A query: b'avatars2.githubusercontent.com'
+ 557.0  91 | 2018-05-02T22:34:04+0000 [stdout#info] A query: b'avatars3.githubusercontent.com'
+ 557.0  91 | 2018-05-02T22:34:04+0000 [stdout#info] Result for b'assets-cdn.github.com' is ['151.101.0.133', '151.101.64.133', '151.101.128.133', '151.101.192.133']
+ 557.0  91 | 2018-05-02T22:34:04+0000 [stdout#info] Result for b'api.github.com' is ['192.30.253.117', '192.30.253.116']
+ 557.0  91 | 2018-05-02T22:34:04+0000 [stdout#info] Result for b'avatars0.githubusercontent.com' is ['151.101.0.133', '151.101.64.133', '151.101.128.133', '151.101.192.133']
+ 557.0  91 | 2018-05-02T22:34:04+0000 [stdout#info] Result for b'avatars3.githubusercontent.com' is ['151.101.0.133', '151.101.64.133', '151.101.128.133', '151.101.192.133']
+ 557.0  91 | 2018-05-02T22:34:04+0000 [stdout#info] Result for b'avatars1.githubusercontent.com' is ['151.101.0.133', '151.101.64.133', '151.101.128.133', '151.101.192.133']
+ 557.0 100 | c : DNS request from ('10.10.1.246', 56168) to None: 45 bytes
+ 557.0 100 | c : DNS request from ('10.10.1.246', 39662) to None: 41 bytes
+ 557.0 100 | c : DNS request from ('10.10.1.246', 47944) to None: 28 bytes
+ 557.0 100 | c : DNS request from ('10.10.1.246', 23440) to None: 48 bytes
+ 557.0 100 | c : DNS request from ('10.10.1.246', 61133) to None: 48 bytes
+ 557.0 100 | c : DNS request from ('10.10.1.246', 1529) to None: 48 bytes
+ 557.1  91 | 2018-05-02T22:34:05+0000 [stdout#info] A query: b'cloud.githubusercontent.com'
+ 557.1  91 | 2018-05-02T22:34:05+0000 [stdout#info] A query: b'collector.githubapp.com'
+ 557.1  91 | 2018-05-02T22:34:05+0000 [stdout#info] A query: b'github.com'
+ 557.1  91 | 2018-05-02T22:34:05+0000 [stdout#info] A query: b'avatars1.githubusercontent.com'
+ 557.1  91 | 2018-05-02T22:34:05+0000 [stdout#info] A query: b'avatars2.githubusercontent.com'
+ 557.1  91 | 2018-05-02T22:34:05+0000 [stdout#info] A query: b'avatars3.githubusercontent.com'
+ 557.1  91 | 2018-05-02T22:34:05+0000 [stdout#info] Result for b'avatars2.githubusercontent.com' is ['151.101.192.133', '151.101.128.133', '151.101.64.133', '151.101.0.133']
+ 557.2 100 | c : DNS request from ('10.10.1.246', 15289) to None: 45 bytes
+ 557.2 100 | c : DNS request from ('10.10.1.246', 20562) to None: 41 bytes
+ 557.2 100 | c : DNS request from ('10.10.1.246', 6132) to None: 28 bytes
+ 557.2  91 | 2018-05-02T22:34:05+0000 [stdout#info] Result for b'cloud.githubusercontent.com' is ['151.101.0.133', '151.101.64.133', '151.101.128.133', '151.101.192.133']
+ 557.2  91 | 2018-05-02T22:34:05+0000 [stdout#info] Result for b'avatars3.githubusercontent.com' is ['151.101.0.133', '151.101.64.133', '151.101.128.133', '151.101.192.133']
+ 557.2  91 | 2018-05-02T22:34:05+0000 [stdout#info] Result for b'avatars1.githubusercontent.com' is ['151.101.0.133', '151.101.64.133', '151.101.128.133', '151.101.192.133']
+ 557.2  91 | 2018-05-02T22:34:05+0000 [stdout#info] Result for b'avatars2.githubusercontent.com' is ['151.101.0.133', '151.101.64.133', '151.101.128.133', '151.101.192.133']
+ 557.2  91 | 2018-05-02T22:34:05+0000 [stdout#info] Result for b'collector.githubapp.com' is ['54.210.179.27', '34.231.238.102', '52.3.40.91']
+ 557.2  91 | 2018-05-02T22:34:05+0000 [stdout#info] Result for b'github.com' is ['192.30.253.113', '192.30.253.112']
+ 557.2  91 | 2018-05-02T22:34:05+0000 [stdout#info] A query: b'cloud.githubusercontent.com'
+ 557.2  91 | 2018-05-02T22:34:05+0000 [stdout#info] Result for b'cloud.githubusercontent.com' is ['151.101.0.133', '151.101.192.133', '151.101.128.133', '151.101.64.133']
+ 557.3  91 | 2018-05-02T22:34:05+0000 [stdout#info] A query: b'collector.githubapp.com'
+ 557.3  91 | 2018-05-02T22:34:05+0000 [stdout#info] A query: b'github.com'
+ 557.3  91 | 2018-05-02T22:34:05+0000 [stdout#info] Result for b'github.com' is ['192.30.253.112', '192.30.253.113']
+ 557.3  91 | 2018-05-02T22:34:05+0000 [stdout#info] Result for b'collector.githubapp.com' is ['54.210.179.27', '34.231.238.102', '52.3.40.91']
+ 558.9 100 | c : DNS request from ('10.10.1.246', 6955) to None: 47 bytes
+ 558.9 100 | c : DNS request from ('10.10.1.246', 47388) to None: 51 bytes
+ 559.0  91 | 2018-05-02T22:34:06+0000 [stdout#info] A query: b'github-cloud.s3.amazonaws.com'
+ 559.0  91 | 2018-05-02T22:34:06+0000 [stdout#info] A query: b'user-images.githubusercontent.com'
+ 559.0  91 | 2018-05-02T22:34:06+0000 [stdout#info] Result for b'user-images.githubusercontent.com' is ['151.101.192.133', '151.101.128.133', '151.101.64.133', '151.101.0.133']
+ 559.1  91 | 2018-05-02T22:34:06+0000 [stdout#info] Result for b'github-cloud.s3.amazonaws.com' is ['52.216.229.139']
+ 559.1 100 | c : DNS request from ('10.10.1.246', 53179) to None: 47 bytes
+ 559.1  91 | 2018-05-02T22:34:07+0000 [stdout#info] A query: b'github-cloud.s3.amazonaws.com'
+ 559.2  91 | 2018-05-02T22:34:07+0000 [stdout#info] Result for b'github-cloud.s3.amazonaws.com' is ['52.216.82.128']
+ 559.2 100 | c : DNS request from ('10.10.1.246', 25844) to None: 33 bytes
+ 559.3  91 | 2018-05-02T22:34:07+0000 [stdout#info] A query: b'live.github.com'
+ 559.4  91 | 2018-05-02T22:34:07+0000 [stdout#info] Result for b'live.github.com' is ['192.30.253.124', '192.30.253.125']
+ 560.0 100 | c : DNS request from ('10.10.1.246', 63549) to None: 52 bytes
+ 560.1  91 | 2018-05-02T22:34:07+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+ 560.1  91 | 2018-05-02T22:34:08+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['52.4.172.149', '34.225.83.125']
+ 564.1 100 | c : DNS request from ('10.10.1.246', 56487) to None: 49 bytes
+ 564.3  91 | 2018-05-02T22:34:12+0000 [stdout#info] A query: b'gsp-ssl.ls-apple.com.akadns.net'
+ 564.3  91 | 2018-05-02T22:34:12+0000 [stdout#info] Result for b'gsp-ssl.ls-apple.com.akadns.net' is ['17.167.195.40', '17.167.193.43', '17.167.195.42', '17.167.193.45', '17.167.193.41', '17.167.195.44']
+ 564.4 100 | c : DNS request from ('10.10.1.246', 51487) to None: 34 bytes
+ 564.6 100 | c : DNS request from ('10.10.1.246', 60326) to None: 53 bytes
+ 564.7  91 | 2018-05-02T22:34:12+0000 [stdout#info] A query: b'gs-loc.apple.com'
+ 564.8 100 | c : DNS request from ('10.10.1.246', 35203) to None: 53 bytes
+ 564.9  91 | 2018-05-02T22:34:12+0000 [stdout#info] A query: b'cloudconsole-pa.clients6.google.com'
+ 564.9  91 | 2018-05-02T22:34:12+0000 [stdout#info] Result for b'cloudconsole-pa.clients6.google.com' is ['74.125.124.95']
+ 564.9  91 | 2018-05-02T22:34:12+0000 [stdout#info] Result for b'gs-loc.apple.com' is ['17.134.127.249', '17.134.127.250']
+ 565.0  91 | 2018-05-02T22:34:12+0000 [stdout#info] A query: b'cloudconsole-pa.clients6.google.com'
+ 565.2  91 | 2018-05-02T22:34:12+0000 [stdout#info] Result for b'cloudconsole-pa.clients6.google.com' is ['74.125.124.95']
+ 565.7 100 | c : DNS request from ('10.10.1.246', 42381) to None: 33 bytes
+ 565.8 100 | c : DNS request from ('10.10.1.246', 57386) to None: 37 bytes
+ 565.8 100 | c : DNS request from ('10.10.1.246', 28217) to None: 33 bytes
+ 565.9  91 | 2018-05-02T22:34:13+0000 [stdout#info] A query: b'play.google.com'
+ 565.9  91 | 2018-05-02T22:34:13+0000 [stdout#info] Result for b'play.google.com' is ['74.125.124.100', '74.125.124.138', '74.125.124.113', '74.125.124.101', '74.125.124.139', '74.125.124.102']
+ 566.0 100 | c : DNS request from ('10.10.1.246', 53218) to None: 37 bytes
+ 566.1  91 | 2018-05-02T22:34:13+0000 [stdout#info] A query: b'clients4.google.com'
+ 566.1  91 | 2018-05-02T22:34:13+0000 [stdout#info] A query: b'play.google.com'
+ 566.1  91 | 2018-05-02T22:34:13+0000 [stdout#info] Result for b'play.google.com' is ['74.125.124.102', '74.125.124.100', '74.125.124.138', '74.125.124.113', '74.125.124.101', '74.125.124.139']
+ 566.1  91 | 2018-05-02T22:34:13+0000 [stdout#info] Result for b'clients4.google.com' is ['74.125.124.113', '74.125.124.101', '74.125.124.102', '74.125.124.139', '74.125.124.138', '74.125.124.100']
+ 566.3  91 | 2018-05-02T22:34:14+0000 [stdout#info] A query: b'clients4.google.com'
+ 566.3  91 | 2018-05-02T22:34:14+0000 [stdout#info] Result for b'clients4.google.com' is ['74.125.124.100', '74.125.124.138', '74.125.124.139', '74.125.124.102', '74.125.124.101', '74.125.124.113']
+ 567.4 TEL | Main process (['bash', '--norc'])
+ 567.4 TEL |  exited with code 1.
+ 567.4 TEL | END SPAN cleanup.py:69(wait_for_exit)  510.5s
+ 567.4 TEL | Success. Starting cleanup.
+ 567.4 TEL | Shutting down local process...
+ 567.4 TEL | [121] Capturing: umount -f /tmp/tmpbgfvs9br
+ 567.7 TEL | [91] exit -15
+ 567.7 100 | Connection to localhost closed by remote host.
+ 567.7  97 | Connection to localhost closed by remote host.
+ 567.7 TEL | [92] exit -15
+ 567.7 TEL | [97] exit 255
+ 567.7 TEL | [122] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default delete --ignore-not-found svc,deploy --selector=telepresence=9f075132-3889-4cb8-be0a-299dbba14a94
+ 567.7 100 | >> pfctl -a sshuttle6-12300 -F all
+ 567.7 100 | >> pfctl -X 5670766342920796677
+ 567.7 100 | >> pfctl -a sshuttle-12300 -F all
+ 567.7 100 | >> pfctl -X 5670766342920794085
+ 567.8 TEL | [100] exit -15
+ 572.1 TEL | [122] captured in 4.38 secs.
+ 572.1 TEL | END SPAN main.py:437(go_too)  572.0s
+ 572.1 TEL | SPAN SUMMARY:
+ 572.1 TEL |  572.0s main.py:437(go_too)
+ 572.1 TEL |    0.4s   4 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default ge
+ 572.1 TEL |    0.0s   5 ssh -V
+ 572.1 TEL |    0.0s   6 which torsocks
+ 572.1 TEL |    0.0s   7 which sshfs
+ 572.1 TEL |   49.7s   main.py:251(start_proxy)
+ 572.1 TEL |    1.0s     deployment.py:35(create_new_deployment)
+ 572.1 TEL |    0.4s       8 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default de
+ 572.1 TEL |    0.6s       9 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default ru
+ 572.1 TEL |   46.0s     remote.py:153(get_remote_info)
+ 572.1 TEL |    0.3s       remote.py:71(get_deployment_json)
+ 572.1 TEL |    0.3s         10 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s       11 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |   45.3s       remote.py:111(wait_for_pod)
+ 572.1 TEL |    0.3s         12 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         13 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         14 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         15 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         16 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         17 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         18 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         19 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         20 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         21 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         22 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         23 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         24 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         25 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         26 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         27 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         28 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         29 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         30 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         31 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         32 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         33 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         34 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         35 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         36 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         37 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         38 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.4s         39 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         40 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.5s         41 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         42 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         43 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         44 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         45 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         46 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         47 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.4s         48 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         49 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         50 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         51 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         52 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         53 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         54 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         55 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         56 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         57 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         58 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         59 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         60 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         61 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         62 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         63 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         64 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         65 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         66 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         67 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         68 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         69 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         70 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         71 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         72 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         73 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         74 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         75 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         76 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         77 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         78 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         79 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         80 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         81 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         82 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         83 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         84 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         85 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         86 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         87 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         88 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         89 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    0.3s         90 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default g
+ 572.1 TEL |    1.8s     main.py:146(connect)
+ 572.1 TEL |    0.0s       93 ssh -F /dev/null -q -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null
+ 572.1 TEL |    0.0s       94 ssh -F /dev/null -q -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null
+ 572.1 TEL |    0.0s       95 ssh -F /dev/null -q -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null
+ 572.1 TEL |    0.9s       96 ssh -F /dev/null -q -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null
+ 572.1 TEL |    1.0s     main.py:79(get_env_variables)
+ 572.1 TEL |    1.0s       98 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default e
+ 572.1 TEL |    1.1s   remote.py:247(mount_remote_volumes)
+ 572.1 TEL |    1.1s     99 sshfs -p 63086 -F /dev/null -o StrictHostKeyChecking=no -o UserKnownHostsFile
+ 572.1 TEL |    5.6s   vpn.py:245(connect_sshuttle)
+ 572.1 TEL |    0.0s     vpn.py:70(get_proxy_cidrs)
+ 572.1 TEL |    5.6s     vpn.py:287(connect_sshuttle,sshuttle-wait)
+ 572.1 TEL |    0.0s       101 python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence0'"'"'
+ 572.1 TEL |    0.1s       102 python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence1'"'"'
+ 572.1 TEL |    0.1s       103 python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence2'"'"'
+ 572.1 TEL |    0.1s       104 python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence3'"'"'
+ 572.1 TEL |    0.1s       105 python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence4'"'"'
+ 572.1 TEL |    0.1s       106 python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence5'"'"'
+ 572.1 TEL |    0.1s       107 python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence6'"'"'
+ 572.1 TEL |    0.1s       108 python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence7'"'"'
+ 572.1 TEL |    0.1s       109 python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence8'"'"'
+ 572.1 TEL |    0.1s       110 python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence9'"'"'
+ 572.1 TEL |    0.1s       111 python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence10'"'"
+ 572.1 TEL |    0.1s       112 python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence11'"'"
+ 572.1 TEL |    0.1s       113 python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence12'"'"
+ 572.1 TEL |    0.1s       114 python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence13'"'"
+ 572.1 TEL |    0.1s       115 python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence14'"'"
+ 572.1 TEL |    0.3s       116 python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence15'"'"
+ 572.1 TEL |    0.2s       117 python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence16'"'"
+ 572.1 TEL |    0.1s       118 python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence17'"'"
+ 572.1 TEL |    1.2s       119 python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence18'"'"
+ 572.1 TEL |    0.2s       120 python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence19'"'"
+ 572.1 TEL |  510.5s   cleanup.py:69(wait_for_exit)
+ 572.1 TEL |    0.2s   121 umount -f /tmp/tmpbgfvs9br
+ 572.1 TEL |    4.4s   122 kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default

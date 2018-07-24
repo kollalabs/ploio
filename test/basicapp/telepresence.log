@@ -1,0 +1,650 @@
+   0.0 TEL | Telepresence 0.86 launched at Wed May  2 16:51:04 2018
+   0.0 TEL |   /usr/local/bin/telepresence --swap-deployment basicapp-telepresence --expose 8000 --run httpster -p 8000
+   0.0 TEL | [1] Launching: kubectl version --short
+   0.0 TEL | [2] Launching: oc version
+   0.0 TEL | [2] [Errno 2] No such file or directory: 'oc': 'oc'
+   0.0 TEL | [3] Launching: uname -a
+   0.0 TEL | Python 3.6.5 (default, Apr 25 2018, 14:23:58)
+   0.0 TEL | [GCC 4.2.1 Compatible Apple LLVM 9.1.0 (clang-902.0.39.1)]
+   0.0   3 | Darwin cbmbp15 17.5.0 Darwin Kernel Version 17.5.0: Fri Apr 13 19:32:32 PDT 2018; root:xnu-4570.51.2~1/RELEASE_X86_64 x86_64
+   0.0 TEL | [3] exit 0
+   0.1   1 | Client Version: v1.10.1
+   0.1   1 | Server Version: v1.9.6-gke.1
+   0.1 TEL | [1] exit 0
+   0.1 TEL | BEGIN SPAN main.py:437(go_too)
+   0.1 TEL | Scout info: {'latest_version': '0.86', 'application': 'telepresence', 'notices': []}
+   0.1 TEL | Context: gke_ploio-1128_us-central1-a_ploio-09, namespace: default, kubectl_command: kubectl
+   0.1 TEL | [4] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pods telepresence-connectivity-check --ignore-not-found
+   2.3 TEL | [4] captured in 2.22 secs.
+   2.3 TEL | [5] Capturing: ssh -V
+   2.3 TEL | [6] Capturing: which torsocks
+   2.4 TEL | [7] Capturing: which sshfs
+   2.4 TEL | BEGIN SPAN main.py:251(start_proxy)
+   2.4 TEL | BEGIN SPAN deployment.py:92(supplant_deployment)
+   2.4 TEL | BEGIN SPAN remote.py:71(get_deployment_json)
+   2.4 TEL | [8] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get deployment -o json --export basicapp-telepresence
+   2.7 TEL | END SPAN remote.py:71(get_deployment_json)    0.3s
+   2.8 TEL | [9] Running: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default delete deployment basicapp-tele-9b828c55-d01c-4942-9c34-420592270de4 --ignore-not-found
+   3.1 TEL | [10] Running: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default apply -f -
+   3.7  10 | deployment.extensions "basicapp-tele-9b828c55-d01c-4942-9c34-420592270de4" created
+   3.7 TEL | [11] Running: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default scale deployment basicapp-telepresence --replicas=0
+   4.1  11 | deployment.extensions "basicapp-telepresence" scaled
+   4.1 TEL | END SPAN deployment.py:92(supplant_deployment)    1.7s
+   4.1 TEL | BEGIN SPAN remote.py:153(get_remote_info)
+   4.1 TEL | BEGIN SPAN remote.py:71(get_deployment_json)
+   4.1 TEL | [12] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get deployment -o json --export --selector=telepresence=9b828c55-d01c-4942-9c34-420592270de4
+   4.5 TEL | END SPAN remote.py:71(get_deployment_json)    0.3s
+   4.5 TEL | Searching for Telepresence pod:
+   4.5 TEL |   with name basicapp-tele-9b828c55-d01c-4942-9c34-420592270de4-*
+   4.5 TEL |   with labels {'app': 'basicapp', 'telepresence': '9b828c55-d01c-4942-9c34-420592270de4', 'version': 'v1'}
+   4.5 TEL |   with namespace default
+   4.5 TEL | [13] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod -o json --export --selector=telepresence=9b828c55-d01c-4942-9c34-420592270de4
+   4.8 TEL | Checking basicapp-tele-9b828c55-d01c-4942-9c34-420592270de4-66d678d7kwpv
+   4.8 TEL | Looks like we've found our pod!
+   4.8 TEL | BEGIN SPAN remote.py:111(wait_for_pod)
+   4.8 TEL | [14] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod basicapp-tele-9b828c55-d01c-4942-9c34-420592270de4-66d678d7kwpv -o json
+   5.4 TEL | [15] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod basicapp-tele-9b828c55-d01c-4942-9c34-420592270de4-66d678d7kwpv -o json
+   6.0 TEL | [16] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod basicapp-tele-9b828c55-d01c-4942-9c34-420592270de4-66d678d7kwpv -o json
+   6.5 TEL | [17] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default get pod basicapp-tele-9b828c55-d01c-4942-9c34-420592270de4-66d678d7kwpv -o json
+   6.9 TEL | END SPAN remote.py:111(wait_for_pod)    2.1s
+   6.9 TEL | END SPAN remote.py:153(get_remote_info)    2.7s
+   6.9 TEL | BEGIN SPAN main.py:146(connect)
+   6.9 TEL | [18] Launching: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default logs -f basicapp-tele-9b828c55-d01c-4942-9c34-420592270de4-66d678d7kwpv --container basicapp
+   6.9 TEL | [19] Launching: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default port-forward basicapp-tele-9b828c55-d01c-4942-9c34-420592270de4-66d678d7kwpv 63600:8022
+   6.9 TEL | [20] Running: ssh -F /dev/null -q -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -p 63600 telepresence@localhost /bin/true
+   6.9 TEL | [20] exit 255 in 0.02 secs.
+   7.1 TEL | [21] Running: ssh -F /dev/null -q -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -p 63600 telepresence@localhost /bin/true
+   7.2 TEL | [21] exit 255 in 0.02 secs.
+   7.3  18 | Listening...
+   7.3  18 | 2018-05-02T22:51:12+0000 [-] Loading ./forwarder.py...
+   7.3  18 | 2018-05-02T22:51:12+0000 [-] /etc/resolv.conf changed, reparsing
+   7.3  18 | 2018-05-02T22:51:12+0000 [-] Resolver added ('10.63.240.10', 53) to server list
+   7.3  18 | 2018-05-02T22:51:12+0000 [-] SOCKSv5Factory starting on 9050
+   7.3  18 | 2018-05-02T22:51:12+0000 [socks.SOCKSv5Factory#info] Starting factory <socks.SOCKSv5Factory object at 0x7f27c22e23c8>
+   7.3  18 | 2018-05-02T22:51:12+0000 [-] DNSDatagramProtocol starting on 9053
+   7.3  18 | 2018-05-02T22:51:12+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f27c22e26d8>
+   7.3  18 | 2018-05-02T22:51:12+0000 [-] Loaded.
+   7.3  18 | 2018-05-02T22:51:12+0000 [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 17.9.0 (/usr/bin/python3.6 3.6.1) starting up.
+   7.3  18 | 2018-05-02T22:51:12+0000 [twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.epollreactor.EPollReactor.
+   7.4 TEL | [22] Running: ssh -F /dev/null -q -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -p 63600 telepresence@localhost /bin/true
+   7.4 TEL | [22] exit 255 in 0.02 secs.
+   7.6  19 | Forwarding from 127.0.0.1:63600 -> 8022
+   7.6  19 | Forwarding from [::1]:63600 -> 8022
+   7.7 TEL | [23] Running: ssh -F /dev/null -q -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -p 63600 telepresence@localhost /bin/true
+   7.7  19 | Handling connection for 63600
+   8.3 TEL | [24] Launching: ssh -N -oServerAliveInterval=1 -oServerAliveCountMax=10 -F /dev/null -q -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -p 63600 telepresence@localhost -R '*:8000:127.0.0.1:8000'
+   8.3 TEL | END SPAN main.py:146(connect)    1.4s
+   8.3 TEL | BEGIN SPAN main.py:79(get_env_variables)
+   8.3 TEL | [25] Capturing: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default exec basicapp-tele-9b828c55-d01c-4942-9c34-420592270de4-66d678d7kwpv --container basicapp env
+   8.3  19 | Handling connection for 63600
+   9.2 TEL | END SPAN main.py:79(get_env_variables)    0.9s
+   9.2 TEL | END SPAN main.py:251(start_proxy)    6.7s
+   9.2 TEL | BEGIN SPAN remote.py:247(mount_remote_volumes)
+   9.2 TEL | [26] Capturing: sshfs -p 63600 -F /dev/null -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null telepresence@localhost:/ /tmp/tmpy2o1t3mw
+   9.2  19 | Handling connection for 63600
+   9.9 TEL | END SPAN remote.py:247(mount_remote_volumes)    0.7s
+  13.2 TEL | BEGIN SPAN vpn.py:245(connect_sshuttle)
+  13.2 TEL | BEGIN SPAN vpn.py:70(get_proxy_cidrs)
+  13.2 TEL | END SPAN vpn.py:70(get_proxy_cidrs)    0.0s
+  13.2 TEL | [27] Launching: sshuttle-telepresence -v --dns --method auto -e 'ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -F /dev/null' --to-ns 127.0.0.1:9053 -r telepresence@localhost:63600 10.60.0.0/24 10.63.240.0/20 10.60.1.0/24
+  13.2 TEL | BEGIN SPAN vpn.py:287(connect_sshuttle,sshuttle-wait)
+  13.2 TEL | [28] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence0'"'"')'
+  13.3  28 | Traceback (most recent call last):
+  13.3  28 |   File "<string>", line 1, in <module>
+  13.3  28 | socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+  13.3 TEL | [28] exit 1 in 0.06 secs.
+  13.3  27 | Starting sshuttle proxy.
+  13.4  27 | firewall manager: Starting firewall with Python version 3.6.5
+  13.4  27 | firewall manager: ready method name pf.
+  13.4 TEL | [29] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence1'"'"')'
+  13.4  27 | IPv6 enabled: True
+  13.4  27 | UDP enabled: False
+  13.4  27 | DNS enabled: True
+  13.4  27 | TCP redirector listening on ('::1', 12300, 0, 0).
+  13.4  27 | TCP redirector listening on ('127.0.0.1', 12300).
+  13.4  27 | DNS listening on ('::1', 12300, 0, 0).
+  13.4  27 | DNS listening on ('127.0.0.1', 12300).
+  13.4  27 | Starting client with Python version 3.6.5
+  13.4  27 | c : connecting to server...
+  13.4  19 | Handling connection for 63600
+  13.5  29 | Traceback (most recent call last):
+  13.5  29 |   File "<string>", line 1, in <module>
+  13.5  29 | socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+  13.5 TEL | [29] exit 1 in 0.06 secs.
+  13.6 TEL | [30] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence2'"'"')'
+  13.6  30 | Traceback (most recent call last):
+  13.6  30 |   File "<string>", line 1, in <module>
+  13.6  30 | socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+  13.6 TEL | [30] exit 1 in 0.06 secs.
+  13.7  27 | Warning: Permanently added '[localhost]:63600' (ECDSA) to the list of known hosts.
+  13.7 TEL | [31] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence3'"'"')'
+  13.8  31 | Traceback (most recent call last):
+  13.8  31 |   File "<string>", line 1, in <module>
+  13.8  31 | socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+  13.8 TEL | [31] exit 1 in 0.06 secs.
+  13.9 TEL | [32] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence4'"'"')'
+  13.9  32 | Traceback (most recent call last):
+  13.9  32 |   File "<string>", line 1, in <module>
+  13.9  32 | socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+  14.0 TEL | [32] exit 1 in 0.05 secs.
+  14.1 TEL | [33] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence5'"'"')'
+  14.1  33 | Traceback (most recent call last):
+  14.1  33 |   File "<string>", line 1, in <module>
+  14.1  33 | socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+  14.1 TEL | [33] exit 1 in 0.06 secs.
+  14.1  27 | Starting server with Python version 3.6.1
+  14.1  27 |  s: latency control setting = True
+  14.1  27 |  s: available routes:
+  14.1  27 |  s:   2/10.60.1.0/24
+  14.1  27 | c : Connected.
+  14.1  27 | firewall manager: setting up.
+  14.1  27 | >> pfctl -s Interfaces -i lo -v
+  14.2  27 | >> pfctl -s all
+  14.2  27 | >> pfctl -a sshuttle6-12300 -f /dev/stdin
+  14.2  27 | >> pfctl -E
+  14.2  27 | >> pfctl -s Interfaces -i lo -v
+  14.2  27 | >> pfctl -s all
+  14.2  27 | >> pfctl -a sshuttle-12300 -f /dev/stdin
+  14.2  27 | >> pfctl -E
+  14.2 TEL | [34] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence6'"'"')'
+  14.3  27 | c : DNS request from ('10.10.1.246', 54471) to None: 48 bytes
+  14.3  18 | 2018-05-02T22:51:20+0000 [stdout#info] Set DNS suffix we filter out to: [(b'weave', b'local')]
+  14.3  18 | 2018-05-02T22:51:20+0000 [stdout#info] Result for b'hellotelepresence6.weave.local' is ['127.0.0.1']
+  14.3 TEL | [35] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence7'"'"')'
+  14.4  27 | c : DNS request from ('10.10.1.246', 63873) to None: 48 bytes
+  14.4  18 | 2018-05-02T22:51:20+0000 [stdout#info] Result for b'hellotelepresence7.weave.local' is ['127.0.0.1']
+  14.4 TEL | [36] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence8'"'"')'
+  14.5  27 | c : DNS request from ('10.10.1.246', 53565) to None: 48 bytes
+  14.5  18 | 2018-05-02T22:51:20+0000 [stdout#info] Result for b'hellotelepresence8.weave.local' is ['127.0.0.1']
+  14.6 TEL | [37] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence9'"'"')'
+  14.6  27 | c : DNS request from ('10.10.1.246', 51837) to None: 48 bytes
+  14.7  18 | 2018-05-02T22:51:20+0000 [stdout#info] Result for b'hellotelepresence9.weave.local' is ['127.0.0.1']
+  15.7 TEL | [38] Capturing: python3 -c 'import socket; socket.gethostbyname('"'"'hellotelepresence10'"'"')'
+  15.7  27 | c : DNS request from ('10.10.1.246', 58904) to None: 49 bytes
+  15.8  18 | 2018-05-02T22:51:21+0000 [stdout#info] Result for b'hellotelepresence10.weave.local' is ['127.0.0.1']
+  15.8 TEL | END SPAN vpn.py:287(connect_sshuttle,sshuttle-wait)    2.6s
+  15.8 TEL | END SPAN vpn.py:245(connect_sshuttle)    2.6s
+  15.8 TEL | Everything launched. Waiting to exit...
+  15.8 TEL | BEGIN SPAN cleanup.py:69(wait_for_exit)
+  20.2  27 | c : DNS request from ('10.10.1.246', 51353) to None: 42 bytes
+  20.3  18 | 2018-05-02T22:51:26+0000 [stdout#info] A query: b'block-edge-3.dropbox.com'
+  20.4  18 | 2018-05-02T22:51:26+0000 [stdout#info] Result for b'block-edge-3.dropbox.com' is ['162.125.8.4']
+  26.4  27 | c : DNS request from ('10.10.1.246', 63922) to None: 40 bytes
+  26.4  18 | 2018-05-02T22:51:32+0000 [stdout#info] A query: b'gsp64-ssl.ls.apple.com'
+  26.4  18 | 2018-05-02T22:51:32+0000 [stdout#info] Result for b'gsp64-ssl.ls.apple.com' is ['17.167.194.230', '17.167.192.231', '17.167.192.225', '17.167.194.224']
+  28.3  27 | c : DNS request from ('10.10.1.246', 34124) to None: 42 bytes
+  28.3  27 | c : DNS request from ('10.10.1.246', 65317) to None: 42 bytes
+  28.3  18 | 2018-05-02T22:51:34+0000 [stdout#info] A query: b'www.google-analytics.com'
+  28.3  18 | 2018-05-02T22:51:34+0000 [stdout#info] A query: b'console.cloud.google.com'
+  28.4  18 | 2018-05-02T22:51:34+0000 [stdout#info] Result for b'www.google-analytics.com' is ['173.194.198.138', '173.194.198.100', '173.194.198.102', '173.194.198.139', '173.194.198.113', '173.194.198.101']
+  28.4  18 | 2018-05-02T22:51:34+0000 [stdout#info] Result for b'console.cloud.google.com' is ['64.233.191.139', '64.233.191.138', '64.233.191.101', '64.233.191.100', '64.233.191.113', '64.233.191.102']
+  28.7  27 | c : DNS request from ('10.10.1.246', 14289) to None: 33 bytes
+  28.8  18 | 2018-05-02T22:51:34+0000 [stdout#info] A query: b'play.google.com'
+  28.8  18 | 2018-05-02T22:51:34+0000 [stdout#info] Result for b'play.google.com' is ['74.125.124.138', '74.125.124.101', '74.125.124.113', '74.125.124.100', '74.125.124.102', '74.125.124.139']
+  29.3  27 | c : DNS request from ('10.10.1.246', 59485) to None: 52 bytes
+  29.3  18 | 2018-05-02T22:51:35+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+  29.4  18 | 2018-05-02T22:51:35+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['52.4.172.149', '34.225.83.125']
+  29.5  27 | c : DNS request from ('10.10.1.246', 64625) to None: 58 bytes
+  29.5  27 | c : DNS request from ('10.10.1.246', 7185) to None: 45 bytes
+  29.5  27 | c : DNS request from ('10.10.1.246', 49921) to None: 43 bytes
+  29.5  27 | c : DNS request from ('10.10.1.246', 7075) to None: 38 bytes
+  29.5  27 | c : DNS request from ('10.10.1.246', 47726) to None: 33 bytes
+  29.5  27 | c : DNS request from ('10.10.1.246', 15402) to None: 32 bytes
+  29.5  18 | 2018-05-02T22:51:35+0000 [stdout#info] A query: b'cloudusersettings-pa.clients6.google.com'
+  29.5  18 | 2018-05-02T22:51:35+0000 [stdout#info] A query: b'googleads.g.doubleclick.net'
+  29.5  18 | 2018-05-02T22:51:35+0000 [stdout#info] A query: b'lh4.googleusercontent.com'
+  29.5  18 | 2018-05-02T22:51:35+0000 [stdout#info] A query: b'ssh.cloud.google.com'
+  29.5  18 | 2018-05-02T22:51:35+0000 [stdout#info] A query: b'ssl.gstatic.com'
+  29.5  18 | 2018-05-02T22:51:35+0000 [stdout#info] A query: b'www.google.com'
+  29.5  18 | 2018-05-02T22:51:35+0000 [stdout#info] Result for b'googleads.g.doubleclick.net' is ['173.194.74.157', '173.194.74.154', '173.194.74.155', '173.194.74.156']
+  29.5  18 | 2018-05-02T22:51:35+0000 [stdout#info] Result for b'cloudusersettings-pa.clients6.google.com' is ['173.194.192.95']
+  29.6  27 | c : DNS request from ('10.10.1.246', 18298) to None: 33 bytes
+  29.6  18 | 2018-05-02T22:51:35+0000 [stdout#info] Result for b'ssh.cloud.google.com' is ['74.125.124.102', '74.125.124.138', '74.125.124.101', '74.125.124.100', '74.125.124.139', '74.125.124.113']
+  29.6  18 | 2018-05-02T22:51:35+0000 [stdout#info] Result for b'lh4.googleusercontent.com' is ['74.125.202.132']
+  29.6  18 | 2018-05-02T22:51:35+0000 [stdout#info] Result for b'ssl.gstatic.com' is ['74.125.124.94']
+  29.6  18 | 2018-05-02T22:51:35+0000 [stdout#info] Result for b'www.google.com' is ['64.233.183.147', '64.233.183.104', '64.233.183.106', '64.233.183.105', '64.233.183.103', '64.233.183.99']
+  29.6  18 | 2018-05-02T22:51:35+0000 [stdout#info] A query: b'www.gstatic.com'
+  29.6  18 | 2018-05-02T22:51:35+0000 [stdout#info] Result for b'www.gstatic.com' is ['74.125.132.94']
+  29.6  27 | c : DNS request from ('10.10.1.246', 46785) to None: 38 bytes
+  29.7  18 | 2018-05-02T22:51:35+0000 [stdout#info] A query: b'fonts.googleapis.com'
+  29.7  18 | 2018-05-02T22:51:35+0000 [stdout#info] Result for b'fonts.googleapis.com' is ['108.177.112.95']
+  30.1  27 | c : DNS request from ('10.10.1.246', 62279) to None: 35 bytes
+  30.2  18 | 2018-05-02T22:51:36+0000 [stdout#info] A query: b'fonts.gstatic.com'
+  30.2  18 | 2018-05-02T22:51:36+0000 [stdout#info] Result for b'fonts.gstatic.com' is ['108.177.112.94']
+  30.3  27 | c : DNS request from ('10.10.1.246', 60691) to None: 33 bytes
+  30.4  18 | 2018-05-02T22:51:36+0000 [stdout#info] A query: b'apis.google.com'
+  30.4  18 | 2018-05-02T22:51:36+0000 [stdout#info] Result for b'apis.google.com' is ['173.194.198.113', '173.194.198.138', '173.194.198.102', '173.194.198.100', '173.194.198.139', '173.194.198.101']
+  30.5  27 | c : DNS request from ('10.10.1.246', 28097) to None: 42 bytes
+  30.5  18 | 2018-05-02T22:51:36+0000 [stdout#info] A query: b'www.googletagmanager.com'
+  30.6  18 | 2018-05-02T22:51:36+0000 [stdout#info] Result for b'www.googletagmanager.com' is ['64.233.191.97']
+  40.3  27 | c : DNS request from ('10.10.1.246', 4895) to None: 48 bytes
+  40.3  18 | 2018-05-02T22:51:46+0000 [stdout#info] A query: b'monitoring.clients6.google.com'
+  40.4  18 | 2018-05-02T22:51:46+0000 [stdout#info] Result for b'monitoring.clients6.google.com' is ['209.85.234.95']
+  40.7  27 | c : DNS request from ('10.10.1.246', 39211) to None: 37 bytes
+  40.8  18 | 2018-05-02T22:51:46+0000 [stdout#info] A query: b'clients4.google.com'
+  40.8  18 | 2018-05-02T22:51:46+0000 [stdout#info] Result for b'clients4.google.com' is ['108.177.112.100', '108.177.112.101', '108.177.112.138', '108.177.112.113', '108.177.112.102', '108.177.112.139']
+  69.6  27 | c : DNS request from ('10.10.1.246', 64024) to None: 52 bytes
+  69.6  18 | 2018-05-02T22:52:15+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+  69.6  18 | 2018-05-02T22:52:15+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['34.225.83.125', '52.4.172.149']
+  88.0  27 | c : DNS request from ('10.10.1.246', 51939) to None: 37 bytes
+  88.0  18 | 2018-05-02T22:52:33+0000 [stdout#info] A query: b'gitlab.getweave.com'
+  88.1  18 | 2018-05-02T22:52:33+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 101.7  27 | c : DNS request from ('10.10.1.246', 41983) to None: 33 bytes
+ 101.7  18 | 2018-05-02T22:52:47+0000 [stdout#info] A query: b'play.google.com'
+ 101.8  18 | 2018-05-02T22:52:47+0000 [stdout#info] Result for b'play.google.com' is ['74.125.124.138', '74.125.124.139', '74.125.124.102', '74.125.124.100', '74.125.124.113', '74.125.124.101']
+ 108.0  27 | c : DNS request from ('10.10.1.246', 55408) to None: 52 bytes
+ 108.3  18 | 2018-05-02T22:52:54+0000 [stdout#info] A query: b'gs-loc-new.ls-apple.com.akadns.net'
+ 108.5  18 | 2018-05-02T22:52:54+0000 [stdout#info] Result for b'gs-loc-new.ls-apple.com.akadns.net' is ['17.132.73.166', '17.132.73.167']
+ 109.9  27 | c : DNS request from ('10.10.1.246', 54452) to None: 52 bytes
+ 110.2  18 | 2018-05-02T22:52:55+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+ 110.2  18 | 2018-05-02T22:52:56+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['34.225.83.125', '52.4.172.149']
+ 143.7  27 | c : DNS request from ('10.10.1.246', 63875) to None: 37 bytes
+ 143.8  18 | 2018-05-02T22:53:29+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 143.8  18 | 2018-05-02T22:53:29+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 150.7  27 | c : DNS request from ('10.10.1.246', 58953) to None: 52 bytes
+ 150.7  27 | c : DNS request from ('10.10.1.246', 64704) to None: 34 bytes
+ 150.7  18 | 2018-05-02T22:53:36+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+ 150.8  18 | 2018-05-02T22:53:36+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['34.225.83.125', '52.4.172.149']
+ 150.8  18 | 2018-05-02T22:53:36+0000 [stdout#info] A query: b'inbox.google.com'
+ 150.8  18 | 2018-05-02T22:53:36+0000 [stdout#info] Result for b'inbox.google.com' is ['74.125.202.83', '74.125.202.18', '74.125.202.19', '74.125.202.17']
+ 152.5  27 | c : DNS request from ('10.10.1.246', 15637) to None: 42 bytes
+ 152.5  18 | 2018-05-02T22:53:38+0000 [stdout#info] A query: b'www.google-analytics.com'
+ 152.6  18 | 2018-05-02T22:53:38+0000 [stdout#info] Result for b'www.google-analytics.com' is ['74.125.124.138', '74.125.124.139', '74.125.124.113', '74.125.124.100', '74.125.124.102', '74.125.124.101']
+ 161.0  27 | c : DNS request from ('10.10.1.246', 64164) to None: 37 bytes
+ 161.1  18 | 2018-05-02T22:53:46+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 161.1  18 | 2018-05-02T22:53:46+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 162.4  27 | c : DNS request from ('10.10.1.246', 40744) to None: 33 bytes
+ 162.4  18 | 2018-05-02T22:53:48+0000 [stdout#info] A query: b'play.google.com'
+ 162.4  18 | 2018-05-02T22:53:48+0000 [stdout#info] Result for b'play.google.com' is ['74.125.124.101', '74.125.124.138', '74.125.124.139', '74.125.124.102', '74.125.124.100', '74.125.124.113']
+ 163.4  27 | c : DNS request from ('10.10.1.246', 13198) to None: 37 bytes
+ 163.5  18 | 2018-05-02T22:53:49+0000 [stdout#info] A query: b'clients4.google.com'
+ 163.5  18 | 2018-05-02T22:53:49+0000 [stdout#info] Result for b'clients4.google.com' is ['108.177.112.139', '108.177.112.102', '108.177.112.113', '108.177.112.138', '108.177.112.101', '108.177.112.100']
+ 170.3  27 | c : DNS request from ('10.10.1.246', 56917) to None: 36 bytes
+ 170.4  18 | 2018-05-02T22:53:56+0000 [stdout#info] A query: b'client.dropbox.com'
+ 170.5  18 | 2018-05-02T22:53:56+0000 [stdout#info] Result for b'client.dropbox.com' is ['162.125.7.3']
+ 170.9  27 | c : DNS request from ('10.10.1.246', 55092) to None: 42 bytes
+ 171.0  18 | 2018-05-02T22:53:56+0000 [stdout#info] A query: b'block-edge-3.dropbox.com'
+ 171.0  18 | 2018-05-02T22:53:56+0000 [stdout#info] Result for b'block-edge-3.dropbox.com' is ['162.125.8.4']
+ 177.4  27 | c : DNS request from ('10.10.1.246', 65383) to None: 37 bytes
+ 177.4  18 | 2018-05-02T22:54:03+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 177.4  18 | 2018-05-02T22:54:03+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 190.9  27 | c : DNS request from ('10.10.1.246', 55790) to None: 52 bytes
+ 191.0  18 | 2018-05-02T22:54:16+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+ 191.1  18 | 2018-05-02T22:54:16+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['34.225.83.125', '52.4.172.149']
+ 203.7  27 | c : DNS request from ('10.10.1.246', 56097) to None: 37 bytes
+ 203.8  18 | 2018-05-02T22:54:29+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 203.8  18 | 2018-05-02T22:54:29+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 221.0  27 | c : DNS request from ('10.10.1.246', 60916) to None: 37 bytes
+ 221.1  18 | 2018-05-02T22:54:46+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 221.1  18 | 2018-05-02T22:54:46+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 231.4  27 | c : DNS request from ('10.10.1.246', 49789) to None: 52 bytes
+ 231.5  18 | 2018-05-02T22:54:57+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+ 231.5  18 | 2018-05-02T22:54:57+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['52.4.172.149', '34.225.83.125']
+ 236.4  27 | c : DNS request from ('10.10.1.246', 54481) to None: 41 bytes
+ 236.5  18 | 2018-05-02T22:55:02+0000 [stdout#info] A query: b'googleapis.l.google.com'
+ 236.5  18 | 2018-05-02T22:55:02+0000 [stdout#info] Result for b'googleapis.l.google.com' is ['74.125.69.95', '108.177.112.95', '74.125.132.95', '74.125.124.95', '64.233.191.95']
+ 237.4  27 | c : DNS request from ('10.10.1.246', 65005) to None: 37 bytes
+ 237.4  18 | 2018-05-02T22:55:03+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 237.4  18 | 2018-05-02T22:55:03+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 253.1  27 | c : DNS request from ('10.10.1.246', 61732) to None: 58 bytes
+ 253.1  18 | 2018-05-02T22:55:18+0000 [stdout#info] A query: b'cy2.vortex.data.microsoft.com.akadns.net'
+ 253.1  18 | 2018-05-02T22:55:18+0000 [stdout#info] Result for b'cy2.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 259.0  27 | c : DNS request from ('10.10.1.246', 58399) to None: 53 bytes
+ 259.1  18 | 2018-05-02T22:55:24+0000 [stdout#info] A query: b'cloudconsole-pa.clients6.google.com'
+ 259.1  18 | 2018-05-02T22:55:24+0000 [stdout#info] Result for b'cloudconsole-pa.clients6.google.com' is ['108.177.112.95']
+ 263.7  27 | c : DNS request from ('10.10.1.246', 52895) to None: 37 bytes
+ 263.8  18 | 2018-05-02T22:55:29+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 263.8  18 | 2018-05-02T22:55:29+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 267.8  27 | c : DNS request from ('10.10.1.246', 64035) to None: 38 bytes
+ 267.9  18 | 2018-05-02T22:55:33+0000 [stdout#info] A query: b'dl-debug.dropbox.com'
+ 267.9  18 | 2018-05-02T22:55:33+0000 [stdout#info] Result for b'dl-debug.dropbox.com' is ['54.236.121.227', '52.87.83.235', '34.195.182.87', '34.200.67.44', '34.195.170.150', '107.23.165.206', '34.195.247.186', '34.197.172.44']
+ 271.8  27 | c : DNS request from ('10.10.1.246', 57137) to None: 52 bytes
+ 271.9  18 | 2018-05-02T22:55:37+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+ 271.9  18 | 2018-05-02T22:55:37+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['34.225.83.125', '52.4.172.149']
+ 278.9  27 | c : DNS request from ('10.10.1.246', 63215) to None: 61 bytes
+ 279.0  18 | 2018-05-02T22:55:44+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 279.0  18 | 2018-05-02T22:55:44+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 281.0  27 | c : DNS request from ('10.10.1.246', 57812) to None: 37 bytes
+ 281.1  18 | 2018-05-02T22:55:46+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 281.1  18 | 2018-05-02T22:55:46+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 286.1  27 | c : DNS request from ('10.10.1.246', 65310) to None: 36 bytes
+ 286.1  18 | 2018-05-02T22:55:52+0000 [stdout#info] A query: b'client.dropbox.com'
+ 286.2  18 | 2018-05-02T22:55:52+0000 [stdout#info] Result for b'client.dropbox.com' is ['162.125.8.3']
+ 297.4  27 | c : DNS request from ('10.10.1.246', 56651) to None: 37 bytes
+ 297.5  18 | 2018-05-02T22:56:03+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 297.5  18 | 2018-05-02T22:56:03+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 305.6  27 | c : DNS request from ('10.10.1.246', 60075) to None: 42 bytes
+ 305.7  18 | 2018-05-02T22:56:11+0000 [stdout#info] A query: b'block-edge-3.dropbox.com'
+ 305.7  18 | 2018-05-02T22:56:11+0000 [stdout#info] Result for b'block-edge-3.dropbox.com' is ['162.125.3.4']
+ 312.1  27 | c : DNS request from ('10.10.1.246', 56811) to None: 52 bytes
+ 312.2  18 | 2018-05-02T22:56:18+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+ 312.2  18 | 2018-05-02T22:56:18+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['34.225.83.125', '52.4.172.149']
+ 313.1  27 | c : DNS request from ('10.10.1.246', 56596) to None: 61 bytes
+ 313.1  18 | 2018-05-02T22:56:18+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 313.1  18 | 2018-05-02T22:56:19+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 321.7  27 | c : DNS request from ('10.10.1.246', 27096) to None: 37 bytes
+ 321.8  18 | 2018-05-02T22:56:27+0000 [stdout#info] A query: b'clients6.google.com'
+ 321.8  18 | 2018-05-02T22:56:27+0000 [stdout#info] Result for b'clients6.google.com' is ['108.177.112.100', '108.177.112.138', '108.177.112.102', '108.177.112.113', '108.177.112.139', '108.177.112.101']
+ 322.3  27 | c : DNS request from ('10.10.1.246', 19561) to None: 32 bytes
+ 322.4  18 | 2018-05-02T22:56:28+0000 [stdout#info] A query: b'www.google.com'
+ 322.4  18 | 2018-05-02T22:56:28+0000 [stdout#info] Result for b'www.google.com' is ['74.125.124.104', '74.125.124.105', '74.125.124.106', '74.125.124.147', '74.125.124.99', '74.125.124.103']
+ 323.7  27 | c : DNS request from ('10.10.1.246', 49579) to None: 37 bytes
+ 323.8  18 | 2018-05-02T22:56:29+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 323.8  18 | 2018-05-02T22:56:29+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 329.7  27 | c : DNS request from ('10.10.1.246', 27304) to None: 33 bytes
+ 329.8  18 | 2018-05-02T22:56:35+0000 [stdout#info] A query: b'play.google.com'
+ 329.8  18 | 2018-05-02T22:56:35+0000 [stdout#info] Result for b'play.google.com' is ['108.177.112.138', '108.177.112.101', '108.177.112.113', '108.177.112.100', '108.177.112.102', '108.177.112.139']
+ 338.9  27 | c : DNS request from ('10.10.1.246', 56852) to None: 61 bytes
+ 338.9  18 | 2018-05-02T22:56:44+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 338.9  18 | 2018-05-02T22:56:44+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 341.0  27 | c : DNS request from ('10.10.1.246', 50281) to None: 37 bytes
+ 341.1  18 | 2018-05-02T22:56:46+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 341.1  18 | 2018-05-02T22:56:46+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 352.4  27 | c : DNS request from ('10.10.1.246', 58321) to None: 52 bytes
+ 352.5  18 | 2018-05-02T22:56:58+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+ 352.5  18 | 2018-05-02T22:56:58+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['52.4.172.149', '34.225.83.125']
+ 357.4  27 | c : DNS request from ('10.10.1.246', 60032) to None: 37 bytes
+ 357.5  18 | 2018-05-02T22:57:03+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 357.5  18 | 2018-05-02T22:57:03+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 359.8  27 | c : DNS request from ('10.10.1.246', 63205) to None: 61 bytes
+ 359.9  18 | 2018-05-02T22:57:05+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 359.9  18 | 2018-05-02T22:57:05+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 370.5  27 | c : DNS request from ('10.10.1.246', 59234) to None: 27 bytes
+ 370.6  18 | 2018-05-02T22:57:16+0000 [stdout#info] A query: b'slack.com'
+ 370.6  18 | 2018-05-02T22:57:16+0000 [stdout#info] Result for b'slack.com' is ['13.33.126.108']
+ 373.1  27 | c : DNS request from ('10.10.1.246', 58484) to None: 61 bytes
+ 373.2  18 | 2018-05-02T22:57:19+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 373.2  18 | 2018-05-02T22:57:19+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 374.5  27 | c : DNS request from ('10.10.1.246', 57310) to None: 54 bytes
+ 374.6  18 | 2018-05-02T22:57:20+0000 [stdout#info] A query: b'googlehosted.l.googleusercontent.com'
+ 374.6  18 | 2018-05-02T22:57:20+0000 [stdout#info] Result for b'googlehosted.l.googleusercontent.com' is ['74.125.201.132']
+ 377.6  27 | c : DNS request from ('10.10.1.246', 61973) to None: 61 bytes
+ 377.6  18 | 2018-05-02T22:57:23+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 377.6  18 | 2018-05-02T22:57:23+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 377.9  27 | c : DNS request from ('10.10.1.246', 56441) to None: 36 bytes
+ 378.0  18 | 2018-05-02T22:57:23+0000 [stdout#info] A query: b'client.dropbox.com'
+ 378.0  18 | 2018-05-02T22:57:23+0000 [stdout#info] Result for b'client.dropbox.com' is ['162.125.8.3']
+ 383.8  27 | c : DNS request from ('10.10.1.246', 59132) to None: 37 bytes
+ 383.8  18 | 2018-05-02T22:57:29+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 383.8  18 | 2018-05-02T22:57:29+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 388.7  27 | c : DNS request from ('10.10.1.246', 49195) to None: 42 bytes
+ 388.8  18 | 2018-05-02T22:57:34+0000 [stdout#info] A query: b'block-edge-3.dropbox.com'
+ 388.8  18 | 2018-05-02T22:57:34+0000 [stdout#info] Result for b'block-edge-3.dropbox.com' is ['162.125.3.4']
+ 392.7  27 | c : DNS request from ('10.10.1.246', 60102) to None: 52 bytes
+ 392.8  18 | 2018-05-02T22:57:38+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+ 392.8  18 | 2018-05-02T22:57:38+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['52.4.172.149', '34.225.83.125']
+ 397.0  27 | c : DNS request from ('10.10.1.246', 52080) to None: 61 bytes
+ 397.1  18 | 2018-05-02T22:57:42+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 397.1  18 | 2018-05-02T22:57:42+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 401.0  27 | c : DNS request from ('10.10.1.246', 64455) to None: 37 bytes
+ 401.1  18 | 2018-05-02T22:57:46+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 401.2  18 | 2018-05-02T22:57:47+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 407.9  27 | c : DNS request from ('10.10.1.246', 48475) to None: 32 bytes
+ 408.0  18 | 2018-05-02T22:57:53+0000 [stdout#info] A query: b'www.google.com'
+ 408.0  18 | 2018-05-02T22:57:53+0000 [stdout#info] Result for b'www.google.com' is ['74.125.124.104', '74.125.124.103', '74.125.124.99', '74.125.124.147', '74.125.124.106', '74.125.124.105']
+ 409.3  27 | c : DNS request from ('10.10.1.246', 55012) to None: 56 bytes
+ 409.4  18 | 2018-05-02T22:57:55+0000 [stdout#info] 12 query: b'db._dns-sd._udp.0.0.10.10.in-addr.arpa'
+ 409.4  18 | 2018-05-02T22:57:55+0000 [DNSDatagramProtocol (UDP)] DNSDatagramProtocol starting on 15027
+ 409.4  18 | 2018-05-02T22:57:55+0000 [DNSDatagramProtocol (UDP)] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f27c223a208>
+ 409.4  18 | 2018-05-02T22:57:55+0000 [-] (UDP Port 15027 Closed)
+ 409.4  18 | 2018-05-02T22:57:55+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f27c223a208>
+ 412.6  27 | c : DNS request from ('10.10.1.246', 49878) to None: 61 bytes
+ 412.7  18 | 2018-05-02T22:57:58+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 412.7  18 | 2018-05-02T22:57:58+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 413.3  27 | c : DNS request from ('10.10.1.246', 49680) to None: 35 bytes
+ 413.3  18 | 2018-05-02T22:57:59+0000 [stdout#info] A query: b'ca.slack-edge.com'
+ 413.4  18 | 2018-05-02T22:57:59+0000 [stdout#info] Result for b'ca.slack-edge.com' is ['151.101.0.102', '151.101.64.102', '151.101.128.102', '151.101.192.102']
+ 417.0  27 | c : DNS request from ('10.10.1.246', 29796) to None: 37 bytes
+ 417.1  18 | 2018-05-02T22:58:02+0000 [stdout#info] A query: b'clients4.google.com'
+ 417.1  18 | 2018-05-02T22:58:02+0000 [stdout#info] Result for b'clients4.google.com' is ['108.177.112.113', '108.177.112.100', '108.177.112.102', '108.177.112.101', '108.177.112.139', '108.177.112.138']
+ 417.3  27 | c : DNS request from ('10.10.1.246', 52039) to None: 40 bytes
+ 417.4  18 | 2018-05-02T22:58:03+0000 [stdout#info] A query: b'utahk8susers.slack.com'
+ 417.4  18 | 2018-05-02T22:58:03+0000 [stdout#info] Result for b'utahk8susers.slack.com' is ['13.33.126.108']
+ 417.4  27 | c : DNS request from ('10.10.1.246', 54658) to None: 37 bytes
+ 417.5  18 | 2018-05-02T22:58:03+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 417.5  18 | 2018-05-02T22:58:03+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 431.7  27 | c : DNS request from ('10.10.1.246', 3483) to None: 48 bytes
+ 431.7  18 | 2018-05-02T22:58:17+0000 [stdout#info] A query: b'monitoring.clients6.google.com'
+ 431.8  18 | 2018-05-02T22:58:17+0000 [stdout#info] Result for b'monitoring.clients6.google.com' is ['108.177.112.95']
+ 433.0  27 | c : DNS request from ('10.10.1.246', 52993) to None: 52 bytes
+ 433.1  18 | 2018-05-02T22:58:18+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+ 433.1  18 | 2018-05-02T22:58:18+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['52.4.172.149', '34.225.83.125']
+ 433.1  27 | c : DNS request from ('10.10.1.246', 52448) to None: 61 bytes
+ 433.2  18 | 2018-05-02T22:58:19+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 433.2  18 | 2018-05-02T22:58:19+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 437.7  27 | c : DNS request from ('10.10.1.246', 29047) to None: 33 bytes
+ 437.8  18 | 2018-05-02T22:58:23+0000 [stdout#info] A query: b'play.google.com'
+ 437.8  18 | 2018-05-02T22:58:23+0000 [stdout#info] Result for b'play.google.com' is ['74.125.124.102', '74.125.124.138', '74.125.124.139', '74.125.124.100', '74.125.124.101', '74.125.124.113']
+ 443.8  27 | c : DNS request from ('10.10.1.246', 51514) to None: 37 bytes
+ 443.8  18 | 2018-05-02T22:58:29+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 443.9  18 | 2018-05-02T22:58:29+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 444.0  27 | c : DNS request from ('10.10.1.246', 52265) to None: 27 bytes
+ 444.1  18 | 2018-05-02T22:58:29+0000 [stdout#info] A query: b'slack.com'
+ 444.1  18 | 2018-05-02T22:58:29+0000 [stdout#info] Result for b'slack.com' is ['52.84.3.223']
+ 459.0  27 | c : DNS request from ('10.10.1.246', 53137) to None: 61 bytes
+ 459.0  18 | 2018-05-02T22:58:44+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 459.0  18 | 2018-05-02T22:58:44+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 460.0  27 | c : DNS request from ('10.10.1.246', 59499) to None: 53 bytes
+ 460.0  18 | 2018-05-02T22:58:45+0000 [stdout#info] A query: b'cloudconsole-pa.clients6.google.com'
+ 460.1  18 | 2018-05-02T22:58:45+0000 [stdout#info] Result for b'cloudconsole-pa.clients6.google.com' is ['108.177.112.95']
+ 461.1  27 | c : DNS request from ('10.10.1.246', 52957) to None: 37 bytes
+ 461.1  18 | 2018-05-02T22:58:46+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 461.1  18 | 2018-05-02T22:58:46+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 473.3  27 | c : DNS request from ('10.10.1.246', 50034) to None: 34 bytes
+ 473.4  18 | 2018-05-02T22:58:59+0000 [stdout#info] A query: b'scss.adobesc.com'
+ 473.4  18 | 2018-05-02T22:58:59+0000 [stdout#info] Result for b'scss.adobesc.com' is ['54.175.246.63', '52.44.249.38', '54.174.179.144', '52.5.115.18', '52.45.233.219', '54.165.39.137', '54.172.79.235', '54.174.78.24']
+ 473.7  27 | c : DNS request from ('10.10.1.246', 61310) to None: 52 bytes
+ 473.8  18 | 2018-05-02T22:58:59+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+ 473.8  18 | 2018-05-02T22:58:59+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['34.225.83.125', '52.4.172.149']
+ 477.4  27 | c : DNS request from ('10.10.1.246', 49685) to None: 37 bytes
+ 477.5  18 | 2018-05-02T22:59:03+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 477.5  18 | 2018-05-02T22:59:03+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 478.7  27 | c : DNS request from ('10.10.1.246', 2375) to None: 37 bytes
+ 478.8  18 | 2018-05-02T22:59:04+0000 [stdout#info] A query: b'clients6.google.com'
+ 478.8  18 | 2018-05-02T22:59:04+0000 [stdout#info] Result for b'clients6.google.com' is ['108.177.112.101', '108.177.112.102', '108.177.112.138', '108.177.112.100', '108.177.112.113', '108.177.112.139']
+ 486.7  27 | c : DNS request from ('10.10.1.246', 59479) to None: 34 bytes
+ 486.7  18 | 2018-05-02T22:59:12+0000 [stdout#info] A query: b'inbox.google.com'
+ 486.8  18 | 2018-05-02T22:59:12+0000 [stdout#info] Result for b'inbox.google.com' is ['108.177.112.17', '108.177.112.83', '108.177.112.19', '108.177.112.18']
+ 493.1  27 | c : DNS request from ('10.10.1.246', 53583) to None: 61 bytes
+ 493.2  18 | 2018-05-02T22:59:19+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 493.2  18 | 2018-05-02T22:59:19+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 498.5  27 | c : DNS request from ('10.10.1.246', 51930) to None: 55 bytes
+ 498.6  18 | 2018-05-02T22:59:24+0000 [stdout#info] 12 query: b'b._dns-sd._udp.0.0.10.10.in-addr.arpa'
+ 498.6  18 | 2018-05-02T22:59:24+0000 [DNSDatagramProtocol (UDP)] DNSDatagramProtocol starting on 58324
+ 498.6  18 | 2018-05-02T22:59:24+0000 [DNSDatagramProtocol (UDP)] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f27c223a668>
+ 498.6  18 | 2018-05-02T22:59:24+0000 [-] (UDP Port 58324 Closed)
+ 498.6  18 | 2018-05-02T22:59:24+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f27c223a668>
+ 498.7  27 | c : DNS request from ('10.10.1.246', 26839) to None: 42 bytes
+ 498.7  18 | 2018-05-02T22:59:24+0000 [stdout#info] A query: b'console.cloud.google.com'
+ 498.8  18 | 2018-05-02T22:59:24+0000 [stdout#info] Result for b'console.cloud.google.com' is ['74.125.202.139', '74.125.202.102', '74.125.202.113', '74.125.202.138', '74.125.202.101', '74.125.202.100']
+ 503.7  27 | c : DNS request from ('10.10.1.246', 58068) to None: 34 bytes
+ 503.7  27 | c : DNS request from ('10.10.1.246', 62037) to None: 34 bytes
+ 503.7  18 | 2018-05-02T22:59:29+0000 [stdout#info] A query: b'upload.slack.com'
+ 503.8  27 | c : DNS request from ('10.10.1.246', 57671) to None: 37 bytes
+ 503.8  18 | 2018-05-02T22:59:29+0000 [stdout#info] A query: b'a.slack-edge.com'
+ 503.8  18 | 2018-05-02T22:59:29+0000 [stdout#info] Result for b'upload.slack.com' is ['34.227.201.192', '52.206.80.168', '52.54.218.245', '34.195.179.148']
+ 503.8  18 | 2018-05-02T22:59:29+0000 [stdout#info] Result for b'a.slack-edge.com' is ['151.101.0.102', '151.101.64.102', '151.101.128.102', '151.101.192.102']
+ 503.8  18 | 2018-05-02T22:59:29+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 503.9  18 | 2018-05-02T22:59:29+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 505.6  27 | c : DNS request from ('10.10.1.246', 54564) to None: 33 bytes
+ 505.6  18 | 2018-05-02T22:59:31+0000 [stdout#info] A query: b'files.slack.com'
+ 505.6  18 | 2018-05-02T22:59:31+0000 [stdout#info] Result for b'files.slack.com' is ['13.33.126.108']
+ 514.1  27 | c : DNS request from ('10.10.1.246', 55174) to None: 52 bytes
+ 514.2  18 | 2018-05-02T22:59:40+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+ 514.2  18 | 2018-05-02T22:59:40+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['34.225.83.125', '52.4.172.149']
+ 518.9  27 | c : DNS request from ('10.10.1.246', 63726) to None: 61 bytes
+ 519.0  18 | 2018-05-02T22:59:44+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 519.0  18 | 2018-05-02T22:59:44+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 519.2  27 | c : DNS request from ('10.10.1.246', 52247) to None: 40 bytes
+ 519.3  18 | 2018-05-02T22:59:45+0000 [stdout#info] A query: b'az764295.vo.msecnd.net'
+ 519.3  18 | 2018-05-02T22:59:45+0000 [stdout#info] Result for b'az764295.vo.msecnd.net' is ['72.21.81.200']
+ 521.1  27 | c : DNS request from ('10.10.1.246', 60355) to None: 37 bytes
+ 521.1  18 | 2018-05-02T22:59:46+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 521.1  18 | 2018-05-02T22:59:47+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 537.5  27 | c : DNS request from ('10.10.1.246', 58031) to None: 37 bytes
+ 537.5  18 | 2018-05-02T23:00:03+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 537.5  18 | 2018-05-02T23:00:03+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 538.5  27 | c : DNS request from ('10.10.1.246', 63154) to None: 56 bytes
+ 538.6  18 | 2018-05-02T23:00:04+0000 [stdout#info] 12 query: b'lb._dns-sd._udp.0.0.10.10.in-addr.arpa'
+ 538.6  18 | 2018-05-02T23:00:04+0000 [DNSDatagramProtocol (UDP)] DNSDatagramProtocol starting on 64398
+ 538.6  18 | 2018-05-02T23:00:04+0000 [DNSDatagramProtocol (UDP)] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f27c223a780>
+ 538.6  18 | 2018-05-02T23:00:04+0000 [-] (UDP Port 64398 Closed)
+ 538.6  18 | 2018-05-02T23:00:04+0000 [-] Stopping protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f27c223a780>
+ 540.9  27 | c : DNS request from ('10.10.1.246', 53339) to None: 36 bytes
+ 541.0  18 | 2018-05-02T23:00:06+0000 [stdout#info] A query: b'client.dropbox.com'
+ 541.0  18 | 2018-05-02T23:00:06+0000 [stdout#info] Result for b'client.dropbox.com' is ['162.125.7.3']
+ 542.4  27 | c : DNS request from ('10.10.1.246', 55192) to None: 42 bytes
+ 542.5  18 | 2018-05-02T23:00:08+0000 [stdout#info] A query: b'p48-calendars.icloud.com'
+ 542.6  27 | c : DNS request from ('10.10.1.246', 55997) to None: 39 bytes
+ 542.6  18 | 2018-05-02T23:00:08+0000 [stdout#info] Result for b'p48-calendars.icloud.com' is ['17.248.139.16', '17.248.139.72', '17.248.139.107', '17.248.139.47', '17.248.139.11', '17.248.139.109', '17.248.139.45', '17.248.139.15']
+ 542.6  18 | 2018-05-02T23:00:08+0000 [stdout#info] A query: b'p36-caldav.icloud.com'
+ 542.7  18 | 2018-05-02T23:00:08+0000 [stdout#info] Result for b'p36-caldav.icloud.com' is ['17.248.139.47', '17.248.139.107', '17.248.139.106', '17.248.139.104', '17.248.139.45', '17.248.139.48', '17.248.139.72', '17.248.139.15']
+ 543.2  27 | c : DNS request from ('10.10.1.246', 50710) to None: 38 bytes
+ 543.4  18 | 2018-05-02T23:00:09+0000 [stdout#info] A query: b'gsp-ssl.ls.apple.com'
+ 543.5  27 | c : DNS request from ('10.10.1.246', 50907) to None: 52 bytes
+ 543.6  18 | 2018-05-02T23:00:09+0000 [stdout#info] Result for b'gsp-ssl.ls.apple.com' is ['17.249.178.38']
+ 543.7  18 | 2018-05-02T23:00:09+0000 [stdout#info] A query: b'gs-loc-new.ls-apple.com.akadns.net'
+ 543.8  27 | c : DNS request from ('10.10.1.246', 55021) to None: 48 bytes
+ 543.9  18 | 2018-05-02T23:00:09+0000 [stdout#info] Result for b'gs-loc-new.ls-apple.com.akadns.net' is ['17.167.194.240', '17.167.193.35']
+ 544.0  18 | 2018-05-02T23:00:09+0000 [stdout#info] A query: b'p36-keyvalueservice.icloud.com'
+ 544.2  18 | 2018-05-02T23:00:09+0000 [stdout#info] Result for b'p36-keyvalueservice.icloud.com' is ['17.248.139.13', '17.248.139.8', '17.248.139.15', '17.248.139.109', '17.248.139.45', '17.248.139.16', '17.248.139.72', '17.248.139.107']
+ 553.1  27 | c : DNS request from ('10.10.1.246', 57239) to None: 61 bytes
+ 553.2  18 | 2018-05-02T23:00:19+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 553.2  18 | 2018-05-02T23:00:19+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 554.4  27 | c : DNS request from ('10.10.1.246', 62610) to None: 52 bytes
+ 554.5  18 | 2018-05-02T23:00:20+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+ 554.5  18 | 2018-05-02T23:00:20+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['34.225.83.125', '52.4.172.149']
+ 555.9  27 | c : DNS request from ('10.10.1.246', 63376) to None: 36 bytes
+ 555.9  27 | c : DNS request from ('10.10.1.246', 50179) to None: 38 bytes
+ 556.0  18 | 2018-05-02T23:00:21+0000 [stdout#info] A query: b'init.ess.apple.com'
+ 556.0  18 | 2018-05-02T23:00:21+0000 [stdout#info] A query: b'init-p01md.apple.com'
+ 556.0  18 | 2018-05-02T23:00:21+0000 [stdout#info] Result for b'init.ess.apple.com' is ['104.91.166.10', '104.91.166.32']
+ 556.0  18 | 2018-05-02T23:00:21+0000 [stdout#info] Result for b'init-p01md.apple.com' is ['104.91.166.89', '104.91.166.83']
+ 563.2  27 | c : DNS request from ('10.10.1.246', 63424) to None: 41 bytes
+ 563.3  18 | 2018-05-02T23:00:29+0000 [stdout#info] A query: b'googleapis.l.google.com'
+ 563.3  18 | 2018-05-02T23:00:29+0000 [stdout#info] Result for b'googleapis.l.google.com' is ['74.125.126.95', '209.85.200.95', '209.85.147.95', '74.125.124.95', '108.177.112.95']
+ 563.8  27 | c : DNS request from ('10.10.1.246', 63776) to None: 37 bytes
+ 563.9  18 | 2018-05-02T23:00:29+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 563.9  18 | 2018-05-02T23:00:29+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 578.9  27 | c : DNS request from ('10.10.1.246', 49469) to None: 61 bytes
+ 579.2  18 | 2018-05-02T23:00:44+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 579.2  18 | 2018-05-02T23:00:44+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 581.1  27 | c : DNS request from ('10.10.1.246', 49837) to None: 37 bytes
+ 581.2  18 | 2018-05-02T23:00:47+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 581.3  18 | 2018-05-02T23:00:47+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 588.0  27 | c : DNS request from ('10.10.1.246', 60353) to None: 36 bytes
+ 588.1  18 | 2018-05-02T23:00:53+0000 [stdout#info] A query: b'gateway.icloud.com'
+ 588.1  18 | 2018-05-02T23:00:53+0000 [stdout#info] Result for b'gateway.icloud.com' is ['17.248.131.174', '17.248.131.43', '17.248.131.24', '17.248.185.150', '17.248.185.69', '17.248.185.78', '17.248.131.203', '17.248.131.51']
+ 590.0  27 | c : DNS request from ('10.10.1.246', 12344) to None: 42 bytes
+ 590.0  18 | 2018-05-02T23:00:55+0000 [stdout#info] A query: b'console.cloud.google.com'
+ 590.0  18 | 2018-05-02T23:00:55+0000 [stdout#info] Result for b'console.cloud.google.com' is ['74.125.202.100', '74.125.202.139', '74.125.202.102', '74.125.202.113', '74.125.202.138', '74.125.202.101']
+ 594.8  27 | c : DNS request from ('10.10.1.246', 53517) to None: 52 bytes
+ 594.9  18 | 2018-05-02T23:01:00+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+ 594.9  18 | 2018-05-02T23:01:00+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['34.225.83.125', '52.4.172.149']
+ 597.5  27 | c : DNS request from ('10.10.1.246', 51246) to None: 37 bytes
+ 597.5  18 | 2018-05-02T23:01:03+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 597.5  18 | 2018-05-02T23:01:03+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 611.7  27 | c : DNS request from ('10.10.1.246', 18169) to None: 48 bytes
+ 611.8  18 | 2018-05-02T23:01:17+0000 [stdout#info] A query: b'monitoring.clients6.google.com'
+ 611.8  18 | 2018-05-02T23:01:17+0000 [stdout#info] Result for b'monitoring.clients6.google.com' is ['108.177.112.95']
+ 613.2  27 | c : DNS request from ('10.10.1.246', 64439) to None: 61 bytes
+ 613.2  18 | 2018-05-02T23:01:19+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 613.2  18 | 2018-05-02T23:01:19+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 623.8  27 | c : DNS request from ('10.10.1.246', 51793) to None: 37 bytes
+ 623.9  18 | 2018-05-02T23:01:29+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 623.9  18 | 2018-05-02T23:01:29+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 630.7  27 | c : DNS request from ('10.10.1.246', 59466) to None: 33 bytes
+ 630.8  18 | 2018-05-02T23:01:36+0000 [stdout#info] A query: b'play.google.com'
+ 630.8  18 | 2018-05-02T23:01:36+0000 [stdout#info] Result for b'play.google.com' is ['74.125.124.113', '74.125.124.101', '74.125.124.138', '74.125.124.102', '74.125.124.139', '74.125.124.100']
+ 632.3  27 | c : DNS request from ('10.10.1.246', 58470) to None: 33 bytes
+ 632.5  18 | 2018-05-02T23:01:38+0000 [stdout#info] A query: b'ds705.awmdm.com'
+ 632.5  18 | 2018-05-02T23:01:38+0000 [stdout#info] Result for b'ds705.awmdm.com' is ['192.30.68.55']
+ 635.2  27 | c : DNS request from ('10.10.1.246', 49975) to None: 52 bytes
+ 635.2  18 | 2018-05-02T23:01:41+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+ 635.3  18 | 2018-05-02T23:01:41+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['52.4.172.149', '34.225.83.125']
+ 638.9  27 | c : DNS request from ('10.10.1.246', 56741) to None: 61 bytes
+ 639.0  18 | 2018-05-02T23:01:44+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 639.0  18 | 2018-05-02T23:01:44+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 641.1  27 | c : DNS request from ('10.10.1.246', 65318) to None: 37 bytes
+ 641.1  18 | 2018-05-02T23:01:47+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 641.2  18 | 2018-05-02T23:01:47+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 641.3  27 | c : DNS request from ('10.10.1.246', 51827) to None: 31 bytes
+ 641.4  18 | 2018-05-02T23:01:47+0000 [stdout#info] A query: b'd.dropbox.com'
+ 641.4  18 | 2018-05-02T23:01:47+0000 [stdout#info] Result for b'd.dropbox.com' is ['162.125.33.7']
+ 657.5  27 | c : DNS request from ('10.10.1.246', 63431) to None: 37 bytes
+ 657.7  27 | c : DNS request from ('10.10.1.246', 6874) to None: 53 bytes
+ 657.8  18 | 2018-05-02T23:02:03+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 657.8  18 | 2018-05-02T23:02:03+0000 [stdout#info] A query: b'cloudconsole-pa.clients6.google.com'
+ 657.8  18 | 2018-05-02T23:02:03+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 657.8  18 | 2018-05-02T23:02:03+0000 [stdout#info] Result for b'cloudconsole-pa.clients6.google.com' is ['209.85.145.95']
+ 673.2  27 | c : DNS request from ('10.10.1.246', 56966) to None: 61 bytes
+ 673.4  18 | 2018-05-02T23:02:19+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 673.4  18 | 2018-05-02T23:02:19+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 675.8  27 | c : DNS request from ('10.10.1.246', 62671) to None: 52 bytes
+ 675.9  18 | 2018-05-02T23:02:21+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+ 675.9  18 | 2018-05-02T23:02:21+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['52.4.172.149', '34.225.83.125']
+ 683.8  27 | c : DNS request from ('10.10.1.246', 65462) to None: 37 bytes
+ 684.0  18 | 2018-05-02T23:02:29+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 684.0  18 | 2018-05-02T23:02:29+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 699.1  27 | c : DNS request from ('10.10.1.246', 52829) to None: 61 bytes
+ 699.1  18 | 2018-05-02T23:02:44+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 699.1  18 | 2018-05-02T23:02:44+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 701.1  27 | c : DNS request from ('10.10.1.246', 53616) to None: 37 bytes
+ 701.2  18 | 2018-05-02T23:02:47+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 701.2  18 | 2018-05-02T23:02:47+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 716.1  27 | c : DNS request from ('10.10.1.246', 62373) to None: 52 bytes
+ 716.2  18 | 2018-05-02T23:03:02+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+ 716.2  18 | 2018-05-02T23:03:02+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['34.225.83.125', '52.4.172.149']
+ 717.5  27 | c : DNS request from ('10.10.1.246', 58407) to None: 37 bytes
+ 717.6  18 | 2018-05-02T23:03:03+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 717.6  18 | 2018-05-02T23:03:03+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 731.7  27 | c : DNS request from ('10.10.1.246', 13444) to None: 48 bytes
+ 731.8  18 | 2018-05-02T23:03:17+0000 [stdout#info] A query: b'monitoring.clients6.google.com'
+ 731.8  18 | 2018-05-02T23:03:17+0000 [stdout#info] Result for b'monitoring.clients6.google.com' is ['74.125.124.95']
+ 733.2  27 | c : DNS request from ('10.10.1.246', 63054) to None: 61 bytes
+ 733.3  18 | 2018-05-02T23:03:19+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 733.3  18 | 2018-05-02T23:03:19+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 743.8  27 | c : DNS request from ('10.10.1.246', 63778) to None: 37 bytes
+ 743.9  18 | 2018-05-02T23:03:29+0000 [stdout#info] A query: b'gitlab.getweave.com'
+ 743.9  18 | 2018-05-02T23:03:29+0000 [stdout#info] Result for b'gitlab.getweave.com' is ['67.214.249.53']
+ 744.7  27 | c : DNS request from ('10.10.1.246', 65383) to None: 38 bytes
+ 744.9  18 | 2018-05-02T23:03:30+0000 [stdout#info] A query: b'gsp-ssl.ls.apple.com'
+ 744.9  18 | 2018-05-02T23:03:30+0000 [stdout#info] Result for b'gsp-ssl.ls.apple.com' is ['17.167.193.45', '17.167.195.40', '17.167.193.41', '17.167.195.42', '17.167.193.43', '17.167.195.44']
+ 746.4  27 | c : DNS request from ('10.10.1.246', 59733) to None: 52 bytes
+ 747.0  18 | 2018-05-02T23:03:32+0000 [stdout#info] A query: b'gs-loc-new.ls-apple.com.akadns.net'
+ 747.2  18 | 2018-05-02T23:03:32+0000 [stdout#info] Result for b'gs-loc-new.ls-apple.com.akadns.net' is ['17.167.194.149', '17.167.192.128']
+ 751.7  27 | c : DNS request from ('10.10.1.246', 14529) to None: 42 bytes
+ 751.7  18 | 2018-05-02T23:03:37+0000 [stdout#info] A query: b'notifications.google.com'
+ 751.8  18 | 2018-05-02T23:03:37+0000 [stdout#info] Result for b'notifications.google.com' is ['74.125.132.138', '74.125.132.100', '74.125.132.113', '74.125.132.139', '74.125.132.102', '74.125.132.101']
+ 752.1  27 | c : DNS request from ('10.10.1.246', 62041) to None: 35 bytes
+ 752.2  18 | 2018-05-02T23:03:38+0000 [stdout#info] A query: b'ca.slack-edge.com'
+ 752.3  18 | 2018-05-02T23:03:38+0000 [stdout#info] Result for b'ca.slack-edge.com' is ['151.101.0.102', '151.101.64.102', '151.101.128.102', '151.101.192.102']
+ 754.6  27 | c : DNS request from ('10.10.1.246', 57283) to None: 37 bytes
+ 754.7  18 | 2018-05-02T23:03:40+0000 [stdout#info] A query: b'weave-lab.slack.com'
+ 754.7  18 | 2018-05-02T23:03:40+0000 [stdout#info] Result for b'weave-lab.slack.com' is ['52.84.3.223']
+ 756.5  27 | c : DNS request from ('10.10.1.246', 53206) to None: 52 bytes
+ 756.5  18 | 2018-05-02T23:03:42+0000 [stdout#info] A query: b'scss-prod-ue1-notif-46.adobesc.com'
+ 756.5  18 | 2018-05-02T23:03:42+0000 [stdout#info] Result for b'scss-prod-ue1-notif-46.adobesc.com' is ['52.4.172.149', '34.225.83.125']
+ 759.1  27 | c : DNS request from ('10.10.1.246', 57905) to None: 61 bytes
+ 759.1  18 | 2018-05-02T23:03:45+0000 [stdout#info] A query: b'asimov.vortex.data.microsoft.com.akadns.net'
+ 759.1  18 | 2018-05-02T23:03:45+0000 [stdout#info] Result for b'asimov.vortex.data.microsoft.com.akadns.net' is ['64.4.54.254']
+ 759.3 TEL | Shutting down local process...
+ 759.3 TEL | Killing local process...
+ 759.3  27 | >> pfctl -a sshuttle6-12300 -F all
+ 759.3 TEL | [24] exit 0
+ 759.3 TEL | [39] Capturing: umount -f /tmp/tmpy2o1t3mw
+ 759.3 TEL | [18] exit -2
+ 759.3 TEL | [19] exit 0
+ 759.3  39 | umount: unmount(/private/tmp/tmpy2o1t3mw): Invalid argument
+ 759.3 TEL | [39] exit 1 in 0.03 secs.
+ 759.3  27 | >> pfctl -X 5670766342469427365
+ 759.3 TEL | [40] Running: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default scale deployment basicapp-telepresence --replicas=1
+ 759.4  27 | >> pfctl -a sshuttle-12300 -F all
+ 759.4  27 | >> pfctl -X 5670766342469429477
+ 759.4 TEL | [27] exit -15
+ 761.8  40 | deployment.extensions "basicapp-telepresence" scaled
+ 761.8 TEL | [40] ran in 2.41 secs.
+ 761.8 TEL | [41] Running: kubectl --context gke_ploio-1128_us-central1-a_ploio-09 --namespace default delete deployment basicapp-tele-9b828c55-d01c-4942-9c34-420592270de4
+ 763.8  41 | deployment.extensions "basicapp-tele-9b828c55-d01c-4942-9c34-420592270de4" deleted
+ 763.8 TEL | [41] ran in 2.08 secs.
+ 763.8 TEL | END SPAN main.py:437(go_too)  763.8s

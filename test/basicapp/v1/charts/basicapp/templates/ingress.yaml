@@ -2,15 +2,14 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: basicapp-ingress
+  name: {{ .Values.name }}-ingress
   annotations:
     kubernetes.io/ingress.class: "istio"
 spec:
   rules:
   - http:
       paths:
-      - path: /hi
+      - path: {{ .Values.ingress.path }} 
         backend:
-          serviceName: basicapp
-          servicePort: 8000
----
+          serviceName: {{ .Values.name }}
+          servicePort: {{ .Values.port }}

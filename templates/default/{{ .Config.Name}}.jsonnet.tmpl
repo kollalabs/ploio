@@ -1,0 +1,166 @@
+local env = std.extVar("__ksonnet/environments");
+local params = std.extVar("__ksonnet/params").components.basicapp;
+[
+   {{template "deployment" .}}
+   {{template "service" .}} 
+   
+   {
+        "apiVersion": "networking.istio.io/v1alpha3",
+        "kind": "Gateway",
+        "metadata": {
+            "name": params.name + "-gateway"
+        },
+        "spec": {
+            "selector": {
+                "istio": "ingressgateway"
+            },
+            "servers": [
+                {
+                    "port": {
+                    "number": 80,
+                    "name": "http",
+                    "protocol": "HTTP"
+                    },
+                    "hosts": [
+                      "*"
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "apiVersion": "networking.istio.io/v1alpha3",
+        "kind": "DestinationRule",
+        "metadata": {
+            "name": params.name
+        },
+        "spec": {
+            "host":params.name,
+            "subsets": [
+                {
+                    "name": "current",
+                    "labels": {
+                        "ploiotype": "current"
+                    }
+                },
+                {
+                    "name": "smoke",
+                    "labels": {
+                        "ploiotype": "smoke"
+                    }
+                },
+                {
+                    "name": "canary",
+                    "labels": {
+                        "ploiotype": "canary"
+                    }
+                },
+                {
+                    "name": "baseline",
+                    "labels": {
+                        "ploiotype": "baseline"
+                    }
+                },
+                {
+                    "name": "telepresence",
+                    "labels": {
+                        "ploiotype": "telepresence"
+                    }
+                }
+            ]
+        }
+        },
+    {
+        "apiVersion": "networking.istio.io/v1alpha3",
+        "kind": "VirtualService",
+        "metadata": {
+            "name": params.name 
+        },
+        "spec": {
+            "hosts": [
+               params.name + ".example.com" 
+            ],
+            "gateways": [
+                params.name + "-gateway",
+                "mesh"
+            ],
+             "http": [
+                {
+                    "route": [
+                        {
+                            "destination": {
+                                "host": params.name,
+                                "subset": "current"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+]
+
+
+{{define "deployment"}}
+    {
+      "apiVersion": "apps/v1beta2",
+      "kind": "Deployment",
+      "metadata": {
+         "name": params.name{{if .Type}} + "-{{.Type}}"{{end}},
+         "annotations": {
+            "ploio.io/id": params.name
+        },
+      },
+      "spec": {
+        "selector": {
+            "matchLabels": {
+               "app": params.name
+            },
+         },
+         "replicas": params.replicas,
+         "template": {
+            "metadata": {
+               "labels": {
+                  "app": params.name,
+                  "ploiotype": "current"
+               }
+            },
+            "spec": {
+               "containers": [
+                  {
+                     "image": params.image + ":" + {{.Tag}},
+                     "name": params.name,
+                     "ports": [{{range .Config.Ports}}
+                     {
+                        "containerPort": {{.Number}}
+                     },{{end}}
+                     ]
+                  }
+               ]
+            }
+         }
+      }
+   },
+{{end}}
+
+{{define "service"}}
+    {
+      "apiVersion": "v1",
+      "kind": "Service",
+      "metadata": {
+         "name": params.name
+      },
+      "spec": {
+         "ports": [{{range .Config.Ports}}
+            {
+               "port": {{.Number}},{{if .Name}}
+               "name": "{{.Name}}",{{end}}{{if .Protocol}}
+               "protocol": "{{.Protocol}}",{{end}}
+            },{{end}}
+         ],
+         "selector": {
+            "app": params.name
+         },
+      }
+   },
+{{end}}

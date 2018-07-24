@@ -1,0 +1,31 @@
+apiVersion: "stable.ploio.io/v1"
+kind: PloioVersion
+metadata:
+  name: test-v1.0.0-smoke
+spec:
+  id: basicapp
+  image: weavelab/basicapp:v2
+  type: smoke  #canary|smoke|rolling
+  timeout: 5m
+  smoke-header-name: x-ploio
+  smoke-header-value-regex: (test)
+  # helm-chart-version-value:
+  # github-enabled: true
+  # github-issue-url:
+  # github-commit:
+  # canary-percentage: 5
+  # canary-metrics: []
+  # canary-prometheus-address:
+  
+  ###########################
+  # Fields below this are added programatically and updated by the ploiocontroller
+  ###########################
+  # state: pending | queued | running | failed | passed
+  # reason: 
+  # message: 
+  # create-time:
+  # last-update-time:
+  # end-time:
+
+
+# kubectl describe plv test-v1.0.0-smoke
