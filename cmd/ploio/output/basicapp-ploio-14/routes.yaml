@@ -1,0 +1,73 @@
+
+
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: basicapp-gateway
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - clint.getweave.com
+
+
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: basicapp
+spec:
+  host: basicapp
+  subsets:
+  - name: production
+    labels:
+      ploiotype: production
+  - name: smoke
+    labels:
+      ploiotype: smoke
+  - name: canary
+    labels:
+      ploiotype: canary
+  - name: baseline
+    labels:
+      ploiotype: baseline
+  - name: telepresence
+    labels:
+      ploiotype: telepresence
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: basicapp
+spec:
+  hosts:
+  - basicapp
+  - clint.getweave.com
+  gateways:
+  - basicapp-gateway
+  - mesh
+  http:
+  - route:
+    - destination:
+        host: basicapp
+        subset: current 
+
+  - match:
+    - headers:
+        x-ploio:
+          exact: ploio
+    route:
+    - destination:
+        host: basicapp
+        subset: smoke
+
+
+
+
+

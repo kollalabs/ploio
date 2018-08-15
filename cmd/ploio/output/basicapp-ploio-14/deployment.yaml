@@ -1,0 +1,23 @@
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: basicapp
+  annotations:
+    ploio.io/id: basicapp
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: basicapp
+        ploiotype: production 
+        version: v2
+    spec:
+      containers:
+      - name: basicapp
+        image: weavelab/basicapp:v2 
+        imagePullPolicy: IfNotPresent
+        ports: 
+        - containerPort: 9000
+        - containerPort: 7777

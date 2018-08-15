@@ -1,0 +1,26 @@
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: basicapp-smoke
+  annotations:
+    ploio.io/id: basicapp
+    ploio.io/type: smoke
+    ploio.io/headerMatch: ploio
+    
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: basicapp
+        ploiotype: smoke
+        version:  
+    spec:
+      containers:
+      - name: basicapp
+        image: weavelab/basicapp: 
+        imagePullPolicy: IfNotPresent
+        ports: 
+        - containerPort: 9000
+        - containerPort: 7777
